@@ -129,10 +129,20 @@ Then ask: **"What does MS.FAKE.9.9v9 require?"**
 
 ## 4:35 – 5:00 · Impact and learnings *(Slide 10 → 12)*
 
-> "Who is this for? Virginia's public universities, school divisions and county
-> governments run the same Microsoft 365 estate as a federal agency, with a
-> fraction of the compliance staff. OSCAL is the format FedRAMP assessors already
-> consume, so this output is immediately useful.
+> "So what is it worth? We refuse to give you a single number, because that would
+> imply precision we don't have. Instead: here is what we *measured* — 26 POA&M
+> items, 91 SSP requirements, 89 mappings, 26 phantom findings avoided. Here is
+> what we *assumed*, every input visible and adjustable. And here is the band:
+> twenty to sixty-nine analyst hours per assessment cycle, about fifteen hundred
+> to five and a half thousand dollars of time.
+>
+> It costs sixty-two cents a month to run.
+>
+> Virginia has three hundred and twenty-six public institutions running the same
+> Microsoft 365 estate as a federal agency, with a fraction of the compliance
+> staff — and the state's own SEC530 standard requires quarterly reporting. Change
+> any assumption on screen and the answer moves. We'd rather you argue with our
+> inputs than trust our output.
 >
 > Three things we learned. First, research before building — CISA's abandoned
 > branch shaped our entire scope. Second, the standard is stricter than the schema;

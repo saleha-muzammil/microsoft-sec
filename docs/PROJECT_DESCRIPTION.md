@@ -21,4 +21,10 @@ On top sits a **Microsoft Foundry** multi-agent layer — posture, risk,
 remediation and reporting — that answers in natural language but *cannot* state
 a compliance fact it didn't read from a validated artifact.
 
+Impact is measured, not asserted: one assessment cycle replaces **20–69 analyst
+hours** ($1,584–$5,544) and costs **$0.62/month** to run — with every assumption
+exposed in the app so a reader can substitute their own. Across Virginia's 326
+public institutions on quarterly cycles, that is tens of thousands of hours
+returned to security work.
+
 Deterministic core. AI where judgement helps. Provenance never lost.

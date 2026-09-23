@@ -25,6 +25,15 @@ sys.path.insert(0, str(ROOT / "src"))
 from scuba_oscal.agents.tools import ComplianceTools  # noqa: E402
 from scuba_oscal.app.theme import CSS, cards, explain, page_head, step  # noqa: E402
 from scuba_oscal.drift import compare, false_signal_count  # noqa: E402
+from scuba_oscal.impact import (  # noqa: E402
+    SOURCES,
+    VA_INSTITUTIONS,
+    Assumptions,
+    commonwealth_scale,
+    effort_per_assessment,
+    measure,
+    run_cost,
+)
 from scuba_oscal.parsers.mappings import MappingIndex  # noqa: E402
 from scuba_oscal.parsers.scubagear import parse_run  # noqa: E402
 
@@ -89,6 +98,7 @@ VIEWS = {
     "ask": "3 · Ask the AI",
     "drift": "4 · What changed?",
     "docs": "5 · The evidence",
+    "impact": "6 · What is it worth?",
 }
 
 with st.sidebar:
@@ -479,6 +489,116 @@ elif view == "drift":
         st.caption("These look like changes to a naive tool. They aren't — only the name moved.")
         for d in aware.renumbered:
             st.text(d.description)
+
+# ==================================================================== IMPACT
+
+elif view == "impact":
+    st.markdown(
+        page_head(
+            "What is it worth?",
+            "Every figure separates what we measured from what we assumed — and "
+            "every assumption is yours to change.",
+        ),
+        unsafe_allow_html=True,
+    )
+
+    m = measure(OSCAL_DIR)
+    st.markdown("##### Measured — counted from the generated documents")
+    st.caption("Facts about what the pipeline produced. No assumptions involved.")
+    rows = m.as_rows()
+    for start in (0, 4):
+        for col, (label, value) in zip(st.columns(4), rows[start:start + 4], strict=False):
+            col.metric(label, value)
+
+    st.markdown("---")
+    st.markdown("##### Assumed — change these and watch the answer move")
+    st.caption(
+        "We publish a range, not a headline number. A point estimate would imply "
+        "precision we do not have."
+    )
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        poam_min = st.slider("Minutes to author one POA&M item by hand", 5, 60, 20)
+        ssp_min = st.slider("Minutes to write one SSP requirement", 2, 40, 10)
+    with c2:
+        map_min = st.slider("Minutes to look up one NIST mapping", 1, 20, 6)
+        phantom_min = st.slider("Minutes to triage one phantom finding", 5, 45, 15)
+    with c3:
+        wage = st.slider(
+            "Analyst hourly wage ($)", 30.0, 120.0, 62.11, step=0.5,
+            help="Default: BLS Virginia mean for Information Security Analysts",
+        )
+        cycles = st.slider(
+            "Assessment cycles per year", 1, 12, 4,
+            help="Virginia's SEC530 standard requires quarterly remediation reporting",
+        )
+
+    a = Assumptions(
+        minutes_per_poam_item=poam_min,
+        minutes_per_ssp_requirement=ssp_min,
+        minutes_per_mapping_lookup=map_min,
+        minutes_per_phantom_triage=phantom_min,
+        hourly_wage=wage,
+    )
+    band = effort_per_assessment(m, a)
+    costs = run_cost()
+
+    st.markdown("---")
+    st.markdown("##### Result")
+    st.markdown(
+        cards([
+            (f"{band.low_hours:.0f}–{band.high_hours:.0f} h", "Manual effort replaced",
+             "per assessment cycle", "good"),
+            (f"${band.low_cost:,.0f}–${band.high_cost:,.0f}", "Analyst time value",
+             f"at ${band.loaded_hourly:.0f}/h loaded", "good"),
+            (f"${costs['total_monthly']:.2f}", "Cost to run",
+             "per month, all Azure services", "dark"),
+        ]),
+        unsafe_allow_html=True,
+    )
+
+    ratio = band.mid_cost / max(costs["total_monthly"], 0.01)
+    st.success(
+        # Streamlit renders $...$ as LaTeX math, so dollar signs in prose are escaped.
+        f"**Roughly {ratio:,.0f}x return.** One assessment cycle replaces about "
+        f"\\${band.mid_cost:,.0f} of analyst time; running the whole system costs "
+        f"\\${costs['total_monthly']:.2f} a month. The deterministic pipeline is local "
+        "computation and Azure AI Search runs on the free tier, so almost all of that "
+        "cost is the AI questions.",
+        icon="💡",
+    )
+
+    with st.expander("Where each hour goes"):
+        st.dataframe(
+            pd.DataFrame([{"Work replaced": n, "Hours": round(h, 1)} for n, h in band.breakdown]),
+            use_container_width=True, hide_index=True,
+        )
+
+    st.markdown("---")
+    st.markdown("##### If Virginia's public institutions adopted it")
+    scale = commonwealth_scale(band, cycles_per_year=cycles)
+    st.markdown(
+        cards([
+            (f"{scale['institutions']}", "Public institutions", "running Microsoft 365", ""),
+            (f"{scale['low_hours']:,.0f}–{scale['high_hours']:,.0f}", "Analyst hours / year",
+             "returned to security work", "good"),
+            (f"${scale['mid_cost'] / 1e6:,.1f}M", "Mid-range value / year",
+             f"band ${scale['low_cost'] / 1e6:,.1f}M–${scale['high_cost'] / 1e6:,.1f}M", "dark"),
+        ]),
+        unsafe_allow_html=True,
+    )
+    st.dataframe(
+        pd.DataFrame([{"Institution type": k, "Count": v} for k, v in VA_INSTITUTIONS.items()]),
+        use_container_width=True, hide_index=True,
+    )
+    st.caption("Sources: " + " · ".join(f"[{n}]({u})" for n, u in SOURCES.values()))
+    st.info(
+        "These institutions run the same Microsoft 365 estate as a federal agency and face "
+        "the same expectations — with a fraction of the compliance staff. The point is not "
+        "the exact figure; it is that the work is large, repetitive, and currently manual.",
+        icon="🏛️",
+    )
+
 
 # ====================================================================== DOCS
 

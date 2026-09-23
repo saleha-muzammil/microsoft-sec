@@ -225,16 +225,51 @@ structurally prevented from touching the facts.
 
 ---
 
-## Why this matters
+## What it's worth — measured, not asserted
 
-CISA's baselines are **mandatory** for federal civilian agencies under BOD 25-01,
-and Virginia's public universities, school divisions and local governments run
-the same Microsoft 365 estate with a fraction of the compliance staff.
+We separate what we **measured** from what we **assumed**, and publish a range
+rather than a headline number.
 
-For an organisation without a dedicated GRC team, the gap between *"we ran the
-scanner"* and *"we have an auditable compliance package"* is measured in weeks of
-manual work. This pipeline closes it in seconds, and produces artifacts in the
-format FedRAMP and federal assessors already consume.
+**Measured** — counted directly from the generated artifacts, no assumptions:
+
+| | |
+|---|---|
+| POA&M items with severity and deadline | 26 |
+| SSP implemented-requirements written | 91 |
+| NIST 800-53 mappings resolved | 89 |
+| Phantom drift findings avoided | 26 |
+
+**Assumed** — every input named, defaulted conservatively, and adjustable in the
+app: 20 min to hand-author a POA&M item, 10 min per SSP requirement, 6 min per
+mapping lookup, 15 min to triage a phantom finding, at Virginia's BLS mean wage
+for Information Security Analysts ($62.11/hr) with a 1.3× loaded multiplier.
+
+**Result, per assessment cycle:**
+
+| | |
+|---|---|
+| Manual effort replaced | **20–69 hours** (mid 39) |
+| Analyst time value | **$1,584–$5,544** |
+| **Cost to run** | **$0.62 / month** |
+
+Roughly a **5,000× return** — the deterministic pipeline is local computation and
+Azure AI Search runs on the free tier, so nearly all of that cost is AI questions.
+
+![Impact model: measured counts, adjustable assumptions, and a range rather than a headline number](docs/images/05-impact.png)
+
+### Why Virginia
+
+CISA's baselines are **mandatory** for federal civilian agencies under BOD 25-01.
+Virginia's **326 public institutions** — 131 school divisions, 133 counties and
+independent cities, 39 public four-year institutions, 23 community colleges — run
+the same Microsoft 365 estate and face the same expectations, with a fraction of
+the compliance staff. Virginia's own SEC530 standard requires **quarterly**
+remediation reporting.
+
+At four cycles a year across those institutions, that is **26,000–90,000 analyst
+hours** returned to actual security work. The point is not the precise figure —
+it is that the work is large, repetitive, and currently manual. Every assumption
+is exposed in the app so you can substitute your own.
 
 ---
 

@@ -410,44 +410,48 @@ function stat(s, x, y, w, value, label, valColor, bg) {
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"ECONOMIC VALUE & SOCIETAL IMPACT");
-  title(s,"Built for the institutions that can least afford this work");
+  title(s,"Measured, not asserted");
 
-  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:1.45, w:5.8, h:2.2,
-    fill:{color:LIGHT}, rectRadius:0.1, line:{color:"E2E8EE"} });
-  s.addText("Today, by hand", { isTextBox:true, x:0.95, y:1.62, w:5.3, h:0.35, fontFace:B,
-    fontSize:14, bold:true, color:GREY, margin:0 });
-  s.addText([
-    { text:"Read the ScubaGear report", options:{ bullet:true, breakLine:true } },
-    { text:"Transcribe failures into a POA&M spreadsheet", options:{ bullet:true, breakLine:true } },
-    { text:"Look up each NIST 800-53 mapping", options:{ bullet:true, breakLine:true } },
-    { text:"Write the SSP in Word", options:{ bullet:true, breakLine:false } },
-  ], { isTextBox:true, x:1.1, y:2.02, w:5.1, h:1.45, fontFace:B, fontSize:12.5,
-       color:INK, paraSpaceAfter:6, margin:0 });
+  s.addText("We refuse to publish a single headline number — that would imply precision we do not have. We separate what we measured from what we assumed, and expose every assumption.",
+    { isTextBox:true, x:0.7, y:1.42, w:11.9, h:0.6, fontFace:B, fontSize:14,
+      color:INK, lineSpacing:20, margin:0 });
 
-  s.addShape(pres.ShapeType.roundRect, { x:6.8, y:1.45, w:5.8, h:2.2,
+  // measured
+  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:2.1, w:5.8, h:2.0,
     fill:{color:"E8F6EF"}, rectRadius:0.1, line:{color:"C3E9D7"} });
-  s.addText("With this pipeline", { isTextBox:true, x:7.05, y:1.62, w:5.3, h:0.35,
-    fontFace:B, fontSize:14, bold:true, color:GREEN, margin:0 });
-  s.addText([
-    { text:"One command, seconds", options:{ bullet:true, breakLine:true } },
-    { text:"POA&M generated with severity and deadlines", options:{ bullet:true, breakLine:true } },
-    { text:"Mappings bound to CISA's crosswalk", options:{ bullet:true, breakLine:true } },
-    { text:"SSP in the format assessors already consume", options:{ bullet:true, breakLine:false } },
-  ], { isTextBox:true, x:7.2, y:2.02, w:5.1, h:1.45, fontFace:B, fontSize:12.5,
-       color:INK, paraSpaceAfter:6, margin:0 });
+  s.addText("MEASURED — counted from the artifacts", { isTextBox:true, x:0.95, y:2.26,
+    w:5.3, h:0.3, fontFace:B, fontSize:11, bold:true, color:GREEN, charSpacing:1, margin:0 });
+  [["26","POA&M items with severity + deadline"],["91","SSP implemented-requirements"],
+   ["89","NIST 800-53 mappings resolved"],["26","phantom drift findings avoided"]]
+    .forEach(([v,l],i)=>{
+      s.addText(v, { isTextBox:true, x:0.95, y:2.6+i*0.35, w:0.7, h:0.3, fontFace:B,
+        fontSize:14, bold:true, color:INK, margin:0 });
+      s.addText(l, { isTextBox:true, x:1.7, y:2.62+i*0.35, w:4.6, h:0.3, fontFace:B,
+        fontSize:11.5, color:GREY, margin:0 });
+    });
 
-  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:3.9, w:11.9, h:1.55,
-    fill:{color:NAVY}, rectRadius:0.1, line:{color:NAVY} });
-  s.addText("Who this is for, in Virginia", { isTextBox:true, x:1.0, y:4.08, w:11.3, h:0.35,
-    fontFace:B, fontSize:14, bold:true, color:AMBER, margin:0 });
-  s.addText("Public universities, K-12 school divisions, county and municipal governments, and small state agencies — all running the same Microsoft 365 estate as a federal agency, all subject to the same expectations, with a fraction of the compliance staff. OSCAL is the format FedRAMP and federal assessors already consume, so the output is immediately useful rather than another bespoke report.",
-    { isTextBox:true, x:1.0, y:4.45, w:11.3, h:0.9, fontFace:B, fontSize:13,
-      color:"D2DEE8", lineSpacing:19, margin:0 });
+  // assumed
+  s.addShape(pres.ShapeType.roundRect, { x:6.8, y:2.1, w:5.8, h:2.0,
+    fill:{color:"FFF6E0"}, rectRadius:0.1, line:{color:"FFE2A8"} });
+  s.addText("ASSUMED — adjustable by the reader", { isTextBox:true, x:7.05, y:2.26,
+    w:5.3, h:0.3, fontFace:B, fontSize:11, bold:true, color:"8A5A00", charSpacing:1, margin:0 });
+  [["20 min","to hand-author one POA&M item"],["10 min","per SSP requirement"],
+   ["6 min","per NIST mapping lookup"],["$62.11/h","BLS Virginia analyst wage x1.3 loaded"]]
+    .forEach(([v,l],i)=>{
+      s.addText(v, { isTextBox:true, x:7.05, y:2.6+i*0.35, w:1.3, h:0.3, fontFace:B,
+        fontSize:12.5, bold:true, color:INK, margin:0 });
+      s.addText(l, { isTextBox:true, x:8.45, y:2.62+i*0.35, w:4.0, h:0.3, fontFace:B,
+        fontSize:11.5, color:GREY, margin:0 });
+    });
 
-  s.addText("Open source under Apache-2.0. Runs on CISA's public data with no tenant access required, so any institution can evaluate it before trusting it with their own.",
-    { isTextBox:true, x:0.7, y:5.7, w:11.9, h:0.6, fontFace:B, fontSize:13.5,
+  stat(s, 0.7, 4.35, 3.8, "20–69 h", "manual effort replaced\nper assessment cycle", GREEN, "E8F6EF");
+  stat(s, 4.75, 4.35, 3.8, "$1.6k–$5.5k", "analyst time value\nper assessment cycle", GREEN, "E8F6EF");
+  stat(s, 8.8, 4.35, 3.8, "$0.62", "cost to run\nper month, all Azure", "FFB700", NAVY);
+
+  s.addText("Roughly a 5,000x return. Across Virginia's 326 public institutions on the quarterly cycle SEC530 already requires: 26,000–90,000 analyst hours a year returned to actual security work.",
+    { isTextBox:true, x:0.7, y:6.25, w:11.9, h:0.6, fontFace:B, fontSize:13.5,
       bold:true, color:NAVY2, lineSpacing:20, margin:0 });
-  note(s,"The societal case: compliance capability is currently gated on having a GRC team. This removes that gate for exactly the institutions that do not have one.");
+  note(s,"We give a band, not a number, and every assumption is a slider in the app. Judges do not have to accept our inputs - they can change them. The measured column needs no assumption at all.");
 }
 
 // ============================ 11. FEASIBILITY ============================
