@@ -1,0 +1,303 @@
+{
+  "assessment-plan": {
+    "uuid": "88cede4a-e5e5-56fd-9538-d9139dc69fcc",
+    "metadata": {
+      "title": "ScubaGear Assessment Plan - tqhjy",
+      "last-modified": "2026-09-23T03:57:24.278Z",
+      "version": "1.8.0",
+      "oscal-version": "1.2.3",
+      "props": [
+        {
+          "name": "tool",
+          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "value": "ScubaGear"
+        }
+      ]
+    },
+    "import-ssp": {
+      "href": "scuba-m365-ssp.json"
+    },
+    "reviewed-controls": {
+      "control-selections": [
+        {
+          "description": "SCuBA baseline policies evaluated by ScubaGear.",
+          "include-controls": [
+            {
+              "control-id": "ms.aad.1.1v1"
+            },
+            {
+              "control-id": "ms.aad.2.1v1"
+            },
+            {
+              "control-id": "ms.aad.2.2v1"
+            },
+            {
+              "control-id": "ms.aad.2.3v1"
+            },
+            {
+              "control-id": "ms.aad.3.1v1"
+            },
+            {
+              "control-id": "ms.aad.3.2v2"
+            },
+            {
+              "control-id": "ms.aad.3.3v2"
+            },
+            {
+              "control-id": "ms.aad.3.4v1"
+            },
+            {
+              "control-id": "ms.aad.3.5v2"
+            },
+            {
+              "control-id": "ms.aad.3.6v1"
+            },
+            {
+              "control-id": "ms.aad.3.7v1"
+            },
+            {
+              "control-id": "ms.aad.3.8v1"
+            },
+            {
+              "control-id": "ms.aad.3.9v1"
+            },
+            {
+              "control-id": "ms.aad.4.1v1"
+            },
+            {
+              "control-id": "ms.aad.5.1v1"
+            },
+            {
+              "control-id": "ms.aad.5.2v1"
+            },
+            {
+              "control-id": "ms.aad.5.3v1"
+            },
+            {
+              "control-id": "ms.aad.6.1v1"
+            },
+            {
+              "control-id": "ms.aad.7.1v1"
+            },
+            {
+              "control-id": "ms.aad.7.2v1"
+            },
+            {
+              "control-id": "ms.aad.7.3v1"
+            },
+            {
+              "control-id": "ms.aad.7.4v1"
+            },
+            {
+              "control-id": "ms.aad.7.5v1"
+            },
+            {
+              "control-id": "ms.aad.7.6v1"
+            },
+            {
+              "control-id": "ms.aad.7.7v1"
+            },
+            {
+              "control-id": "ms.aad.7.8v1"
+            },
+            {
+              "control-id": "ms.aad.7.9v1"
+            },
+            {
+              "control-id": "ms.aad.8.1v1"
+            },
+            {
+              "control-id": "ms.aad.8.2v1"
+            },
+            {
+              "control-id": "ms.aad.8.3v1"
+            },
+            {
+              "control-id": "ms.defender.1.1v1"
+            },
+            {
+              "control-id": "ms.defender.1.2v1"
+            },
+            {
+              "control-id": "ms.defender.1.3v1"
+            },
+            {
+              "control-id": "ms.defender.1.4v1"
+            },
+            {
+              "control-id": "ms.defender.1.5v1"
+            },
+            {
+              "control-id": "ms.defender.2.1v1"
+            },
+            {
+              "control-id": "ms.defender.2.2v1"
+            },
+            {
+              "control-id": "ms.defender.2.3v1"
+            },
+            {
+              "control-id": "ms.defender.3.1v1"
+            },
+            {
+              "control-id": "ms.defender.4.1v2"
+            },
+            {
+              "control-id": "ms.defender.4.2v1"
+            },
+            {
+              "control-id": "ms.defender.4.3v1"
+            },
+            {
+              "control-id": "ms.defender.4.4v1"
+            },
+            {
+              "control-id": "ms.defender.4.5v1"
+            },
+            {
+              "control-id": "ms.defender.4.6v1"
+            },
+            {
+              "control-id": "ms.defender.5.1v1"
+            },
+            {
+              "control-id": "ms.defender.5.2v1"
+            },
+            {
+              "control-id": "ms.defender.6.1v1"
+            },
+            {
+              "control-id": "ms.defender.6.3v1"
+            },
+            {
+              "control-id": "ms.exo.1.1v2"
+            },
+            {
+              "control-id": "ms.exo.13.1v1"
+            },
+            {
+              "control-id": "ms.exo.2.2v3"
+            },
+            {
+              "control-id": "ms.exo.3.1v1"
+            },
+            {
+              "control-id": "ms.exo.4.1v1"
+            },
+            {
+              "control-id": "ms.exo.4.2v1"
+            },
+            {
+              "control-id": "ms.exo.4.3v1"
+            },
+            {
+              "control-id": "ms.exo.4.4v1"
+            },
+            {
+              "control-id": "ms.exo.5.1v1"
+            },
+            {
+              "control-id": "ms.exo.6.1v1"
+            },
+            {
+              "control-id": "ms.exo.6.2v1"
+            },
+            {
+              "control-id": "ms.exo.7.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.1.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.1.2v1"
+            },
+            {
+              "control-id": "ms.powerplatform.2.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.2.2v1"
+            },
+            {
+              "control-id": "ms.powerplatform.3.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.3.2v1"
+            },
+            {
+              "control-id": "ms.powerplatform.4.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.5.1v1"
+            },
+            {
+              "control-id": "ms.powerplatform.6.1v1"
+            },
+            {
+              "control-id": "ms.sharepoint.1.1v1"
+            },
+            {
+              "control-id": "ms.sharepoint.1.2v1"
+            },
+            {
+              "control-id": "ms.sharepoint.1.3v1"
+            },
+            {
+              "control-id": "ms.sharepoint.2.1v1"
+            },
+            {
+              "control-id": "ms.sharepoint.2.2v1"
+            },
+            {
+              "control-id": "ms.sharepoint.3.1v1"
+            },
+            {
+              "control-id": "ms.sharepoint.3.2v1"
+            },
+            {
+              "control-id": "ms.teams.1.1v1"
+            },
+            {
+              "control-id": "ms.teams.1.2v2"
+            },
+            {
+              "control-id": "ms.teams.1.3v1"
+            },
+            {
+              "control-id": "ms.teams.1.4v1"
+            },
+            {
+              "control-id": "ms.teams.1.5v1"
+            },
+            {
+              "control-id": "ms.teams.1.6v1"
+            },
+            {
+              "control-id": "ms.teams.1.7v2"
+            },
+            {
+              "control-id": "ms.teams.2.1v2"
+            },
+            {
+              "control-id": "ms.teams.2.2v2"
+            },
+            {
+              "control-id": "ms.teams.2.3v2"
+            },
+            {
+              "control-id": "ms.teams.4.1v1"
+            },
+            {
+              "control-id": "ms.teams.5.1v2"
+            },
+            {
+              "control-id": "ms.teams.5.2v2"
+            },
+            {
+              "control-id": "ms.teams.5.3v2"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

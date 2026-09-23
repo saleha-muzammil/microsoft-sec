@@ -1,0 +1,91 @@
+{
+  "component-definition": {
+    "uuid": "40d354e6-5f95-5072-8541-7633f1feee3c",
+    "metadata": {
+      "title": "Microsoft 365 Services Component Definition",
+      "last-modified": "2026-09-23T03:57:24.278Z",
+      "version": "2.6.10 [updated 6/10/2026]",
+      "oscal-version": "1.2.3"
+    },
+    "components": [
+      {
+        "uuid": "991c0522-6417-5340-8f11-a49528d283a3",
+        "type": "service",
+        "title": "Microsoft Entra ID (Azure Active Directory)",
+        "description": "Microsoft 365 service assessed by ScubaGear: AAD.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "AAD"
+          }
+        ]
+      },
+      {
+        "uuid": "00f115c8-facb-543a-b325-3deb9eb6da1f",
+        "type": "service",
+        "title": "Microsoft 365 Defender",
+        "description": "Microsoft 365 service assessed by ScubaGear: Defender.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "Defender"
+          }
+        ]
+      },
+      {
+        "uuid": "7bc7400b-6ca8-55d9-bd5c-b72f4b72cfbd",
+        "type": "service",
+        "title": "Exchange Online",
+        "description": "Microsoft 365 service assessed by ScubaGear: EXO.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "EXO"
+          }
+        ]
+      },
+      {
+        "uuid": "0da111d4-db75-5703-85d8-47eacd434d94",
+        "type": "service",
+        "title": "Power Platform",
+        "description": "Microsoft 365 service assessed by ScubaGear: PowerPlatform.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "PowerPlatform"
+          }
+        ]
+      },
+      {
+        "uuid": "6aa386a2-a944-5f6c-b097-ed67ff582e89",
+        "type": "service",
+        "title": "SharePoint Online and OneDrive",
+        "description": "Microsoft 365 service assessed by ScubaGear: SharePoint.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "SharePoint"
+          }
+        ]
+      },
+      {
+        "uuid": "92880c96-6bb3-581e-a40f-c575bce66759",
+        "type": "service",
+        "title": "Microsoft Teams",
+        "description": "Microsoft 365 service assessed by ScubaGear: Teams.",
+        "props": [
+          {
+            "name": "product",
+            "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+            "value": "Teams"
+          }
+        ]
+      }
+    ]
+  }
+}
