@@ -87,6 +87,8 @@ build on any divergence. It also pins a case where published third-party tooling
 gets it wrong: `MS.AAD.1.1v1` maps to **`CM-7`** (least functionality — disabling
 legacy auth), not `IA-2(1)` (an MFA control).
 
+![Compliance posture dashboard](docs/images/01-posture.png)
+
 ### 3. Drift that survives baseline version changes
 
 SCuBA policy IDs are versioned, and CISA revises them. Between two runs,
@@ -104,6 +106,8 @@ reports each renumbered policy **twice** — once vanished, once new:
 **26 fabricated events** — corrupting exactly the numbers a compliance report is
 built on. We consume CISA's own migration table, so the count is right.
 
+![Posture drift: 30 findings reported by identifier matching versus 4 by version-aware comparison](docs/images/03-drift.png)
+
 ### 4. An AI layer that cannot fabricate
 
 Four Microsoft Foundry specialists — posture, risk, remediation, report — share
@@ -113,6 +117,14 @@ Every tool is a pure function over a NIST-validated document.
 So *"how do you know the model didn't invent that number?"* has a concrete
 answer: **it couldn't have**, and [`tests/test_agent_tools.py`](tests/test_agent_tools.py)
 proves the tools return what the artifacts contain.
+
+### 5. Prioritised remediation, traceable to OSCAL
+
+Each failing policy carries its severity, deadline, CISA rationale, implementation
+guidance, MITRE ATT&CK techniques, and NIST mapping — with provenance shown, so a
+CISA-published mapping never looks like an AI-proposed one.
+
+![Prioritised remediation view with policy detail and NIST mapping provenance](docs/images/02-risk.png)
 
 ---
 
