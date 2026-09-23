@@ -9,6 +9,7 @@ from .parsers.baselines import parse_baselines
 from .parsers.scubagear import parse_run
 from .transformers.assessment_results import build_assessment_results
 from .transformers.catalog import build_catalog
+from .transformers.poam import build_poam
 from .transformers.chain import (
     build_assessment_plan,
     build_component_definition,
@@ -25,6 +26,7 @@ FILENAMES = {
     "ssp": "scuba-m365-ssp.json",
     "assessment-plan": "scuba-assessment-plan.json",
     "assessment-results": "scuba-assessment-results.json",
+    "poam": "scuba-poam.json",
 }
 
 
@@ -66,6 +68,12 @@ def generate(
             run, FILENAMES["assessment-plan"], synthetic=synthetic
         ),
     }
+
+    # A fully-compliant tenant legitimately has no POA&M: OSCAL requires at
+    # least one poam-item, so an empty plan is not a valid document.
+    poam = build_poam(run, FILENAMES["ssp"], synthetic=synthetic)
+    if poam is not None:
+        docs["poam"] = poam
 
     written: dict[str, Path] = {}
     for model, doc in docs.items():

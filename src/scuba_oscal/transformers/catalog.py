@@ -13,6 +13,7 @@ projection of CISA-authored content, which is what makes the output citable.
 
 from __future__ import annotations
 
+import re
 from datetime import datetime, timezone
 
 from ..ids import control_uuid, det_uuid
@@ -39,6 +40,26 @@ PRODUCT_TITLES = {
 def _control_id(policy_id: str) -> str:
     """OSCAL control id. Lowercased by convention; dots are legal in a token."""
     return policy_id.lower()
+
+
+BASELINE_DOC_URL = (
+    "https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/{product}.md"
+)
+
+_MD_ANCHOR = re.compile(r"\]\(#([A-Za-z0-9._-]+)\)")
+
+
+def _absolutise_anchors(prose: str, product: str) -> str:
+    """Rewrite CISA's document-relative markdown anchors to absolute URLs.
+
+    The baseline prose contains links like ``[instructions](#msexo41v1-instructions)``
+    that point at headings inside CISA's own markdown file. Carried into OSCAL
+    verbatim they become dangling cross-references, and the validator warns that
+    the anchor target is not in the index. Pointing them at the published
+    baseline document preserves the author's intent and resolves cleanly.
+    """
+    base = BASELINE_DOC_URL.format(product=product)
+    return _MD_ANCHOR.sub(lambda m: f"]({base}#{m.group(1)})", prose)
 
 
 def _line(text: str) -> str:
@@ -90,10 +111,21 @@ def _policy_parts(policy: BaselinePolicy) -> list[dict]:
         # our own namespace, which is the mechanism OSCAL provides for
         # domain-specific extensions.
         parts.append(
-            {"id": f"{cid}_rat", "name": "rationale", "ns": SCUBA_NS, "prose": policy.rationale}
+            {
+                "id": f"{cid}_rat",
+                "name": "rationale",
+                "ns": SCUBA_NS,
+                "prose": _absolutise_anchors(policy.rationale, policy.product),
+            }
         )
     if policy.implementation:
-        parts.append({"id": f"{cid}_gdn", "name": "guidance", "prose": policy.implementation})
+        parts.append(
+            {
+                "id": f"{cid}_gdn",
+                "name": "guidance",
+                "prose": _absolutise_anchors(policy.implementation, policy.product),
+            }
+        )
     return parts
 
 
@@ -185,7 +217,7 @@ def build_catalog(baselines: BaselineCatalog, products: list[str] | None = None)
                     {
                         "id": f"ms.{product}.{number}_ovw",
                         "name": "overview",
-                        "prose": first.section_description,
+                        "prose": _absolutise_anchors(first.section_description, product),
                     }
                 ]
             subgroups.append(subgroup)
