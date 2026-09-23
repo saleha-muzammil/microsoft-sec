@@ -1,0 +1,36 @@
+# Example ScubaGear configuration showing policy exemptions.
+#
+# Structure and field names follow CISA's published documentation:
+# https://cisagov.github.io/ScubaGear/docs/configuration/configuration.html
+#
+# This file is illustrative, not a real organisation's configuration. It is
+# included so the exemption ledger can be demonstrated without anyone's
+# private config. Note the first entry uses the expiry date from CISA's own
+# documentation example, which is now in the past.
+
+Description: "Example configuration demonstrating policy exemptions"
+
+OmitPolicy:
+  MS.EXO.4.3v1:
+    Rationale: "Policy only applies to federal executive branch agencies"
+    Expiration: 2025-12-31        # lapsed — still suppressing the policy
+
+  MS.AAD.3.1v1:
+    Rationale: "Third-party MFA solution in use, not Entra MFA"
+    Expiration: 2026-03-31        # lapsed — and this is a SHALL
+
+  MS.AAD.5.2v1:
+    Rationale: "Pending vendor remediation, tracked in ticket SEC-4471"
+    Expiration: 2026-12-31        # still valid
+
+  MS.TEAMS.2.1v1:
+    Rationale: ""                 # no rationale recorded
+
+  MS.SHAREPOINT.1.1v1:
+    Rationale: "Legacy sites excluded during migration"
+                                   # no expiry — runs forever
+
+AnnotatePolicy:
+  MS.EXO.2.2v2:
+    Comment: "Soft-fail SPF accepted per risk decision RD-118"
+    RemediationDate: 2026-11-30

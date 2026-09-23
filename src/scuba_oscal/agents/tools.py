@@ -413,6 +413,42 @@ class ComplianceTools:
             )
         return json.dumps({"ranked_by_threat_coverage": rows}, indent=2)
 
+    # -------------------------------------------------------------- exemptions
+
+    def get_exemptions(self) -> str:
+        """Report policies excluded from the compliance figure by configuration.
+
+        ScubaGear lets an organisation omit policies via its config file, which
+        removes them from the denominator — so the reported compliance rate can
+        be raised by editing YAML. Use this to answer "is this number real?" and
+        to surface exemptions that have expired but are still suppressing their
+        policy. Returns nothing if no configuration was supplied.
+        """
+        ledger = getattr(self, "_ledger", None)
+        if ledger is None:
+            return json.dumps(
+                {"exemptions": [], "note": "No ScubaGear configuration was supplied."}
+            )
+        return json.dumps(
+            {
+                "reported_compliance_rate": f"{ledger.reported_rate:.1f}%",
+                "true_rate_all_assessed": f"{ledger.true_rate:.1f}%",
+                "inflation_percentage_points": round(ledger.inflation, 1),
+                "policies_suppressed": ledger.suppressed,
+                "suppressed_that_are_mandatory": ledger.suppressed_mandatory,
+                "expired_but_still_suppressing": [
+                    {
+                        "policy_id": e.policy_id,
+                        "expired_on": e.expiration.isoformat() if e.expiration else None,
+                        "rationale": e.rationale,
+                    }
+                    for e in ledger.expired
+                ],
+                "missing_rationale": [e.policy_id for e in ledger.without_rationale],
+            },
+            indent=2,
+        )
+
     # ----------------------------------------------------------------- search
 
     def search_controls(

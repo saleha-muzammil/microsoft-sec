@@ -33,6 +33,7 @@ from scuba_oscal.app.theme import (  # noqa: E402
     step,
 )
 from scuba_oscal.drift import compare, false_signal_count  # noqa: E402
+from scuba_oscal.exemptions import build_ledger, parse_config  # noqa: E402
 from scuba_oscal.impact import (  # noqa: E402
     SOURCES,
     VA_INSTITUTIONS,
@@ -350,6 +351,62 @@ elif view == "posture":
                           legend=dict(orientation="h", y=-0.22), xaxis_title=None)
         st.plotly_chart(fig, use_container_width=True)
 
+    # --- exemptions: is the headline number even real? ---
+    config_path = SAMPLES / "scuba_config_example.yaml"
+    if config_path.exists():
+        try:
+            run_now = parse_run(SAMPLES / "ScubaResults_fa5589b7-d528-4f80.json")
+            ledger = build_ledger(run_now, parse_config(config_path))
+        except Exception:
+            ledger = None
+        if ledger and ledger.exemptions:
+            st.markdown("---")
+            st.markdown("##### Is this number even real?")
+            st.markdown(
+                explain(
+                    "What is an exemption?",
+                    "ScubaGear lets an organisation <b>omit</b> policies from its report "
+                    "through a config file. Omitted policies turn grey and drop out of the "
+                    "denominator — so the compliance rate can be raised by editing YAML. "
+                    "CISA warns this \u201ccan inadvertently introduce blind spots\u201d. "
+                    "Nothing audits it, and nothing enforces the optional expiry date.",
+                ),
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                cards([
+                    (f"{ledger.reported_rate:.1f}%", "Reported rate",
+                     f"denominator {ledger.reported_total}", ""),
+                    (f"{ledger.true_rate:.1f}%", "Over all assessed",
+                     f"denominator {ledger.assessed_total}", "good"),
+                    (f"+{ledger.inflation:.1f} pts", "Added by exemptions",
+                     "without fixing anything", "warn"),
+                    (str(len(ledger.suppressed_mandatory)), "Mandatory suppressed",
+                     "SHALL under BOD 25-01", "bad"),
+                ]),
+                unsafe_allow_html=True,
+            )
+            if ledger.expired:
+                for e in ledger.expired:
+                    st.error(
+                        f"**{e.policy_id}** — exemption expired "
+                        f"**{e.expiration.isoformat()}** and is still suppressing the policy. "
+                        f"Recorded reason: *{e.rationale or 'none given'}*",
+                        icon="⏰",
+                    )
+            if ledger.without_rationale:
+                st.warning(
+                    "No rationale recorded for: "
+                    + ", ".join(e.policy_id for e in ledger.without_rationale)
+                    + ". ScubaGear warns when this happens, but still applies the omission.",
+                    icon="📝",
+                )
+            st.caption(
+                "Config shown is an illustrative example using CISA's documented field "
+                "names — not a real organisation's file."
+            )
+
+    st.markdown("---")
     worst = max(data["by_product"].items(), key=lambda kv: kv[1].get("Fail", 0))
     st.info(
         f"**Biggest weak spot: {worst[0]}** — {worst[1].get('Fail', 0)} failing rules. "

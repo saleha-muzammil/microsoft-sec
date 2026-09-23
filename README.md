@@ -124,6 +124,39 @@ So *"how do you know the model didn't invent that number?"* has a concrete
 answer: **it couldn't have**, and [`tests/test_agent_tools.py`](tests/test_agent_tools.py)
 proves the tools return what the artifacts contain.
 
+#### Exemptions: is the compliance number even real?
+
+ScubaGear lets an organisation **omit** policies through a config file. Omitted
+policies render grey and drop out of the denominator — so **the reported
+compliance rate can be raised by editing YAML.** CISA warns this "can
+inadvertently introduce blind spots", but the mechanism has no owner, no
+approver, and no machine-readable existence outside that file.
+
+The `Expiration` field is the sharp part: it is optional and **nothing enforces
+it**. The example in CISA's own documentation uses `2025-12-31` — a date now in
+the past.
+
+On an illustrative config using CISA's documented field names:
+
+| | |
+|---|---|
+| Reported rate (denominator 79) | 69.6% |
+| Rate over all assessed (denominator 83) | **66.3%** |
+| Added by exemptions, fixing nothing | **+3.4 points** |
+| Suppressed policies that are mandatory SHALL | **4** |
+| **Expired but still suppressing** | **2** |
+
+One of the lapsed exemptions suppresses `MS.AAD.3.1v1` — *phishing-resistant MFA
+SHALL be enforced* — six months past its own expiry date.
+
+OSCAL already has the vocabulary for this: `risk-status` includes
+`deviation-requested` and `deviation-approved`. An exemption is a deviation; an
+**expired** one has lapsed back to `open`, whatever the report shows.
+
+> This is the same insight as our drift work, applied to a second axis. Drift:
+> *the finding count is wrong because the identifiers changed underneath it.*
+> Exemptions: *the percentage is wrong because the denominator changed underneath it.*
+
 #### Threat coverage: what can still happen, not just what is unticked
 
 A POA&M says *what is non-compliant*. A security team asks *what can still
