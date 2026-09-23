@@ -30,3 +30,6 @@ data/oscal_out/*
 
 # Real tenant data must never be committed (see docs/RULES_CHECKLIST.md §7)
 data/scubagear_real/
+
+# Vendored binary toolchain (installed via scripts/install_tools.sh)
+tools/oscal-cli/
