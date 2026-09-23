@@ -19,6 +19,13 @@ ai = [
     "agent-framework-orchestrations>=1.2.0",
     "azure-identity>=1.25.3",
 ]
+search = [
+    # Optional: semantic retrieval over baseline guidance. The tool layer
+    # falls back to keyword search when this is absent, so it is never
+    # required for the pipeline or the tests to pass.
+    "azure-search-documents==11.6.0",
+    "openai>=3.0",
+]
 app = [
     "streamlit==1.52.2",
     "pandas==2.3.3",

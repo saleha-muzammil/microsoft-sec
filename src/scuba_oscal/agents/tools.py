@@ -87,8 +87,14 @@ def _part(control: dict, name: str) -> str:
 class ComplianceTools:
     """Bound tool implementations over one OSCAL document set."""
 
-    def __init__(self, directory: str | Path):
+    def __init__(self, directory: str | Path, semantic: bool = True):
         self.store = OscalStore(Path(directory))
+        self._semantic = None
+        if semantic:
+            from .retrieval import SemanticIndex
+
+            index = SemanticIndex()
+            self._semantic = index if index.configured else None
 
     # ---------------------------------------------------------------- posture
 
@@ -247,11 +253,39 @@ class ComplianceTools:
 
     def search_controls(
         self,
-        query: Annotated[str, Field(description="Keywords, e.g. 'multifactor authentication'.")],
+        query: Annotated[
+            str,
+            Field(description="A topic or question, e.g. 'how do we stop password spraying?'"),
+        ],
         limit: Annotated[int, Field(description="Maximum results.")] = 10,
     ) -> str:
-        """Keyword-search SCuBA policies by title, rationale, or guidance.
-        Use this when the user describes a topic rather than naming a policy ID."""
+        """Find SCuBA policies relevant to a topic or question.
+
+        Uses semantic search over CISA's baseline text when Azure AI Search is
+        configured, so it matches on meaning rather than exact wording, and
+        falls back to keyword matching otherwise. Use this when the user
+        describes a problem rather than naming a policy ID, then call
+        get_control_details for the authoritative requirement."""
+        if self._semantic is not None:
+            hits = self._semantic.search(query, limit=limit)
+            if hits:
+                return json.dumps(
+                    {
+                        "retrieval": "semantic (Azure AI Search)",
+                        "matches": [
+                            {
+                                "policy_id": h.policy_id,
+                                "title": h.title,
+                                "product": h.product,
+                                "criticality": h.criticality,
+                                "relevance": round(h.score, 4),
+                            }
+                            for h in hits
+                        ],
+                    },
+                    indent=2,
+                )
+
         terms = [t for t in query.lower().split() if len(t) > 2]
         scored = []
         for cid, control in self.store.controls.items():
@@ -264,10 +298,11 @@ class ComplianceTools:
         scored.sort(reverse=True)
         return json.dumps(
             {
+                "retrieval": "keyword",
                 "matches": [
                     {"policy_id": c.upper(), "title": t, "criticality": crit}
                     for _, c, t, crit in scored[:limit]
-                ]
+                ],
             },
             indent=2,
         )

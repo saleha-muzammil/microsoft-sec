@@ -118,7 +118,28 @@ So *"how do you know the model didn't invent that number?"* has a concrete
 answer: **it couldn't have**, and [`tests/test_agent_tools.py`](tests/test_agent_tools.py)
 proves the tools return what the artifacts contain.
 
-### 5. Prioritised remediation, traceable to OSCAL
+### 5. Semantic retrieval over baseline guidance (Azure AI Search)
+
+Engineers arrive with a *problem*, not a policy ID. Keyword search cannot help
+with *"someone could trick a user into approving a malicious app"* — none of
+those words appear in the baseline text. Vector search over CISA's guidance,
+embedded with `text-embedding-3-large`, returns:
+
+| Policy | Title |
+|---|---|
+| **MS.AAD.5.2v1** | User consent to applications SHALL be restricted |
+| MS.TEAMS.5.2v2 | Only allow installation of approved third-party apps |
+
+Two deliberate constraints keep this safe:
+
+- **Retrieval is never a source of compliance facts.** It returns policy IDs; the
+  authoritative requirement, result and mapping are still read from validated
+  OSCAL. A retrieval miss can make an answer less complete — never wrong.
+- **It is optional.** Without Azure AI Search the tool falls back to keyword
+  search, and every test still passes. The demo never depends on a second cloud
+  service being healthy.
+
+### 6. Prioritised remediation, traceable to OSCAL
 
 Each failing policy carries its severity, deadline, CISA rationale, implementation
 guidance, MITRE ATT&CK techniques, and NIST mapping — with provenance shown, so a
@@ -143,6 +164,13 @@ That runs entirely offline against CISA's published sample data. For the AI laye
 ```bash
 cp .env.example .env    # fill in your Foundry endpoint, then `az login`
 streamlit run src/scuba_oscal/app/main.py
+```
+
+Optional — semantic retrieval over baseline guidance:
+
+```bash
+pip install -e ".[search]"
+python scripts/build_search_index.py     # embeds 127 policies into Azure AI Search
 ```
 
 Other entry points:
