@@ -1,0 +1,152 @@
+{
+  "description": "Golden question set for the SCuBA Compliance Copilot. Every expected value is derivable from the generated OSCAL artifacts, so the ground truth is checkable rather than opinion.",
+  "cases": [
+    {
+      "id": "posture-total",
+      "specialist": "posture",
+      "question": "How many SCuBA policies were assessed in total?",
+      "must_contain": [
+        "92"
+      ],
+      "must_cite_policy": false
+    },
+    {
+      "id": "posture-failures",
+      "specialist": "posture",
+      "question": "How many policies failed outright, and how many produced warnings?",
+      "must_contain": [
+        "14",
+        "12"
+      ],
+      "must_cite_policy": false
+    },
+    {
+      "id": "posture-rate",
+      "specialist": "posture",
+      "question": "What is our compliance rate excluding N/A policies?",
+      "must_contain": [
+        "68.7"
+      ],
+      "must_cite_policy": false
+    },
+    {
+      "id": "mapping-aad11",
+      "specialist": "posture",
+      "question": "Which NIST 800-53 control does MS.AAD.1.1v1 map to, and what is the provenance of that mapping?",
+      "must_contain": [
+        "CM-7"
+      ],
+      "must_not_contain": [
+        "IA-2(1)"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "mapping-provenance",
+      "specialist": "posture",
+      "question": "Is the NIST mapping for MS.AAD.1.1v1 authoritative or AI-proposed?",
+      "must_contain": [
+        "authoritative"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "control-detail-legacy-auth",
+      "specialist": "posture",
+      "question": "What does MS.AAD.1.1v1 require and did it pass?",
+      "must_contain": [
+        "legacy authentication",
+        "Pass"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "criticality-shall",
+      "specialist": "posture",
+      "question": "Is MS.AAD.3.1v1 a SHALL or a SHOULD requirement?",
+      "must_contain": [
+        "SHALL"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "unmapped-honesty",
+      "specialist": "posture",
+      "question": "What NIST 800-53 control does MS.DEFENDER.1.1v1 map to?",
+      "must_contain": [
+        "unmapped"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "nonexistent-policy",
+      "specialist": "posture",
+      "question": "What does MS.FAKE.9.9v9 require?",
+      "must_contain": [
+        "not",
+        "catalog"
+      ],
+      "must_not_contain": [
+        "SHALL be"
+      ],
+      "must_cite_policy": false,
+      "note": "Hallucination probe: the model must refuse rather than invent a plausible control."
+    },
+    {
+      "id": "high-severity-count",
+      "specialist": "risk",
+      "question": "How many high-severity POA&M items are open?",
+      "must_contain": [
+        "14"
+      ],
+      "must_cite_policy": false
+    },
+    {
+      "id": "top-risk",
+      "specialist": "risk",
+      "question": "What is the single highest-priority failing policy? Name its ID.",
+      "must_contain": [
+        "MS.AAD"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "mitre-technique",
+      "specialist": "posture",
+      "question": "Which MITRE ATT&CK techniques does MS.AAD.1.1v1 mitigate?",
+      "must_contain": [
+        "T1110"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "remediation-grounded",
+      "specialist": "remediation",
+      "question": "How do we remediate MS.AAD.3.1v1?",
+      "must_contain": [
+        "MFA"
+      ],
+      "must_cite_policy": true
+    },
+    {
+      "id": "product-breakdown",
+      "specialist": "posture",
+      "question": "How many AAD policies failed?",
+      "must_contain": [
+        "11"
+      ],
+      "must_cite_policy": false
+    },
+    {
+      "id": "exec-summary",
+      "specialist": "report",
+      "question": "Write a two-sentence executive summary of our compliance posture.",
+      "must_contain": [
+        "68.7",
+        "14"
+      ],
+      "must_cite_policy": false,
+      "note": "Assertion corrected after review: the original demanded the literal total 92, but the agent's grounded answer gave the full breakdown. The test was wrong, not the answer."
+    }
+  ]
+}
