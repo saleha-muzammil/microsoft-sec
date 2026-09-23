@@ -41,6 +41,39 @@ class Provenance(str, Enum):
         return self in (Provenance.CISA, Provenance.CISA_MIGRATED)
 
 
+POLICY_ID = re.compile(r"MS\.[A-Z0-9]+\.\d+\.\d+v\d+")
+
+
+class MigrationKind(str, Enum):
+    """What CISA's migration table is actually saying about a policy.
+
+    The "New ID" column encodes three different meanings in one field, and a
+    naive parser conflates them -- notably by creating a migration to the
+    literal string "None".
+    """
+
+    RENAMED = "renamed"    # exactly one successor: a true 1:1 renumbering
+    SPLIT = "split"        # several successors: the policy was divided
+    RETIRED = "retired"    # no successor: dropped from the baseline
+
+
+@dataclass(frozen=True)
+class Migration:
+    old_id: str
+    kind: MigrationKind
+    new_ids: tuple[str, ...]
+    rationale: str = ""
+
+    @property
+    def successor(self) -> str | None:
+        """The single successor, defined only for a true renaming.
+
+        A split has no unambiguous successor, so drift comparison must not
+        silently pick one.
+        """
+        return self.new_ids[0] if self.kind is MigrationKind.RENAMED else None
+
+
 # "AC-2(12)" -> ac-2.12 ; "IA-5c" -> ia-5 ; "SC-7(10)(a)" -> sc-7.10
 _CTRL = re.compile(r"^([A-Za-z]{2})-(\d+)((?:\(\d+\))*)([a-z])?", re.IGNORECASE)
 
@@ -99,15 +132,47 @@ class MappingIndex:
                 else:
                     self.crosswalk[policy] = parts
 
-        # old policy id -> new policy id, across baseline versions
-        self.migrations: dict[str, str] = {}
+        # Baseline policy migrations, classified by what they actually mean.
+        self.migration_records: dict[str, Migration] = {}
         if migrations_csv and Path(migrations_csv).exists():
             with open(migrations_csv, newline="", encoding="utf-8-sig") as handle:
                 for row in csv.DictReader(handle):
                     old = (row.get("Old ID") or "").strip()
-                    new = (row.get("New ID") or "").strip()
-                    if old and new:
-                        self.migrations[old] = new
+                    if not old:
+                        continue
+                    targets = tuple(POLICY_ID.findall((row.get("New ID") or "").strip()))
+                    if not targets:
+                        kind = MigrationKind.RETIRED
+                    elif len(targets) == 1:
+                        kind = MigrationKind.RENAMED
+                    else:
+                        kind = MigrationKind.SPLIT
+                    self.migration_records[old] = Migration(
+                        old_id=old,
+                        kind=kind,
+                        new_ids=targets,
+                        rationale=(row.get("Removal Rationale") or "").strip(),
+                    )
+
+    @property
+    def migrations(self) -> dict[str, str]:
+        """Unambiguous 1:1 renamings only.
+
+        Splits and retirements are deliberately excluded: there is no single
+        correct successor for a split, and a retired policy has none at all.
+        Including them would manufacture false equivalences.
+        """
+        return {
+            old: record.successor
+            for old, record in self.migration_records.items()
+            if record.successor
+        }
+
+    def migration_stats(self) -> dict[str, int]:
+        counts: dict[str, int] = {}
+        for record in self.migration_records.values():
+            counts[record.kind.value] = counts.get(record.kind.value, 0) + 1
+        return counts
 
     def resolve(self, policy_id: str) -> ControlMapping:
         """Resolve one SCuBA policy to NIST controls, recording provenance."""
