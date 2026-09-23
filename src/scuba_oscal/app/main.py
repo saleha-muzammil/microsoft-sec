@@ -249,17 +249,24 @@ elif view == "Drift":
     aware = compare(before, after, migrations, version_aware=True)
     phantom = false_signal_count(naive, aware)
 
+    # Count only *material* events: a renumbering is a change of identifier,
+    # not a change of posture, so including it would overstate what each
+    # approach actually reports as a finding.
+    naive_material = len([d for d in naive.deltas if d.kind.is_material])
+    aware_material = len([d for d in aware.deltas if d.kind.is_material])
+
     left, right = st.columns(2)
     with left:
         st.subheader("Matching by identifier")
+        st.metric("Findings reported", naive_material, delta=f"+{naive_material - aware_material} false",
+                  delta_color="inverse")
         counts = naive.counts()
-        st.metric("Reported changes", sum(v for k, v in counts.items() if k != "unchanged"))
-        st.json({k: v for k, v in counts.items() if k != "unchanged"})
+        st.json({k: v for k, v in counts.items() if k not in ("unchanged",)})
     with right:
         st.subheader("Version-aware")
+        st.metric("Findings reported", aware_material, delta="accurate", delta_color="off")
         counts = aware.counts()
-        st.metric("Reported changes", sum(v for k, v in counts.items() if k != "unchanged"))
-        st.json({k: v for k, v in counts.items() if k != "unchanged"})
+        st.json({k: v for k, v in counts.items() if k not in ("unchanged",)})
 
     st.error(
         f"Identifier matching manufactures **{phantom['total_false_events']} false events** — "
