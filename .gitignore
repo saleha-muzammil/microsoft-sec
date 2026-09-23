@@ -1,0 +1,32 @@
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Tooling
+.DS_Store
+.vscode/
+.idea/
+
+# Generated OSCAL output (regenerable; keep curated examples under data/oscal_out/examples/)
+data/oscal_out/*
+!data/oscal_out/.gitkeep
+!data/oscal_out/examples/
+
+# Real tenant data must never be committed (see docs/RULES_CHECKLIST.md §7)
+data/scubagear_real/
