@@ -92,16 +92,19 @@ def test_comparing_a_run_to_itself_shows_no_drift(runs, migrations):
     assert not [d for d in report.deltas if d.kind.is_material]
 
 
-def test_split_migrations_are_not_used_as_renames(index):
-    """A policy split into several has no single successor; inventing one
-    would silently equate two different requirements."""
-    split = [
-        r for r in index.migration_records.values() if r.kind is MigrationKind.SPLIT
+def test_range_migrations_are_not_used_as_renames(index):
+    """A policy superseded by a *range* has no single successor, so it must not
+    be treated as a 1:1 rename -- that would equate two different requirements
+    during drift comparison. (It can still resolve to a NIST mapping; see
+    test_mapping_fidelity.)"""
+    ranges = [
+        r for r in index.migration_records.values() if r.kind is MigrationKind.RANGE
     ]
-    assert split, "expected CISA's table to contain split migrations"
-    for record in split:
+    assert ranges, "expected CISA's table to contain range migrations"
+    for record in ranges:
         assert record.successor is None
         assert record.old_id not in index.migrations
+        assert len(record.new_ids) > 1, "a range must expand to every policy it covers"
 
 
 def test_retired_policies_are_not_used_as_renames(index):
@@ -115,4 +118,14 @@ def test_retired_policies_are_not_used_as_renames(index):
 
 
 def test_migration_table_classification(index):
-    assert index.migration_stats() == {"renamed": 45, "retired": 5, "split": 5}
+    """Regression guard for a real parsing bug.
+
+    "MS.SECURITYSUITE.1.1v1 - MS.SECURITYSUITE.1.4v1" is RANGE notation
+    (policies 1.1 through 1.4), not two discrete successors. Reading it as a
+    split classified all five such rows wrongly and cost five policies their
+    CISA mapping.
+    """
+    assert index.migration_stats() == {"renamed": 45, "retired": 5, "range": 5}
+    assert not any(
+        r.kind is MigrationKind.SPLIT for r in index.migration_records.values()
+    ), "no row in CISA's current table is a true discrete split"

@@ -35,7 +35,12 @@ def score(case: dict, answer: str) -> dict:
     missing = [t for t in case.get("must_contain", []) if t.lower() not in lowered]
     forbidden = [t for t in case.get("must_not_contain", []) if t.lower() in lowered]
     cited = bool(POLICY_ID.search(answer))
-    citation_ok = cited if case.get("must_cite_policy") else True
+    requires_citation = bool(case.get("must_cite_policy"))
+    # Aggregate-statistics questions ("how many policies failed?") should NOT
+    # cite a policy ID -- there isn't one to cite. Scoring them in the citation
+    # denominator understates the metric, so they are excluded rather than
+    # counted as misses.
+    citation_ok = cited if requires_citation else True
 
     return {
         "id": case["id"],
@@ -43,6 +48,7 @@ def score(case: dict, answer: str) -> dict:
         "accurate": not missing and not forbidden,
         "missing_terms": missing,
         "forbidden_terms_present": forbidden,
+        "requires_citation": requires_citation,
         "cited_policy_id": cited,
         "citation_ok": citation_ok,
         "passed": not missing and not forbidden and citation_ok,
@@ -80,25 +86,32 @@ async def main() -> int:
     total = len(results)
     passed = sum(r["passed"] for r in results)
     accurate = sum(r["accurate"] for r in results)
-    cite_cases = [r for r in results if r["citation_ok"] is not None]
-    cited = sum(r["cited_policy_id"] for r in results)
-    latency = sum(r["latency_s"] for r in results) / total
+    cite_cases = [r for r in results if r["requires_citation"]]
+    cited = sum(r["cited_policy_id"] for r in cite_cases)
+    latencies = sorted(r["latency_s"] for r in results)
+    median = latencies[len(latencies) // 2]
+    p95 = latencies[max(0, int(len(latencies) * 0.95) - 1)]
 
     summary = {
         "total_cases": total,
         "passed": passed,
         "pass_rate": round(100 * passed / total, 1),
         "accuracy_rate": round(100 * accurate / total, 1),
-        "citation_rate": round(100 * cited / len(cite_cases), 1),
-        "mean_latency_s": round(latency, 1),
+        "citation_rate_where_required": round(100 * cited / len(cite_cases), 1),
+        "citation_cases": len(cite_cases),
+        "median_latency_s": round(median, 1),
+        "p95_latency_s": round(p95, 1),
+        "max_latency_s": round(latencies[-1], 1),
         "total_runtime_s": round(time.time() - started, 1),
     }
 
     print("\n" + "=" * 58)
     print(f"  Pass rate       {summary['pass_rate']}%   ({passed}/{total})")
     print(f"  Accuracy        {summary['accuracy_rate']}%")
-    print(f"  Citation rate   {summary['citation_rate']}%")
-    print(f"  Mean latency    {summary['mean_latency_s']}s")
+    print(f"  Citation rate   {summary['citation_rate_where_required']}%"
+          f"   ({cited}/{len(cite_cases)} where a citation is required)")
+    print(f"  Latency         median {summary['median_latency_s']}s"
+          f" · p95 {summary['p95_latency_s']}s · max {summary['max_latency_s']}s")
     print("=" * 58)
 
     RESULTS.write_text(json.dumps({"summary": summary, "cases": results}, indent=2))

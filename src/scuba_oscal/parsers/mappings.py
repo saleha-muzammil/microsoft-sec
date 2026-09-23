@@ -42,19 +42,49 @@ class Provenance(str, Enum):
 
 
 POLICY_ID = re.compile(r"MS\.[A-Z0-9]+\.\d+\.\d+v\d+")
+#: "MS.X.1.1v1 - MS.X.1.4v1" -- a contiguous range, not two discrete successors.
+RANGE_SEP = re.compile(r"\s+-\s+")
+_PARTS = re.compile(r"^(MS\.[A-Z0-9]+)\.(\d+)\.(\d+)v(\d+)$")
+
+
+def expand_range(start: str, end: str) -> tuple[str, ...]:
+    """Expand "MS.X.1.1v1 - MS.X.1.4v1" into every policy ID it covers.
+
+    Only expands within a single product and group, where the notation is
+    unambiguous. Returns an empty tuple if the endpoints are not comparable,
+    so an unexpected form degrades to "we could not resolve this" rather than
+    to a wrong answer.
+    """
+    a, b = _PARTS.match(start), _PARTS.match(end)
+    if not a or not b:
+        return ()
+    if a.group(1) != b.group(1) or a.group(2) != b.group(2):
+        return ()          # different product or group: not a simple range
+    lo, hi = int(a.group(3)), int(b.group(3))
+    if hi < lo:
+        return ()
+    product, group, version = a.group(1), a.group(2), a.group(4)
+    return tuple(f"{product}.{group}.{n}v{version}" for n in range(lo, hi + 1))
 
 
 class MigrationKind(str, Enum):
     """What CISA's migration table is actually saying about a policy.
 
-    The "New ID" column encodes three different meanings in one field, and a
+    The "New ID" column encodes several different meanings in one field, and a
     naive parser conflates them -- notably by creating a migration to the
     literal string "None".
+
+    The subtle case is **range notation**: "MS.SECURITYSUITE.1.1v1 -
+    MS.SECURITYSUITE.1.4v1" means *policies 1.1 through 1.4*, not "split into
+    these two". Reading it as two successors is wrong, and costs real coverage:
+    every policy in that range maps to the same NIST control, so CISA has in
+    fact published an answer.
     """
 
-    RENAMED = "renamed"    # exactly one successor: a true 1:1 renumbering
-    SPLIT = "split"        # several successors: the policy was divided
-    RETIRED = "retired"    # no successor: dropped from the baseline
+    RENAMED = "renamed"        # exactly one successor: a true 1:1 renumbering
+    RANGE = "range"            # superseded by a contiguous range of policies
+    SPLIT = "split"            # several discrete successors
+    RETIRED = "retired"        # no successor: dropped from the baseline
 
 
 @dataclass(frozen=True)
@@ -66,10 +96,11 @@ class Migration:
 
     @property
     def successor(self) -> str | None:
-        """The single successor, defined only for a true renaming.
+        """The single successor, defined only for a true 1:1 renaming.
 
-        A split has no unambiguous successor, so drift comparison must not
-        silently pick one.
+        Ranges and splits have no unambiguous single successor, so drift
+        comparison must not silently pick one -- that would equate two
+        different requirements.
         """
         return self.new_ids[0] if self.kind is MigrationKind.RENAMED else None
 
@@ -140,11 +171,20 @@ class MappingIndex:
                     old = (row.get("Old ID") or "").strip()
                     if not old:
                         continue
-                    targets = tuple(POLICY_ID.findall((row.get("New ID") or "").strip()))
+                    raw_new = (row.get("New ID") or "").strip()
+                    targets = tuple(POLICY_ID.findall(raw_new))
                     if not targets:
                         kind = MigrationKind.RETIRED
                     elif len(targets) == 1:
                         kind = MigrationKind.RENAMED
+                    elif len(targets) == 2 and RANGE_SEP.search(raw_new):
+                        # Range notation. Expand it, because every policy in
+                        # the range may share a CISA mapping.
+                        expanded = expand_range(targets[0], targets[1])
+                        if expanded:
+                            kind, targets = MigrationKind.RANGE, expanded
+                        else:
+                            kind = MigrationKind.SPLIT
                     else:
                         kind = MigrationKind.SPLIT
                     self.migration_records[old] = Migration(
@@ -206,6 +246,36 @@ class MappingIndex:
                     ),
                     migrated_from=current,
                 )
+
+        # Range migration: if every policy in the successor range carries the
+        # same CISA mapping, that mapping unambiguously applies to the
+        # superseded policy. Declining to follow it would report "CISA has not
+        # published a mapping" when CISA demonstrably has.
+        record = self.migration_records.get(policy_id)
+        if record and record.kind is MigrationKind.RANGE:
+            sets = [self.crosswalk.get(nid) for nid in record.new_ids]
+            present = [s for s in sets if s]
+            if present and len(present) == len(record.new_ids):
+                normalised = {
+                    frozenset(normalise_control_id(c) for c in s) for s in present
+                }
+                if len(normalised) == 1:
+                    raw_union: list[str] = []
+                    for s in present:
+                        raw_union += [c for c in s if c not in raw_union]
+                    return ControlMapping(
+                        policy_id=policy_id,
+                        nist_controls=tuple(sorted(next(iter(normalised)))),
+                        raw_controls=tuple(raw_union),
+                        provenance=Provenance.CISA_MIGRATED,
+                        rationale=(
+                            f"{policy_id} was superseded by the range "
+                            f"{record.new_ids[0]}-{record.new_ids[-1]}; every policy in that "
+                            f"range carries the same CISA crosswalk entry, so it applies "
+                            f"unambiguously."
+                        ),
+                        migrated_from=record.new_ids[0],
+                    )
 
         return ControlMapping(
             policy_id=policy_id,

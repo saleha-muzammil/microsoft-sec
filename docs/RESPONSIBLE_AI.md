@@ -36,20 +36,29 @@ design is for.
 
 An auditor must be able to tell CISA's judgement from a machine's.
 
-| Provenance | Meaning | Confidence |
-|---|---|---|
-| `cisa-authoritative` | Direct entry in CISA's published crosswalk | `category: authoritative` |
-| `cisa-authoritative-migrated` | CISA's mapping, reached via CISA's own migration table | `category: authoritative` |
-| `ai-proposed` | No CISA mapping exists; a model proposed one | numeric percentage |
-| `unmapped` | No mapping, and none proposed | — |
+| Provenance | Meaning |
+|---|---|
+| `cisa-authoritative` | Direct entry in CISA's published crosswalk |
+| `cisa-authoritative-migrated` | CISA's mapping, reached through CISA's own migration table |
+| `unmapped` | No resolvable CISA mapping. Nothing is inferred. |
+| `unknown-policy` | The policy is not in the catalog at all — a different answer to a different question |
 
-- **84 of 92 mappings are deterministic.** AI is confined to the 8 CISA has not published.
-- An AI proposal can **never** override a CISA mapping — resolution order forbids it,
-  and a test pins that.
+- **89 of 92 mappings are deterministic (97%).** The remaining 3 are reported as
+  unmapped.
+- **No mapping in the shipped artifacts is model-generated.** The data model
+  reserves an `ai-proposed` provenance and a numeric confidence score for a
+  future human-in-the-loop workflow, and the code path is exercised only in
+  tests. Nothing in `data/oscal_out/` carries it, and the mapping document's own
+  metadata records `ai-proposed-mappings = 0`. If that ever changes, the count in
+  the artifact changes with it.
 - CI fails the build if any emitted mapping diverges from CISA's CSV, read
   independently of our own parser.
-- AI-authored remediation prose is tagged `generated-by=ai-assistant` **inside the
-  POA&M**, so provenance survives export.
+- The POA&M generator accepts optional AI-authored remediation prose and tags any
+  item using it `generated-by=ai-assistant` **inside the document**, so provenance
+  would survive export. **The default pipeline does not pass it**, so every
+  artifact we ship contains only CISA-derived and deterministically-computed
+  prose — verifiable by grepping `data/oscal_out/` for `generated-by`, which
+  returns nothing.
 
 ## 3. The artifacts never overstate evidence
 
@@ -91,8 +100,8 @@ An auditor must be able to tell CISA's judgement from a machine's.
 - Model-generated *narrative* (risk explanations, remediation prose, report text)
   can still be imprecise even when grounded in correct data. It is drafting
   assistance for a professional, not a substitute for one.
-- 8 of 92 policies have no CISA-published NIST mapping. We surface them as
-  unmapped rather than guessing.
+- 3 of 92 policies have no resolvable CISA mapping. We surface them as unmapped
+  rather than inferring one.
 - The `mapping-collection` document is JSON-Schema validated only, because
   `oscal-cli` 3.2.0 does not yet support OSCAL 1.2's Control Mapping model. The
   validator reports `cli:n/a` rather than implying full validation.

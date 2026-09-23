@@ -72,25 +72,27 @@
     {
       "id": "unmapped-honesty",
       "specialist": "posture",
-      "question": "What NIST 800-53 control does MS.DEFENDER.1.1v1 map to?",
+      "question": "What NIST 800-53 control does MS.DEFENDER.1.1v1 map to, and how was it resolved?",
       "must_contain": [
-        "unmapped"
+        "SI-3"
       ],
-      "must_cite_policy": true
+      "must_cite_policy": true,
+      "note": "Was previously asserted to be unmapped. That was our bug: CISA's migration table uses range notation, and every policy in the range maps to SI-3. Fixed in parsers/mappings.py."
     },
     {
       "id": "nonexistent-policy",
       "specialist": "posture",
       "question": "What does MS.FAKE.9.9v9 require?",
       "must_contain": [
-        "not",
-        "catalog"
+        "MS.FAKE.9.9v9"
       ],
       "must_not_contain": [
-        "SHALL be"
+        "SHALL be",
+        "SHOULD be",
+        "requires that"
       ],
       "must_cite_policy": false,
-      "note": "Hallucination probe: the model must refuse rather than invent a plausible control."
+      "note": "Hallucination probe. Assertion hardened: the previous ['not','catalog'] passed on any answer containing 'cannot' or 'note'. Now the model must name the policy and must not state a requirement for it."
     },
     {
       "id": "high-severity-count",

@@ -240,12 +240,29 @@ class ComplianceTools:
                     },
                     indent=2,
                 )
+        # Distinguish the three reasons we might have nothing, because they
+        # mean different things to an auditor. Saying "CISA has not published a
+        # mapping" when the policy simply is not in our catalog would be an
+        # unsupported claim about CISA.
+        known = policy_id.lower().strip() in self.store.controls
+        if not known:
+            return json.dumps(
+                {
+                    "policy_id": policy_id,
+                    "nist_controls": [],
+                    "provenance": "unknown-policy",
+                    "note": f"No SCuBA policy '{policy_id}' exists in the catalog.",
+                }
+            )
         return json.dumps(
             {
                 "policy_id": policy_id,
                 "nist_controls": [],
                 "provenance": "unmapped",
-                "note": "CISA has not published a NIST mapping for this policy.",
+                "note": (
+                    "This policy was not assessed in the current run, or CISA has not "
+                    "published a NIST mapping for it. No mapping is inferred."
+                ),
             }
         )
 

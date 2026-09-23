@@ -46,7 +46,7 @@ and its own README concedes:
 ```
 CISA SCuBA baselines (127 policies)  ─┐
                                       ├─►  deterministic Python  ─►  8 OSCAL documents
-CISA ScubaGear assessment (92 checks) ─┘         (50 tests)          all NIST-validated
+CISA ScubaGear assessment (92 checks) ─┘         (59 tests)          all NIST-validated
                                                                             │
                                                                             ▼
                                                               Microsoft Foundry agents
@@ -80,9 +80,13 @@ source of truth is a defect, not a feature.
 | Resolution path | Count |
 |---|---|
 | Direct entry in CISA's crosswalk | 71 |
-| Via CISA's baseline migration table | 13 |
-| **Deterministic total** | **84 / 92 (91%)** |
-| Left for AI proposal — labelled, confidence-scored, human-approved | 8 |
+| Via CISA's baseline migration table | 18 |
+| **Deterministic total** | **89 / 92 (97%)** |
+| Surfaced as unmapped — never guessed | 3 |
+
+**No mapping in this project is produced by a model.** Where CISA has published
+an answer we use it; where CISA has not, we say so. The AI layer reads mappings;
+it never authors them.
 
 A CI test reads CISA's CSV **independently of our own parser** and fails the
 build on any divergence. It also pins a case where published third-party tooling
@@ -180,7 +184,7 @@ Other entry points:
 ```bash
 python scripts/drift_report.py          # naive vs version-aware drift
 python scripts/make_followup_run.py     # regenerate the follow-up fixture
-pytest -q                               # 50 tests
+pytest -q                               # 59 tests
 ```
 
 ---
@@ -264,8 +268,8 @@ artifacts never overstate what was machine-verified.
   validator reports this as `cli:n/a` rather than implying more.
 - ScubaGear itself is Windows/PowerShell-only, so this project consumes its
   output rather than running it.
-- 8 of 92 policies have no CISA-published NIST mapping. We surface them as
-  unmapped instead of guessing.
+- 3 of 92 policies have no resolvable CISA mapping. We surface them as unmapped
+  rather than inferring one.
 
 ## Licence
 

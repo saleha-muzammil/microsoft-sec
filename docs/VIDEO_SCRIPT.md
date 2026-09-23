@@ -78,9 +78,10 @@ python scripts/validate_all.py
 > it rather than asking a model to guess — because a mapping that contradicts the
 > source of truth is a defect, not a feature.
 >
-> Eighty-four of ninety-two policies resolve deterministically. The remaining
-> eight, where CISA hasn't published a mapping, are clearly labelled as AI
-> proposals with a confidence score, and require human approval.
+> Eighty-nine of ninety-two policies resolve deterministically — and not one
+> mapping in this system was written by a model. The remaining three we report as
+> unmapped, because CISA hasn't published an answer and we're not going to invent
+> one.
 >
 > We have a CI test that reads CISA's CSV independently of our own parser and
 > fails the build on any divergence. It pins a case other published tooling gets
@@ -117,8 +118,8 @@ Then ask: **"What does MS.FAKE.9.9v9 require?"**
 ## 4:10 – 4:35 · Measured quality *(Slide 9)*
 
 > "We didn't just assert this works. Fifteen golden questions whose ground truth
-> is derived from the artifacts themselves: 100% accuracy, ~13 second median
-> latency.
+> is derived from the artifacts themselves: 100% accuracy, 100% citation rate on
+> every question that requires one, and a ten-second median response.
 >
 > And the evaluation earned its place — it caught a real bug in our own prompt
 > design. Our report agent was writing 'a substantial set of policies passed',

@@ -113,3 +113,48 @@ def test_migration_preserves_cisa_provenance(index):
         assert mapping.provenance is Provenance.CISA_MIGRATED
         assert mapping.provenance.is_authoritative
         assert mapping.nist_controls
+
+
+def test_range_notation_resolves_to_cisas_published_answer(index):
+    """Regression guard for a bug that produced a factually false statement.
+
+    CISA's migration table supersedes MS.DEFENDER.1.1v1 with the range
+    MS.SECURITYSUITE.1.1v1 - .1.4v1. Every policy in that range maps to SI-3,
+    so CISA *has* published an answer. Declining to follow the range made the
+    tool report "CISA has not published a NIST mapping for this policy" --
+    an unsupported claim about CISA, in the subsystem whose whole purpose is
+    provenance correctness.
+    """
+    resolved = index.resolve("MS.DEFENDER.1.1v1")
+    assert resolved.nist_controls == ("si-3",)
+    assert resolved.provenance is Provenance.CISA_MIGRATED
+    assert resolved.provenance.is_authoritative
+
+
+def test_range_only_resolves_when_every_member_agrees(index):
+    """If policies in a range disagreed on their mapping, there would be no
+    unambiguous answer and we must not pick one."""
+    from scuba_oscal.parsers.mappings import MigrationKind, normalise_control_id
+
+    for record in index.migration_records.values():
+        if record.kind is not MigrationKind.RANGE:
+            continue
+        sets = [index.crosswalk.get(n) for n in record.new_ids]
+        if not all(sets):
+            assert index.resolve(record.old_id).provenance is Provenance.NONE
+            continue
+        distinct = {frozenset(normalise_control_id(c) for c in s) for s in sets}
+        resolved = index.resolve(record.old_id)
+        if len(distinct) == 1:
+            assert resolved.provenance.is_authoritative
+        else:
+            assert resolved.provenance is Provenance.NONE
+
+
+def test_deterministic_coverage_on_the_sample_run(index, run):
+    """Pin the headline number so it cannot drift silently."""
+    coverage = index.coverage([p.policy_id for p in run.policies])
+    deterministic = sum(v for k, v in coverage.items() if k.startswith("cisa"))
+    assert deterministic == 89
+    assert coverage.get("unmapped", 0) == 3
+    assert deterministic + coverage.get("unmapped", 0) == len(run.policies)

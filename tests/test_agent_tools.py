@@ -69,10 +69,19 @@ def test_nist_mapping_always_reports_provenance(tools):
     assert data["confidence"] == {"category": "authoritative"}
 
 
-def test_unmapped_policy_is_reported_as_unmapped(tools):
+def test_range_migrated_policy_resolves_to_cisas_answer(tools):
+    """MS.DEFENDER.1.1v1 is superseded by a range whose members all map to SI-3."""
     data = json.loads(tools.get_nist_mapping("MS.DEFENDER.1.1v1"))
-    assert data["provenance"] == "unmapped"
-    assert data["nist_controls"] == []
+    assert data["nist_controls"] == ["si-3"]
+    assert data["provenance"] == "cisa-authoritative-migrated"
+
+
+def test_unknown_policy_is_distinguished_from_unmapped(tools):
+    """Saying "CISA has not published a mapping" for a policy that does not
+    exist would be an unsupported claim about CISA. The two cases differ."""
+    data = json.loads(tools.get_nist_mapping("MS.FAKE.9.9v9"))
+    assert data["provenance"] == "unknown-policy"
+    assert "does not" in data["note"] or "No SCuBA policy" in data["note"]
 
 
 def test_search_finds_mfa_policies(tools):

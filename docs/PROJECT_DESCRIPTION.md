@@ -12,8 +12,8 @@ SSP and POA&M explicitly marked TODO.
 We finished it. From CISA's own published assessment, our pipeline generates
 **eight OSCAL 1.2.3 documents — the complete chain from catalog to POA&M — all
 validating against NIST's validator with full Metaschema constraints.**
-SCuBA→NIST 800-53 mappings bind to CISA's authoritative crosswalk (84 of 92
-resolved deterministically), with CI that fails on any divergence. Our drift
+SCuBA→NIST 800-53 mappings bind to CISA's authoritative crosswalk (89 of 92
+resolved deterministically, none model-generated), with CI that fails on any divergence. Our drift
 detection consumes CISA's baseline migration table, eliminating **26 phantom
 findings** that identifier-matching tools fabricate when policies are renumbered.
 
