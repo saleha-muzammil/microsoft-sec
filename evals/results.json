@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "total_cases": 15,
+    "passed": 15,
+    "pass_rate": 100.0,
+    "accuracy_rate": 100.0,
+    "citation_rate": 73.3,
+    "mean_latency_s": 19.4,
+    "total_runtime_s": 291.2
+  },
+  "cases": [
+    {
+      "id": "posture-total",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 33.8,
+      "answer": "92 SCuBA policies were assessed in total.\n\nEvidence and limits: this count comes from the tenant posture summary returned by get_posture_summary for \"SCuBA Assessment Results - tqhjy\" (field total_policies_assessed = 92). This is an aggregate metric from the assessment summary and is not tied to a single SCuBA policy ID. If you want, I can also provide the result breakdown (Pass/Fail/N/A/Warning) or the product-level counts returned in the same summary."
+    },
+    {
+      "id": "posture-failures",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 10.7,
+      "answer": "Summary (evidence: functions.get_posture_summary call for tenant \"SCuBA Assessment Results - tqhjy\"):\n\n- Fail (outright failures): 14 policies.\n- Warning: 12 policies.\n- Total policies assessed: 92 (for context).\n\nLimits / evidence statement:\n- These counts come directly from the get_posture_summary tool response returned in this conversation.\n- The get_posture_summary output does not include the individual SCuBA policy IDs (e.g., MS.AAD.3.1v1) nor OSCAL UUIDs for the failed or warned policies. If you need the specific policy IDs or OSCAL identifiers for each Fail/Warning, I can retrieve them,"
+    },
+    {
+      "id": "posture-rate",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 11.0,
+      "answer": "The compliance rate excluding N/A policies is 68.7%.\n\nEvidence (from the SCuBA posture summary for tenant \"SCuBA Assessment Results - tqhjy\", obtained via the posture-summary tool):\n- total_policies_assessed: 92\n- Pass: 57\n- N/A: 9\n- Fail: 14\n- Warning: 12\n- Field used: compliance_rate_excluding_na = \"68.7%\"\n\nSource: output of functions.get_posture_summary called in this session. I have no other independent verification of that figure. Note: this is an aggregate metric (not a statement about any single SCuBA policy), so no individual SCuBA policy ID applies; when you want policy-specific claim"
+    },
+    {
+      "id": "mapping-aad11",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 103.3,
+      "answer": "- SCuBA policy: MS.AAD.1.1v1.\n\n- NIST SP 800-53 Rev. 5 mapping: CM-7. (Tool returned \"cm-7\" / CISA published ID \"CM-7\".)\n\n- Provenance: cisa-authoritative \u2014 the mapping is from CISA's published SCuBA-to-NIST crosswalk (tool field \"provenance\": \"cisa-authoritative\"; confidence category: \"authoritative\"). Rationale returned: \"Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk.\"\n\n- Evidence and limits: this result is taken from the get_nist_mapping tool output in this conversation. That tool output did not include an OSCAL UUID; if you need an OSCAL identifier or the origina"
+    },
+    {
+      "id": "mapping-provenance",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 7.0,
+      "answer": "The NIST mapping for MS.AAD.1.1v1 is CISA-authoritative.\n\nEvidence (from this session's get_nist_mapping call for MS.AAD.1.1v1):\n- SCuBA policy: MS.AAD.1.1v1 (requested policy ID)\n- Mapped NIST control(s): CM-7 (listed under \"nist_controls\" and \"cisa_published_ids\")\n- Provenance field: \"cisa-authoritative\"\n- Confidence: category \"authoritative\"\n- Rationale returned: \"Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk.\"\n\nIf you need the OSCAL UUID or the full CISA crosswalk entry, I can retrieve further detail."
+    },
+    {
+      "id": "control-detail-legacy-auth",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 12.4,
+      "answer": "Summary for MS.AAD.1.1v1\n\n1) Requirement (MS.AAD.1.1v1)\n- Text: \"Legacy authentication SHALL be blocked.\" (MS.AAD.1.1v1)\n- Criticality: SHALL / mandatory (MS.AAD.1.1v1)\n- Rationale (as returned): \"The security risk of allowing legacy authentication protocols is they do not support MFA. Blocking legacy protocols reduces the impact of user credential theft.\" (MS.AAD.1.1v1)\n\n2) Implementation guidance (from MS.AAD.1.1v1)\n- Identify existing use of legacy authentication before broad blocking. (MS.AAD.1.1v1)\n- Example conditional access configuration recommended by CISA (MS.AAD.1.1v1):\n  - Users > "
+    },
+    {
+      "id": "criticality-shall",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 7.8,
+      "answer": "MS.AAD.3.1v1 is a SHALL (mandatory) requirement.\n\nSource: SCuBA control MS.AAD.3.1v1 \u2014 \"Phishing-resistant MFA SHALL be enforced for all users.\" Control detail fields: criticality = \"SHALL\", mandatory = true. Observation UUID: 7181f372-775a-57c1-a568-0cd659c34364. The assessment returned result = \"Fail\" with evidence \"0 conditional access policy(s) found that meet(s) all requirements.\""
+    },
+    {
+      "id": "unmapped-honesty",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 7.9,
+      "answer": "I queried the SCuBA mapping for policy MS.DEFENDER.1.1v1. The tool returned no NIST SP 800-53 controls for that policy \u2014 provenance: \"unmapped\" \u2014 and notes that \"CISA has not published a NIST mapping for this policy.\" (Policy: MS.DEFENDER.1.1v1.)\n\nIf you want, I can:\n- Attempt an AI-proposed NIST 800-53 mapping (I will clearly label it as non\u2011CISA-authoritative), or\n- Search related SCuBA policies for published mappings to infer likely controls.\n\nWhich would you prefer?"
+    },
+    {
+      "id": "nonexistent-policy",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 9.4,
+      "answer": "I queried the SCuBA catalog for MS.FAKE.9.9v9 but the catalog contains no such policy.\n\n- get_control_details returned: \"No SCuBA policy 'MS.FAKE.9.9v9' in the catalog.\"\n- A subsequent search for \"MS.FAKE\" returned zero matches.\n\nI cannot state the policy requirement because the catalog contains no entry for MS.FAKE.9.9v9. Please either:\n- Confirm the policy ID (example valid format: MS.AAD.3.1v1), or\n- Provide the policy title or a short description/keywords;\n\nor tell me which search you prefer and I will look for matching SCuBA policies (e.g., search by product area, keyword, or partial ID)."
+    },
+    {
+      "id": "high-severity-count",
+      "specialist": "risk",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 17.4,
+      "answer": "There are 14 high-severity POA&M items open (source: functions.list_failures with severity=high, product=all).\n\nThe failures returned (policy_id \u2014 poam_item_uuid \u2014 deadline \u2014 title):\n1. MS.AAD.3.1v1 \u2014 ac455649-3acb-53fc-a55e-b367fd07ef4b \u2014 2026-06-03T00:00:00.000Z \u2014 \"Phishing-resistant MFA SHALL be enforced for all users.\"\n2. MS.AAD.3.4v1 \u2014 c588ea26-2305-5a8c-b6e4-dbc26bfc6302 \u2014 2026-06-03T00:00:00.000Z \u2014 \"The Authentication Methods Manage Migration feature SHALL be set to Migration Complete.\"\n3. MS.AAD.3.6v1 \u2014 5f2899dd-6b7b-5009-bc12-393a53ad6997 \u2014 2026-06-03T00:00:00.000Z \u2014 \"Phishing-resista"
+    },
+    {
+      "id": "top-risk",
+      "specialist": "risk",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 23.9,
+      "answer": "The single highest-priority failing policy is MS.AAD.3.1v1.\n\nRationale (grounded to tool output)\n- Mandatory, broad scope: MS.AAD.3.1v1 is a CISA-mandated SHALL to enforce phishing\u2011resistant MFA for all users (policy ID: MS.AAD.3.1v1; see get_control_details for MS.AAD.3.1v1).  \n- Blast radius: the implementation guidance explicitly targets \"Users > Include > All users\" and \"Target resources > Include > All resources\" (MS.AAD.3.1v1 \u2014 implementation_guidance). Requiring a SHALL for all users increases real-world risk if not implemented (MS.AAD.3.1v1).  \n- Technique mitigated: the control maps t"
+    },
+    {
+      "id": "mitre-technique",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 11.4,
+      "answer": "Per SCuBA policy MS.AAD.1.1v1, the control details list the following MITRE ATT&CK technique IDs as mitigated (from the control's mitre_attack field):\n\n- T1110  \n- T1110.001  \n- T1110.002  \n- T1110.003  \n- T1078  \n- T1078.004\n\nEvidence returned with MS.AAD.1.1v1: \"1 conditional access policy(s) found that meet(s) all requirements: MS.AAD.1.1v1 Legacy authentication SHALL be blocked.\" Observation UUID: 1288c5dc-c9b1-5539-8cc8-118136c5b2a0.\n\nLimitations: the tool output provided only ATT&CK technique IDs, not technique names or descriptions. If you want the official MITRE technique names or mapp"
+    },
+    {
+      "id": "remediation-grounded",
+      "specialist": "remediation",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 16.3,
+      "answer": "Short answer (auditor-focused)\n\n- Remediation required: create a Conditional Access policy that enforces phishing\u2011resistant MFA for all users, using the exact settings in CISA's guidance for MS.AAD.3.1v1.\n- Evidence shown by SCuBA: \"assessed_result\": \"Fail\" with evidence \"0 conditional access policy(s) found that meet(s) all requirements.\" (policy MS.AAD.3.1v1; observation_uuid 7181f372-775a-57c1-a568-0cd659c34364).\n\nWhat CISA requires (quote from MS.AAD.3.1v1)\n- Title / mandate: \"Phishing-resistant MFA SHALL be enforced for all users.\" (MS.AAD.3.1v1).\n- Implementation guidance (exact settings"
+    },
+    {
+      "id": "product-breakdown",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 7.9,
+      "answer": "The SCuBA posture summary reports 11 AAD policies failed.\n\nEvidence: functions.get_posture_summary returned, under by_product -> AAD -> Fail: 11 for tenant \"SCuBA Assessment Results - tqhjy\". I have not yet retrieved the individual SCuBA policy IDs for those 11 failures \u2014 tell me if you want me to list each failed MS.AAD.* policy and their results (I will call the control-detail/search tools to get that)."
+    },
+    {
+      "id": "exec-summary",
+      "specialist": "report",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 10.9,
+      "answer": "Per the SCuBA assessment (tenant: SCuBA Assessment Results - tqhjy, source: get_posture_summary), 92 policies were assessed with results \u2014 Pass: 57, N/A: 9, Fail: 14, Warning: 12 \u2014 yielding a compliance rate (excluding N/A) of 68.7%.  \nThe assessment shows 14 open high-severity POA&M items (open_poam_items_by_severity.high = 14); refer to the failure list for the specific SCuBA policy IDs and remediation deadlines."
+    }
+  ]
+}

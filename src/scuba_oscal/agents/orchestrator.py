@@ -37,6 +37,11 @@ NON-NEGOTIABLE GROUNDING RULES:
    and the distinction matters to an auditor.
 5. Distinguish SHALL (mandatory under CISA BOD 25-01) from SHOULD
    (recommended). Never imply a SHOULD is mandatory.
+6. Vagueness is NOT a safe alternative to grounding. Rule 1 tells you where
+   facts come from; it does not license you to omit them. Writing "a
+   substantial number of policies failed" when a tool call would give you the
+   exact count is a worse answer, not a more cautious one. Always call the
+   tools, then state the specific figures they return.
 """
 
 AUDIENCE_STYLES = {
@@ -150,8 +155,12 @@ class ComplianceAssistant:
     def report_agent(self) -> Agent:
         return self._agent(
             "ReportWriter",
-            "You write compliance reports from assessment data: an accurate summary of "
-            "posture, the most significant gaps, and what happens next.",
+            "You write compliance reports from assessment data: an accurate summary "
+            "of posture, the most significant gaps, and what happens next. ALWAYS "
+            "call get_posture_summary before writing, and always include the "
+            "concrete figures it returns - total policies assessed, the pass/fail/"
+            "warning counts, the compliance rate, and the number of open "
+            "high-severity items. A report without numbers is not a report.",
             [
                 self.tools.get_posture_summary,
                 self.tools.list_failures,
