@@ -51,8 +51,17 @@ st.markdown(CSS, unsafe_allow_html=True)
 # --------------------------------------------------------------------- loaders
 
 @st.cache_resource
+def _tools_for(directory: str) -> ComplianceTools:
+    return ComplianceTools(directory)
+
+
+def active_dir() -> Path:
+    """The OSCAL set currently being viewed: the sample, or an upload."""
+    return Path(st.session_state.get("oscal_dir", OSCAL_DIR))
+
+
 def get_tools() -> ComplianceTools:
-    return ComplianceTools(OSCAL_DIR)
+    return _tools_for(str(active_dir()))
 
 
 @st.cache_resource
@@ -61,12 +70,12 @@ def get_index() -> MappingIndex:
 
 
 @st.cache_data
-def posture() -> dict:
+def posture(_key: str) -> dict:
     return json.loads(get_tools().get_posture_summary())
 
 
 @st.cache_data
-def failures() -> list[dict]:
+def failures(_key: str) -> list[dict]:
     return json.loads(get_tools().list_failures(limit=500))["failures"]
 
 
@@ -87,7 +96,7 @@ if not (OSCAL_DIR / "scuba-m365-catalog.json").exists():
     st.error("No compliance documents found. Run `python scripts/generate.py` first.")
     st.stop()
 
-data = posture()
+data = posture(str(active_dir()))
 
 # --------------------------------------------------------------------- sidebar
 
@@ -107,8 +116,59 @@ with st.sidebar:
     st.markdown("---")
     view = st.radio("Walk through it", list(VIEWS), format_func=lambda k: VIEWS[k], label_visibility="collapsed")
     st.markdown("---")
+    with st.expander("📤  Use your own scan"):
+        st.caption(
+            "Drop in a ScubaGear `ScubaResults*.json` from your own tenant. It runs "
+            "through the same parser, transformers and validator as the sample — "
+            "there is no separate code path."
+        )
+        uploaded = st.file_uploader("ScubaGear results", type=["json"],
+                                    label_visibility="collapsed")
+        if uploaded is not None and st.button("Generate OSCAL from this scan"):
+            from scuba_oscal.app.upload import process_upload
+
+            with st.spinner("Parsing, transforming, validating…"):
+                result = process_upload(
+                    uploaded.getvalue(),
+                    ROOT / "data/baselines/ScubaBaselines.json",
+                    ROOT / "data/mappings",
+                )
+            if result.ok:
+                st.session_state["oscal_dir"] = str(result.oscal_dir)
+                st.session_state["source_label"] = result.tenant
+                st.session_state["upload_note"] = (
+                    f"{result.policies} policies · {result.failures} failures · "
+                    f"{result.validated}/{result.documents} documents valid"
+                )
+                if result.injection_hits:
+                    st.session_state["injection_hits"] = result.injection_hits
+                st.cache_data.clear()
+                st.rerun()
+            else:
+                st.error(result.message)
+
+        if "oscal_dir" in st.session_state and st.button("Back to CISA's sample"):
+            for key in ("oscal_dir", "source_label", "upload_note", "injection_hits"):
+                st.session_state.pop(key, None)
+            st.cache_data.clear()
+            st.rerun()
+
+    st.markdown("---")
     st.markdown("**Organisation assessed**")
-    st.caption("A sample Microsoft 365 tenant published by CISA — real assessment data, no private information.")
+    if "oscal_dir" in st.session_state:
+        st.success(f"Your scan: **{st.session_state['source_label']}**", icon="📤")
+        st.caption(st.session_state.get("upload_note", ""))
+        if st.session_state.get("injection_hits"):
+            st.warning(
+                f"{st.session_state['injection_hits']} field(s) contained "
+                "instruction-like text and were neutralised before reaching the AI.",
+                icon="🛡️",
+            )
+    else:
+        st.caption(
+            "A sample Microsoft 365 tenant published by CISA — real assessment data, "
+            "no private information."
+        )
     st.metric("Security rules checked", data["total_policies_assessed"])
     st.metric("Currently passing", data["compliance_rate_excluding_na"])
     if view == "ask":
@@ -278,7 +338,7 @@ elif view == "fix":
         ),
         unsafe_allow_html=True,
     )
-    items = failures()
+    items = failures(str(active_dir()))
     if not items:
         st.success("Nothing is failing.")
         st.stop()
@@ -414,7 +474,7 @@ elif view == "ask":
             st.stop()
 
         async def run() -> str:
-            async with ComplianceAssistant(OSCAL_DIR, config, audience=audience) as bot:
+            async with ComplianceAssistant(active_dir(), config, audience=audience) as bot:
                 return await bot.ask(question, specialist)
 
         with st.spinner("Thinking — reading the compliance documents…"):
@@ -502,7 +562,7 @@ elif view == "impact":
         unsafe_allow_html=True,
     )
 
-    m = measure(OSCAL_DIR)
+    m = measure(active_dir())
     st.markdown("##### Measured — counted from the generated documents")
     st.caption("Facts about what the pipeline produced. No assumptions involved.")
     rows = m.as_rows()
@@ -633,7 +693,7 @@ else:
     }
 
     rows = []
-    for path in sorted(OSCAL_DIR.glob("*.json")):
+    for path in sorted(active_dir().glob("*.json")):
         model = next(iter(json.loads(path.read_text())))
         name, desc = PLAIN.get(model, (model, ""))
         rows.append({"Document": name, "What it is": desc,
@@ -648,7 +708,7 @@ else:
                           [f"{r['Document']} — {r['_file']}" for r in rows])
     if chosen:
         filename = chosen.split("— ")[-1]
-        path = OSCAL_DIR / filename
+        path = active_dir() / filename
         st.download_button("⬇  Download", path.read_bytes(), file_name=filename,
                            mime="application/json")
         with st.expander("Preview the raw document"):

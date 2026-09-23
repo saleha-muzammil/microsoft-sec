@@ -84,6 +84,28 @@ An auditor must be able to tell CISA's judgement from a machine's.
 - The derived follow-up run is labelled as derived **inside the file**, so the
   disclosure travels with the data rather than living only in a README.
 
+## 4b. Untrusted input
+
+The app accepts user-supplied ScubaGear files, whose free-text fields
+(`Requirement`, `Details`) end up in an agent's context. That is a prompt
+injection surface, and it is handled at two levels:
+
+- **Architecturally (the control that matters).** Agents cannot state a
+  compliance fact except through a tool reading a validated artifact. Injected
+  prose can appear *as data* in an answer, but it cannot become a compliance
+  claim, change a result, or alter a mapping.
+- **By sanitisation (defence in depth).** Instruction-like text is replaced with
+  a visible `[redacted: instruction-like text in scan data]` marker. It is
+  neutralised rather than deleted, because a compliance artifact should record
+  what the input actually said, and the marker makes tampering obvious to a
+  human reader. The count is surfaced in the UI when a file triggers it.
+
+The filter is deliberately narrow and we state its limit plainly: natural
+language cannot be perfectly disambiguated. An earlier, broader version flagged
+the legitimate baseline sentence *"The system prompts the user for MFA"*.
+Mangling real compliance text is a correctness failure, so we accept that some
+hostile phrasings pass the filter and rely on the architectural control instead.
+
 ## 5. Human oversight
 
 - AI-proposed mappings are **proposals**. They require human approval before

@@ -183,6 +183,29 @@ CISA-published mapping never looks like an AI-proposed one.
 
 ---
 
+### 7. Bring your own scan
+
+The app accepts a ScubaGear `ScubaResults*.json` from any tenant and runs it
+through **the same parser, transformers and validator** as the sample — there is
+no separate code path for uploaded data. Verified on a scan the pipeline had
+never seen: different tenant, 39 failures instead of 14, 38.6% compliant instead
+of 68.7%, and 8/8 documents still valid.
+
+That matters because it turns "we used CISA's published sample" from a limitation
+into a scoping choice you can check yourself.
+
+**Uploaded files are untrusted.** Their free-text fields reach an agent's
+context, so instruction-like text is neutralised in place — replaced with a
+visible `[redacted: instruction-like text in scan data]` marker rather than
+silently dropped, so tampering stays legible to whoever reads the artifact. The
+filter is deliberately narrow (an earlier version flagged the legitimate
+sentence *"The system prompts the user for MFA"*), and it is **defence in depth,
+not the primary control**: agents state facts only through tools reading
+validated artifacts, so injected prose has no path to become a compliance claim
+even if it slips past.
+
+![Upload view showing a different tenant's scan producing different results](docs/images/06-upload.png)
+
 ## Quickstart
 
 ```bash
