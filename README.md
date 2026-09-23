@@ -124,6 +124,37 @@ So *"how do you know the model didn't invent that number?"* has a concrete
 answer: **it couldn't have**, and [`tests/test_agent_tools.py`](tests/test_agent_tools.py)
 proves the tools return what the artifacts contain.
 
+#### Threat coverage: what can still happen, not just what is unticked
+
+A POA&M says *what is non-compliant*. A security team asks *what can still
+happen to us*. CISA maps most SCuBA policies to MITRE ATT&CK techniques, which
+makes the control set a bipartite graph — so a technique's **depth** is simply
+how many of its mapped policies currently pass.
+
+| | |
+|---|---|
+| **Uncovered** — every mapped policy failing, nothing is stopping it | **6** |
+| Degraded — some mitigations failing | 15 |
+| Covered — defence in depth holds | 32 |
+
+**The two rankings genuinely disagree, and that is the finding.**
+
+- **12 of 14** high-severity (failed SHALL) findings close **zero** uncovered
+  techniques — other controls still cover them.
+- Three *low*-severity findings — `MS.AAD.7.9v1`, `MS.TEAMS.5.2v2`,
+  `MS.TEAMS.5.3v2` — are each the **only remaining mitigation** for two
+  techniques. Compliance severity would have you fix them last.
+
+Fixes are therefore also rankable by *attacks closed per fix*, which is a signal
+SHALL/SHOULD cannot express. Both orderings are shown side by side, because a
+SHALL is mandatory under BOD 25-01 regardless of coverage — they answer
+different questions and a team needs both.
+
+This is coverage arithmetic over CISA's published mappings. It is **not** a claim
+about real-world exploitability.
+
+![Threat coverage: six attack techniques with no surviving mitigation, and fixes ranked by attacks closed](docs/images/07-threat.png)
+
 #### We measured it against the obvious alternative
 
 An architecture claim is only meaningful if the naive approach measurably does

@@ -411,6 +411,83 @@ elif view == "fix":
     st.dataframe(display, use_container_width=True, hide_index=True, height=300)
 
     st.markdown("---")
+    st.markdown("##### Two ways to decide what to fix first")
+    st.caption(
+        "Compliance severity asks *what is non-compliant*. Threat coverage asks "
+        "*what can still happen to us*. They are different questions, and on this "
+        "tenant they give different answers."
+    )
+    tab_sev, tab_threat = st.tabs(["🔴  By compliance severity", "🎯  By threat coverage"])
+
+    with tab_sev:
+        st.caption("Failed SHALL first — what an auditor checks. Mandatory under CISA BOD 25-01.")
+        st.dataframe(display, use_container_width=True, hide_index=True, height=260)
+
+    with tab_threat:
+        cov = json.loads(get_tools().get_threat_coverage(status="uncovered", limit=30))
+        if "error" in cov:
+            st.info(cov["error"])
+        else:
+            counts = cov["counts"]
+            st.markdown(
+                cards([
+                    (str(counts["uncovered"]), "Uncovered", "nothing mapped is stopping these", "bad"),
+                    (str(counts["degraded"]), "Degraded", "some mitigations failing", "warn"),
+                    (str(counts["covered"]), "Covered", "defence in depth holds", "good"),
+                ]),
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                explain(
+                    "What does “uncovered” mean?",
+                    "CISA maps each SCuBA policy to the MITRE ATT&CK techniques it helps stop. "
+                    "A technique is <b>uncovered</b> when <i>every</i> policy mapped to it is "
+                    "currently failing — so nothing in the assessed baseline is mitigating it. "
+                    "This is coverage arithmetic over CISA's published mappings, not a claim "
+                    "that you are exploitable.",
+                ),
+                unsafe_allow_html=True,
+            )
+
+            st.markdown("**Attack techniques with no surviving mitigation**")
+            for t in cov["techniques"]:
+                st.markdown(
+                    f'<div class="finding down"><span class="pid">{t["technique"]}</span> '
+                    f'&nbsp;<b>{t["name"]}</b> — all {len(t["failing_policies"])} mapped '
+                    f'{"policy is" if len(t["failing_policies"]) == 1 else "policies are"} failing '
+                    f'({", ".join(t["failing_policies"])})</div>',
+                    unsafe_allow_html=True,
+                )
+
+            ranked = json.loads(get_tools().rank_fixes_by_threat(limit=8))
+            rows = ranked.get("ranked_by_threat_coverage", [])
+            if rows:
+                st.markdown("**Fixes ranked by attacks they would close**")
+                frame_t = pd.DataFrame([
+                    {
+                        "Rule": r["policy_id"],
+                        "Techniques closed": r["techniques_closed"],
+                        "Which": ", ".join(r["techniques"]),
+                        "Compliance severity": r["compliance_severity"],
+                    }
+                    for r in rows
+                ])
+                st.dataframe(frame_t, use_container_width=True, hide_index=True)
+
+                disagree = [r for r in rows if r["compliance_severity"] != "high"
+                            and r["techniques_closed"] >= 2]
+                if disagree:
+                    names = ", ".join(r["policy_id"] for r in disagree)
+                    st.warning(
+                        f"**The two rankings disagree — and that is the point.** {names} "
+                        f"{'is' if len(disagree) == 1 else 'are'} ranked **low** by compliance "
+                        "severity, because they are SHOULD rather than SHALL. But each is "
+                        "currently the *only* remaining mitigation for two attack techniques. "
+                        "Severity alone would have you fix them last.",
+                        icon="⚖️",
+                    )
+
+    st.markdown("---")
     st.markdown("##### Look at one rule in detail")
     selected = st.selectbox("Choose a failing rule", filtered["policy_id"].tolist(),
                             label_visibility="collapsed")

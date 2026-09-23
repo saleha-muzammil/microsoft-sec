@@ -127,6 +127,7 @@ class ComplianceAssistant:
                 self.tools.get_control_details,
                 self.tools.search_controls,
                 self.tools.get_nist_mapping,
+                self.tools.get_threat_coverage,
             ],
         )
 
@@ -135,11 +136,16 @@ class ComplianceAssistant:
             "RiskPrioritiser",
             "You prioritise remediation. Rank failures by real-world risk, weighing "
             "SHALL over SHOULD, the MITRE ATT&CK techniques a control mitigates, and "
-            "blast radius. Explain your ranking; do not simply restate severity.",
+            "blast radius. Always call get_threat_coverage and rank_fixes_by_threat "
+            "before answering: compliance severity and threat coverage give different "
+            "orderings, and the difference is usually the most useful thing you can "
+            "tell someone. Explain your ranking; never simply restate severity.",
             [
                 self.tools.list_failures,
                 self.tools.get_control_details,
                 self.tools.get_posture_summary,
+                self.tools.get_threat_coverage,
+                self.tools.rank_fixes_by_threat,
             ],
         )
 
