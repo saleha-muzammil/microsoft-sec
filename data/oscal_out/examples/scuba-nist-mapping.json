@@ -1,0 +1,3611 @@
+{
+  "mapping-collection": {
+    "uuid": "cc833f23-833a-5458-a9c0-3ed3a4289d81",
+    "metadata": {
+      "title": "CISA SCuBA to NIST SP 800-53 Rev 5 Control Mapping",
+      "last-modified": "2026-09-23T04:05:59.382Z",
+      "version": "1.0.0",
+      "oscal-version": "1.2.3",
+      "props": [
+        {
+          "name": "authoritative-mappings",
+          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "value": "84"
+        },
+        {
+          "name": "ai-proposed-mappings",
+          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "value": "0"
+        }
+      ]
+    },
+    "provenance": {
+      "method": "hybrid",
+      "matching-rationale": "semantic",
+      "status": "not-complete",
+      "mapping-description": "Derived from CISA's published SCuBA to NIST SP 800-53 Rev 5 (FedRAMP High) crosswalk, with policy identifiers resolved through CISA's baseline migration table where they changed between baseline versions. Mappings CISA has not published are marked ai-proposed and carry a numeric confidence score; they are never merged into the authoritative set.",
+      "coverage": {
+        "generation-method": "ratio of SCuBA policies with a resolved NIST mapping",
+        "target-coverage": 0.913
+      }
+    },
+    "mappings": [
+      {
+        "uuid": "77b1b1e8-b4bd-56f8-b955-ed80e9f20034",
+        "source-resource": {
+          "type": "catalog",
+          "href": "scuba-m365-catalog.json"
+        },
+        "target-resource": {
+          "type": "catalog",
+          "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json"
+        },
+        "maps": [
+          {
+            "uuid": "4558f936-940a-52eb-87a2-4d3dd2fabcbf",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.1.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.1.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "cb78c10d-7a33-5a8e-a612-b375202a662a",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.2.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2.12"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-2.13"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.2.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(12)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(13)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "daba4e6c-b7af-5804-bf9b-1f4cebb32166",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.2.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2.12"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.2.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(12)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "4ed0c7c0-c7ad-521b-b86d-158a3e210c6f",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.2.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2.12"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-2.13"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.2.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(12)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(13)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "e2e2090f-527b-5caf-b44c-78a7e93a0720",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ia-2.1"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.2"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(1)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(2)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5c"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5g"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(8)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "19785e6d-0948-5051-95e5-b9f6726c7195",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.2v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ia-2.1"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.2"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.2v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(1)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(2)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "743e988e-e591-5139-a07b-c9a50cbcef22",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.3v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ia-2.1"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.2"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.8"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.13"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.3v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(1)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(2)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5c"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5g"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(8)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(13)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "95e0e10d-c1cd-5a33-bc5e-01bee438b1c3",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "086b8b7a-ee8f-50a4-833f-42a5b74587d6",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.5v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.5v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7b"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5c"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "712ca4d7-3dbb-58ed-8377-86b82c258690",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.6v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ia-2.1"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-5"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-2.8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.6v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(1)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5c"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5g"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-2(8)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "b2a79e39-10b0-50bd-b979-022713bf2dad",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.7v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-20"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.7v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-20b"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-3"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "8f9bece3-b9e2-5b13-90fc-12f9cd60bacb",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.8v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-20"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.8v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-20b"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-3"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "d830799a-c652-5cda-99b3-c4f7b93bd6fc",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.3.9v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.3.9v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "c6794445-09cb-50e7-8186-fbcb41e368c5",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.4.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "au-4"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.4.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AU-4"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "5ebb8cff-014b-5e40-bbc8-da6b65b40742",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.5.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              },
+              {
+                "type": "control",
+                "id-ref": "cm-5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.5.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-5"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "7ee4f0cb-f30c-5e0a-8a9b-4f96399cc900",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.5.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              },
+              {
+                "type": "control",
+                "id-ref": "cm-5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.5.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-5"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "ff497ce8-b112-54ef-b7a0-1d30f4778ca9",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.5.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-4"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.5.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-4"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "79121def-5958-515c-b66c-53acac520463",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.6.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ia-5.1"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.6.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-5(1)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "c8355364-55e7-56c3-b569-7716a3e350d3",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "bbfecb75-0432-500a-911e-8ef63efafdb9",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-5"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "e5277854-3425-57c8-9454-7f2a5b24ebbe",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "9b0cb559-d3ab-50b9-ab8c-0bd62fbbfa19",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "2ecb965f-a901-548f-af68-7c445bed2640",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.5v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.5v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "290418c7-e2c6-5866-bbed-9b149a8a81b2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.6v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.1"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.6v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(1)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "0daa0782-5c78-556f-8f34-ea3f58788359",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.7v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2.1"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.7v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2(1)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "d3ca77c0-42e7-555a-b3e6-187be482bef9",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.8v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.9"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.8v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(9)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "bb8c6fa0-ba16-56fe-8a97-7f1df2ab3a71",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.7.9v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.9"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.7.9v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(9)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "cd7d3e94-dd56-5796-979f-d060410b4420",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.8.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.8.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "ae470a85-6f72-549f-b42a-847fa6a16aef",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.8.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.8.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "aa27e3ec-6f84-5882-91dc-c12f6b4b01a2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.aad.8.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.AAD.8.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "29f2afb1-fd42-5fce-92ae-e154822b5016",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.2.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.2.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.2.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.2.1v1 was superseded by MS.SECURITYSUITE.2.1v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.2.1v1 applies."
+          },
+          {
+            "uuid": "f02f68df-5adc-5756-b244-5fd2d11de2b4",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.2.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.2.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.2.2v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.2.2v1 was superseded by MS.SECURITYSUITE.2.2v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.2.2v1 applies."
+          },
+          {
+            "uuid": "2489cd91-32d7-58d4-8a31-5bbb545e2794",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.2.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.2.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.2.3v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.2.3v1 was superseded by MS.SECURITYSUITE.2.3v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.2.3v1 applies."
+          },
+          {
+            "uuid": "fcdc7cbd-ec72-529c-9f92-b745ef58bb7b",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.3.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.3.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.4v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.3.1v1 was superseded by MS.SECURITYSUITE.1.4v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.1.4v1 applies."
+          },
+          {
+            "uuid": "b0b68717-0f88-55d3-9bb8-51b4af7c12ff",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.4.1v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.4.1v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.3.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.4.1v2 was superseded by MS.SECURITYSUITE.3.1v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.3.1v1 applies."
+          },
+          {
+            "uuid": "cc191b7f-4cc4-5819-9266-934c92c58d01",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.4.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.4.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.3.2v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.4.2v1 was superseded by MS.SECURITYSUITE.3.2v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.3.2v1 applies."
+          },
+          {
+            "uuid": "1868efe7-e754-582c-9676-3a817c0312b4",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.4.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.4.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.3.3v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.4.3v1 was superseded by MS.SECURITYSUITE.3.3v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.3.3v1 applies."
+          },
+          {
+            "uuid": "d410b318-daba-5bff-95c2-db27211d201f",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.4.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "at-2"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.4.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AT-2b"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.3.4v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.4.4v1 was superseded by MS.SECURITYSUITE.3.4v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.3.4v1 applies."
+          },
+          {
+            "uuid": "6619f519-7874-5679-9fdc-5cb8c32aa857",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.4.6v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-19"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.4.6v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-19a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.3.5v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.4.6v1 was superseded by MS.SECURITYSUITE.3.5v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.3.5v1 applies."
+          },
+          {
+            "uuid": "37508016-51c0-5052-a091-ad10bfac1178",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.5.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-4.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.5.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-4(5)"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.4.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.5.1v1 was superseded by MS.SECURITYSUITE.4.1v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.4.1v1 applies."
+          },
+          {
+            "uuid": "62cdbbf6-07dd-5377-9731-496b8082119e",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.5.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-4.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.5.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-4(5)"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.4.2v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.5.2v1 was superseded by MS.SECURITYSUITE.4.2v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.4.2v1 applies."
+          },
+          {
+            "uuid": "12c0a164-66e5-5fe6-9db9-e436960fdcc5",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.6.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "au-12"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.6.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AU-12"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.5.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.6.1v1 was superseded by MS.SECURITYSUITE.5.1v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.5.1v1 applies."
+          },
+          {
+            "uuid": "8adb04ff-5f45-54a1-beba-3b6ee57501a3",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.6.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "au-11"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.DEFENDER.6.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AU-11"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SECURITYSUITE.5.2v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.6.3v1 was superseded by MS.SECURITYSUITE.5.2v1 in a later baseline version; CISA's crosswalk entry for MS.SECURITYSUITE.5.2v1 applies."
+          },
+          {
+            "uuid": "8376008d-57e2-536b-a822-b964f8b81c50",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.1.1v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-4"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.1.1v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-4"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "2fc3f8a9-4445-53a3-bd82-167f93139f81",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.2.2v3"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.2.2v3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2d"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "b7fa2392-4c34-5f5e-b95d-b59fc0920a53",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.3.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.3.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "292f7aa2-fb83-5012-ac73-0a9daffcbb26",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.4.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.4.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "d59b498a-d3bf-5680-8398-51ae6352d178",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.4.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.4.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "2c510908-7092-541f-9c3d-ab5696d75b6d",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.4.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-4.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.4.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-4(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "f157d1f1-900c-5da4-856d-2efef509ecc2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.4.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-4.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.4.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-4(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "63f9a22e-6efb-5ac2-b8e4-e13905d2f07d",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.5.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.5.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "b6b4384e-e1f9-5604-9fb4-533fdc65f5bd",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.6.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.6.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)(a)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "947025bf-56d2-5dee-85cc-b723c698c85f",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.6.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.6.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)(a)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "3219ffa6-db43-55ea-883a-5e54bf3c3d99",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.7.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.7.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "18beac26-efa6-535b-8526-4784a75d7f81",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.exo.13.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "au-12"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.EXO.13.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AU-12c"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "c50b20a8-8d8a-58cd-9dec-53ac85e9732b",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.1.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.1.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "065b69bd-aab9-57c2-8573-f52509d5e880",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.1.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.1.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "9967d534-b734-54e0-b0be-2e6640ff862e",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.2.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.2.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "d04670e1-fc6e-5026-ad99-d36fd7b6e2fe",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.2.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.2.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "05d127d3-a2ef-5c82-ac9a-55b5992ef898",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.3.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.3.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "2ba9ee6c-86cf-5c49-9733-6e7e4db5f328",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.3.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.5"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.3.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(5)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "6481609e-2f6a-5de5-a152-94ca423fc863",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.4.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.4.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-10"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "24343fb5-6f90-5422-9ad7-27f0eb91a33f",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.powerplatform.5.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.POWERPLATFORM.5.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "fcb6e996-7790-50bc-afde-7fdd23684dc5",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.1.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.1.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "10c6fb8c-25cb-5971-9874-c9ea1c699651",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.1.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-2"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "ia-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.1.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "IA-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "b0d16ff0-1fc8-50d6-9619-8b372aa8c9d2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.1.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-6.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.1.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6(10)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "596cd9a8-9808-5932-b2f5-cf31c1119e67",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.2.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.2.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "b67fbb27-d8ce-57cb-ac9a-8245b05d1338",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.2.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.2.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "88b45e19-e9c5-5ea2-b8d9-9348b5b50fe3",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.3.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-21"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.3.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-21b"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "47865e7d-26e0-505d-9502-a38ac6a4c5cf",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.sharepoint.3.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-6"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.SHAREPOINT.3.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-6"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "0c75c50f-df60-54e3-a22b-ab644f22b2a2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-17"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-17a"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "9e4efb75-8c22-5c31-9657-e8e882de7b86",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.2v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-15"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.2v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-15a"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "c13369d4-22af-51fb-b60e-8345e5e00afb",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-15"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-15a"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "17835600-8782-5a19-932c-d96049b492ab",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "cae2accb-3a7b-5d0c-b628-a3823944c119",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.5v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "sc-15"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.5v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-15a"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "a148c1a0-a67e-5093-8432-8e6266405efd",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.6v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.6v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "4d6208bd-e99d-5946-bbe8-d0e5c7e741a9",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.1.7v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-21"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.1.7v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-21a"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "8976a869-a6ea-5fe2-990b-da936686c928",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.2.1v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "ac-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.2.1v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-3"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "c8828f66-13f1-53ca-ae14-52efd1efa80c",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.2.2v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              },
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.2.2v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "083342b9-4f01-5329-aeeb-8bc3d4904f21",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.2.3v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-7"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.2.3v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-7"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)(a)"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "700f1d1f-8dad-58b2-8ca8-ca21fbc9d1ce",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.4.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-8"
+              },
+              {
+                "type": "control",
+                "id-ref": "sc-7.10"
+              },
+              {
+                "type": "control",
+                "id-ref": "ac-4"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.4.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SI-8"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "SC-7(10)(a)"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "AC-4"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "17c04db8-67b0-586f-8637-6071b8f65ed8",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.5.1v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-11"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.5.1v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-11"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "4092f14b-da0f-542b-858d-99032d7c3f66",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.5.2v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-11"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.5.2v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-11"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "11b95775-06f8-50b9-9c09-6e9685a38b13",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.teams.5.3v2"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "cm-11"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "cisa-authoritative"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "MS.TEAMS.5.3v2"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "value": "CM-11"
+              }
+            ],
+            "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          }
+        ]
+      }
+    ]
+  }
+}

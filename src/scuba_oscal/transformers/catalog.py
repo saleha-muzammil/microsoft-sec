@@ -14,9 +14,9 @@ projection of CISA-authored content, which is what makes the output citable.
 from __future__ import annotations
 
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from ..ids import control_uuid, det_uuid
+from ..ids import det_uuid
 from ..parsers.baselines import BaselineCatalog, BaselinePolicy
 
 OSCAL_VERSION = "1.2.3"
@@ -235,7 +235,7 @@ def build_catalog(baselines: BaselineCatalog, products: list[str] | None = None)
             "uuid": det_uuid("catalog", "scuba-m365", baselines.version, ",".join(selected)),
             "metadata": {
                 "title": "CISA SCuBA Secure Configuration Baselines for Microsoft 365",
-                "last-modified": datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
+                "last-modified": datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
                 "version": baselines.version,
                 "oscal-version": OSCAL_VERSION,
                 "props": [

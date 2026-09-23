@@ -16,7 +16,7 @@ output, which is precisely why the resulting artifact can be cited as evidence.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from ..ids import det_uuid, finding_uuid, observation_uuid, risk_uuid
 from ..models import Result, ScubaRun
@@ -29,7 +29,7 @@ METHOD_MANUAL = "EXAMINE"
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 def _ts(value: datetime) -> str:

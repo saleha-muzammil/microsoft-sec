@@ -21,7 +21,7 @@ class MitreTechnique:
     url: str
 
     @classmethod
-    def parse(cls, raw: dict[str, Any] | str) -> "MitreTechnique":
+    def parse(cls, raw: dict[str, Any] | str) -> MitreTechnique:
         # Usually {"Name": "T1110.003: Password Spraying", "Url": ...}, but the
         # baseline JSON is hand-maintained and a few entries are bare strings.
         if isinstance(raw, str):
@@ -38,7 +38,7 @@ class Resource:
     url: str
 
     @classmethod
-    def parse(cls, raw: dict[str, Any] | str) -> "Resource":
+    def parse(cls, raw: dict[str, Any] | str) -> Resource:
         # Same hand-maintenance caveat as MitreTechnique: a few entries are
         # plain strings rather than {"Name", "Url"} objects.
         if isinstance(raw, str):

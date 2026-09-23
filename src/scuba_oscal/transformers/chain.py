@@ -18,7 +18,7 @@ This module implements those layers, so the chain resolves end to end.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from ..ids import det_uuid
 from ..models import ScubaRun
@@ -26,7 +26,7 @@ from .catalog import OSCAL_VERSION, PRODUCT_TITLES, SCUBA_NS, _line
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 def _meta(title: str, version: str, extra_props: list[dict] | None = None) -> dict:
