@@ -11,6 +11,8 @@ security baseline content and/or assessment results."*
 
 ---
 
+![The Copilot explains itself in plain language before showing any data](docs/images/00-start.png)
+
 ## The problem
 
 CISA publishes the **SCuBA** secure configuration baselines for Microsoft 365 and
@@ -87,7 +89,7 @@ build on any divergence. It also pins a case where published third-party tooling
 gets it wrong: `MS.AAD.1.1v1` maps to **`CM-7`** (least functionality — disabling
 legacy auth), not `IA-2(1)` (an MFA control).
 
-![Compliance posture dashboard](docs/images/01-posture.png)
+![Compliance posture: 57 passing, 14 failing, 12 partial, 68.7% overall](docs/images/01-posture.png)
 
 ### 3. Drift that survives baseline version changes
 
@@ -145,7 +147,7 @@ Each failing policy carries its severity, deadline, CISA rationale, implementati
 guidance, MITRE ATT&CK techniques, and NIST mapping — with provenance shown, so a
 CISA-published mapping never looks like an AI-proposed one.
 
-![Prioritised remediation view with policy detail and NIST mapping provenance](docs/images/02-risk.png)
+![What needs fixing: failures ranked by severity with deadlines, CISA fix instructions and mapping provenance](docs/images/02-fix.png)
 
 ---
 
