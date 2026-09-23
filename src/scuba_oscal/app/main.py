@@ -188,7 +188,10 @@ elif view == "Ask the Copilot":
     st.title("Ask the Copilot")
     st.caption(
         "Answers come from tool calls over validated OSCAL documents. The model "
-        "cannot state a compliance fact it did not read from an artifact."
+        "cannot state a compliance fact it did not read from an artifact. "
+        "Topic questions are resolved by semantic search over CISA's baseline "
+        "guidance (Azure AI Search), falling back to keyword search if it is "
+        "not configured."
     )
 
     specialist = st.selectbox(
