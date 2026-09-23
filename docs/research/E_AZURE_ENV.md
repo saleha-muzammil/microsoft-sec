@@ -7,9 +7,9 @@ Checked directly against the live subscription, not assumed.
 | Property | Value |
 |---|---|
 | Subscription | `Azure subscription 1` |
-| Subscription ID | `03ddc744-6eff-45bf-964b-d1f409736052` |
-| Tenant ID | `f151f019-540c-4c2f-827e-d86c8fc44c9d` |
-| Signed-in user | `rmughees1@gmail.com` |
+| Subscription ID | `<redacted — see .env>` |
+| Tenant ID | `<redacted — see .env>` |
+| Signed-in user | *(redacted)* |
 | **Offer type** | `Sponsored_2016-01-01` → **Azure Sponsorship (credits)** |
 | **Spending limit** | **Off** |
 | State | Enabled |
@@ -93,3 +93,19 @@ availability. (`eastus` is equally good on quota; `eastus2` is the safer default
 - Put everything in **one resource group** so teardown is `az group delete` — one command, no orphans.
 - Deployment to Container Apps is a *nice-to-have*; a local demo satisfies the rules. Do not burn
   credits on it until the core works.
+
+
+---
+
+## Why identifiers are redacted here
+
+Azure subscription and tenant IDs are **resource identifiers, not credentials** —
+they grant no access without authentication, and they appear in every ARM resource
+ID. They are nonetheless removed from this public repository because:
+
+- Contest Rule 13 asks that team members' personal data stay out of submissions,
+  and these identify a personal subscription.
+- A security project should model the hygiene it recommends.
+
+The live values are in `.env`, which is gitignored. Anyone reproducing this work
+uses their own subscription.
