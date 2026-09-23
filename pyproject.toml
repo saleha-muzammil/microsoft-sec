@@ -7,6 +7,10 @@ dependencies = [
     "jsonschema==4.25.1",
     "regex==2026.9.10",
     "python-dotenv==1.1.1",
+    # agents/tools.py annotates tool parameters with pydantic Field so the
+    # agent framework can derive tool schemas. It is a core dependency, not
+    # an AI-extra one: the tool layer is importable and testable without Azure.
+    "pydantic==2.12.3",
 ]
 
 [project.optional-dependencies]

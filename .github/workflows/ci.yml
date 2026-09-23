@@ -37,6 +37,9 @@ jobs:
       - name: Install oscal-cli
         run: ./scripts/install_tools.sh
 
+      - name: Build the follow-up run used by drift tests
+        run: python scripts/make_followup_run.py
+
       - name: Generate OSCAL artifacts
         run: python scripts/generate.py
 
