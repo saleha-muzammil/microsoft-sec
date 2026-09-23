@@ -1,0 +1,1073 @@
+{
+  "system-security-plan": {
+    "uuid": "6ba8a854-1a56-5a15-858f-08833bf493d3",
+    "metadata": {
+      "title": "M365 Tenant SSP - tqhjy",
+      "last-modified": "2026-09-23T03:57:24.278Z",
+      "version": "1.8.0",
+      "oscal-version": "1.2.3"
+    },
+    "import-profile": {
+      "href": "scuba-m365-profile.json"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://ietf.org/rfc/rfc4122",
+          "id": "ca08493a-c9c8-4db0-a9e8-d3b4bafac269"
+        }
+      ],
+      "system-name": "Microsoft 365 Tenant tqhjy",
+      "description": "Microsoft 365 tenant tqhjy.onmicrosoft.com, assessed against the CISA SCuBA secure configuration baselines.",
+      "security-sensitivity-level": "moderate",
+      "system-information": {
+        "information-types": [
+          {
+            "uuid": "f000f69c-1782-5b48-8698-5fcf6ddad517",
+            "title": "Microsoft 365 collaboration and identity data",
+            "description": "Email, files, chat, and identity configuration held in the assessed tenant.",
+            "confidentiality-impact": {
+              "base": "fips-199-moderate"
+            },
+            "integrity-impact": {
+              "base": "fips-199-moderate"
+            },
+            "availability-impact": {
+              "base": "fips-199-moderate"
+            }
+          }
+        ]
+      },
+      "security-impact-level": {
+        "security-objective-confidentiality": "fips-199-moderate",
+        "security-objective-integrity": "fips-199-moderate",
+        "security-objective-availability": "fips-199-moderate"
+      },
+      "status": {
+        "state": "operational"
+      },
+      "authorization-boundary": {
+        "description": "The Microsoft 365 tenant and the cloud services enabled within it that fall in scope of the SCuBA baselines."
+      }
+    },
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+          "type": "service",
+          "title": "Microsoft 365 Tenant",
+          "description": "Assessed tenant tqhjy.onmicrosoft.com.",
+          "status": {
+            "state": "operational"
+          }
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "SCuBA baseline controls in scope for this tenant. Implementation status is established by ScubaGear assessment rather than asserted narratively.",
+      "implemented-requirements": [
+        {
+          "uuid": "6463c103-4fa2-5db4-b10d-ab422c6523c1",
+          "control-id": "ms.aad.1.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "13342363-749c-5aac-9199-1b425dfc827f",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "f7ea7ede-d777-5a7d-ae65-67d1a12c773c",
+          "control-id": "ms.aad.2.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "35cab71c-d020-551d-8d77-4321b0c490b0",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "47f7cfc8-b685-59db-9398-4e5b9eea4dae",
+          "control-id": "ms.aad.2.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "5d93d47f-c648-55b4-8680-7291323c6637",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "0f329795-2ac0-5d3b-819c-d05a85cacffe",
+          "control-id": "ms.aad.2.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "7ecdb003-ba01-59b7-81ad-53effe25b8de",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "e010bd6c-0c99-5db9-8e3b-afae732f68b9",
+          "control-id": "ms.aad.3.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "35286a78-c6d2-55aa-b9e2-a5e47a79b119",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "4b7ffffd-bd82-5077-ab6f-4ad2b33d745d",
+          "control-id": "ms.aad.3.2v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "987efc55-8b93-5be2-ac79-c795e7af04e9",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "7ead413d-42ef-5ad3-976d-e796dcb8dd4e",
+          "control-id": "ms.aad.3.3v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "f9a90b71-63e5-5162-afb3-240d1132b547",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "15225e99-d399-57df-af7b-76bf715ccb3e",
+          "control-id": "ms.aad.3.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "76762ca5-6eb3-51e1-b728-82d7093af53a",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2b5ddaa8-540b-54e1-8232-b628c64a0f28",
+          "control-id": "ms.aad.3.5v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "b3db7e3e-4786-5143-af1c-6cddf0c06447",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "0a5b2b6e-6588-50b3-9a52-18b19be9ca20",
+          "control-id": "ms.aad.3.6v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "6262c6b3-20a7-53d0-b832-4632454d4bdc",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "bc21696d-dcd5-5d6d-bbac-5c19eddfce9b",
+          "control-id": "ms.aad.3.7v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "79fe554c-1694-59bc-aeb1-c0c99fea8075",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "3f279d69-ff3a-55d1-a30c-8ea35bb4fcc5",
+          "control-id": "ms.aad.3.8v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "b111921f-06cc-5662-97c4-2330fb7bb535",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "c337b3ab-ae36-52d8-a07e-ce3a25d84278",
+          "control-id": "ms.aad.3.9v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "93dc7067-91d8-5107-af79-bbaffd750707",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "4d095063-8475-5b10-8888-589d3f4502f4",
+          "control-id": "ms.aad.4.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "21048e64-b64a-502c-adfc-7bb70b70e57e",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "99c14035-6c1a-5a13-a8f6-2035edf931f8",
+          "control-id": "ms.aad.5.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "57bcaa7f-279e-58df-8c5b-a88ef693a872",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "f166dd1f-992b-5f97-b959-60376b03c936",
+          "control-id": "ms.aad.5.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3c5eb83f-f6f8-52fe-9395-750c21af5ccc",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "5d9530ed-4367-50e6-8b26-d0b047d3ffc3",
+          "control-id": "ms.aad.5.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3787f708-7204-510a-95ba-66b1fcb7ac82",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "03c26adb-0528-5b7d-ba78-35a8bf955ad8",
+          "control-id": "ms.aad.6.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "f7455b76-88d4-5191-9c68-bc8d8ccd33a5",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2e7ebd49-01b9-57bc-bba7-799d7f8c7de3",
+          "control-id": "ms.aad.7.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "dc2ca760-8145-5091-b522-0614042e56f6",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "5a8616f7-11ef-5b2a-9ee4-f212f2109163",
+          "control-id": "ms.aad.7.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "10154f09-5ea3-5991-ac04-53ecfde36c75",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b73c0318-044a-503a-945e-4afa469fd6b3",
+          "control-id": "ms.aad.7.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "a0d90c81-6981-5fe3-86a1-483a023872c9",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b9f30cd2-754b-5130-b646-de2e4e51cc22",
+          "control-id": "ms.aad.7.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "4bd12671-e4b7-5786-8fc2-0634dfc7548a",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "83eaffeb-ef67-52ce-aad3-854223057263",
+          "control-id": "ms.aad.7.5v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "2eacbd2c-d183-565a-8454-303eeeaed594",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "39daddd7-9064-5708-bc4b-de5560aa450a",
+          "control-id": "ms.aad.7.6v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "ea547b91-581c-561a-ac69-1e6c807f20fc",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "115a762b-307e-5a5a-a6ac-a172783e5fec",
+          "control-id": "ms.aad.7.7v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "660c53ef-6ef0-5a8a-a673-fc96e345aeb0",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "621b4e9a-f030-56fa-8313-59e940708978",
+          "control-id": "ms.aad.7.8v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "4e7defbe-b134-5add-bd81-58f12a8560b2",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "c949feb9-69a9-518a-bb37-5d8ee165ab76",
+          "control-id": "ms.aad.7.9v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "160fa8f8-c8ac-59c0-934e-a29326d021c9",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "496b3058-16f0-5595-bdc2-e58eb1615619",
+          "control-id": "ms.aad.8.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "15faae01-d0a6-5ae1-943f-1b5745de4440",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "fed2abab-a95f-5602-8a35-a4d28c57bfbc",
+          "control-id": "ms.aad.8.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "aeda50b8-3519-5236-a403-1f2a154911cf",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "a405bbcd-743d-5894-a94a-b2d274db0675",
+          "control-id": "ms.aad.8.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "4b16a0f9-5021-506d-b8e8-87da68ede1e1",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "7d5da01d-b5ef-5b91-b710-46f7144e91d8",
+          "control-id": "ms.defender.1.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "4e4e36c6-0711-52bf-904c-a184747bb61a",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "96ee9b35-7c74-5bae-8296-a1e550edfff0",
+          "control-id": "ms.defender.1.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "915de30b-1d4e-523b-a6da-90d79e2b6253",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "85400557-d3ac-5c3e-8756-5c9f7a224648",
+          "control-id": "ms.defender.1.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "4593db5c-9683-5d83-ace8-140040fd1b2b",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "46324870-f7c4-5941-b451-0f9a9f6262c8",
+          "control-id": "ms.defender.1.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "d858aedc-87ce-5a45-b838-eadbe52dbf96",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "51e21669-f11f-536e-bf8b-94b9d7052dd4",
+          "control-id": "ms.defender.1.5v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3f9bb214-1645-5267-870c-b855a226b565",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "650b3bf7-fb9d-5301-810c-a1f25d0cc829",
+          "control-id": "ms.defender.2.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "5f8bca21-9268-5380-bbea-33ee5f3dd2f2",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "a0585ebc-31c8-5ad7-b729-97eaa6e87738",
+          "control-id": "ms.defender.2.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "0f308e43-6e76-50a7-ba43-3990b8cdaa71",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "ff59cafc-a24b-5b87-9863-6c71c1847665",
+          "control-id": "ms.defender.2.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3b8200d8-04b2-5909-a6eb-0c73f293299d",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2a710c0e-1852-5cb2-8c8d-94dffdf71a6b",
+          "control-id": "ms.defender.3.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "abd93d30-c3b7-5d0e-ba7e-7846292e67d3",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "4d358e19-9faf-5977-ab5b-a6dea0d5463f",
+          "control-id": "ms.defender.4.1v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3eacd7ee-d10e-56fc-99af-42a1bfa8109f",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b091e0f2-0200-5cdf-9a1b-e67608151d0e",
+          "control-id": "ms.defender.4.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "d4adc7d7-e5d5-523e-a862-5acc7022dc17",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "6a608a53-7274-5eec-be10-c89c86f5cd4f",
+          "control-id": "ms.defender.4.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "6348aa03-97dd-5c4a-86da-281ee35df6b1",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "e8121fb1-9a34-56c1-af7b-2e27a4d3cd38",
+          "control-id": "ms.defender.4.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "a21f6715-c72e-58f8-9c89-3724104edd33",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "eb4ac310-f8db-5caa-81fe-6e4b5c7a2b99",
+          "control-id": "ms.defender.4.5v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "91f21e58-e4d2-5345-add2-8ed54af215b9",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2b4e0a77-9b9c-54ce-b038-70191febe3b4",
+          "control-id": "ms.defender.4.6v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "6e212d3b-c8cb-5a2c-bb56-ac01c951a798",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "c1865ff9-c693-5632-b6ef-37dc22c9511e",
+          "control-id": "ms.defender.5.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3cd7694d-2783-5428-a6d6-360011999807",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "a5426335-4a5d-5141-b28e-17c05341c9f5",
+          "control-id": "ms.defender.5.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "24f3bd12-4a9f-584e-a3f6-f6cb53c61985",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "054694af-9d7c-5b83-80ce-200fddf7bb04",
+          "control-id": "ms.defender.6.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "914c85f7-5537-502d-9716-91f86def9f2b",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b99603f5-ddd1-56a7-9bd1-faf8fe6a0b31",
+          "control-id": "ms.defender.6.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "7e1b3387-8482-533d-95e3-093800bfbb45",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "5ad9c680-fc59-575e-a401-a7b58062978a",
+          "control-id": "ms.exo.1.1v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3b13c6ab-849a-5d30-af9b-ba552b47af70",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "039d8baa-7d2c-5a14-94b8-afabb1d2a84a",
+          "control-id": "ms.exo.13.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "f6d04a4f-e235-5927-bac8-d5d75e81ca5d",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "c2e20095-acdd-542f-a8b8-cb3df7aadf7a",
+          "control-id": "ms.exo.2.2v3",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "872ef94f-ee23-53b9-b70c-e32a4e954907",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "be8a498c-7e9b-577b-8fdd-8e44e3401d3a",
+          "control-id": "ms.exo.3.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "78aa8a7e-961c-5f51-a62b-a2f6155eb58c",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "253292c0-092a-56c9-a4b3-08f2bbddf4ed",
+          "control-id": "ms.exo.4.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "3bc1e6b9-e41b-5043-befa-0096beea74b5",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2e8459dd-7479-5ffe-9246-17180cdaf2d8",
+          "control-id": "ms.exo.4.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "00df2d9f-df20-559e-9e62-533b53c2e99f",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "1d49249f-e1f2-555c-b1e2-8bfa91c9c1af",
+          "control-id": "ms.exo.4.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "56420f34-58f0-5413-8995-9b2629bfa7ad",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "032aa486-b19e-545e-9d36-990daba011de",
+          "control-id": "ms.exo.4.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "20c73fd6-af2a-53f2-9f9d-79fa5b1ffd9d",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "8c04ebbd-d17a-5711-9705-14a79a3f9dd9",
+          "control-id": "ms.exo.5.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "ef08915a-cde9-5de6-b15b-76034cd901e5",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "5923dfc3-419b-54bd-a70d-b9b81deacae6",
+          "control-id": "ms.exo.6.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "0b70fbb5-5ac2-56a0-9cbb-eb8714426755",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "23ced6f1-90f0-5877-8eb0-648c9c28a9c5",
+          "control-id": "ms.exo.6.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "b24dedf6-eea7-5e2f-8a76-95cf7c4ca226",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "61364068-f5ee-5658-acf2-16b2681adbfe",
+          "control-id": "ms.exo.7.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "aec8ef75-16ff-570a-ba43-c877a0785097",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "62c1b49d-27d9-5ad1-89a6-ad826218da82",
+          "control-id": "ms.powerplatform.1.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "0331d31c-6beb-5f91-9d5b-52b1b5965d42",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "467fbf04-9ddb-52eb-b0e1-2e62fcfede40",
+          "control-id": "ms.powerplatform.1.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "983c7118-ce54-52c1-963a-7225fbaa5d13",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b04041bc-ff60-51ef-85bb-6b0d82a2deea",
+          "control-id": "ms.powerplatform.2.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "0ff55ad5-d0c2-51c0-82a6-307651dd7102",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2448092a-7335-5010-b352-f30bd9e1d9d7",
+          "control-id": "ms.powerplatform.2.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "b1c6f443-59c2-5461-9f8f-775babc985ce",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "6bdc5882-c964-572e-8d6f-cf6dfff8faa1",
+          "control-id": "ms.powerplatform.3.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "9ea57421-5791-5534-b239-c2e1e0f86f6c",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "20b05622-7abe-599e-97b7-e71694f8453a",
+          "control-id": "ms.powerplatform.3.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "e363a915-2ba0-5d48-b7df-b0eb3faef101",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "1c909cee-7d95-5893-acc1-cf04d1f3313c",
+          "control-id": "ms.powerplatform.4.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "811112a5-0c61-5e37-a60b-fa2beaf0366f",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "3875d850-c20d-59d9-9aa6-131044e3bb47",
+          "control-id": "ms.powerplatform.5.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "452ee46e-3142-5fac-84ad-d6e6b2ad2a48",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "b5c79514-74e2-5639-8855-3f3735c424e0",
+          "control-id": "ms.powerplatform.6.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "b045cb49-4282-592a-bd84-f4c743bc6ce8",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "6285fe53-2252-5e83-bc36-588d18e38edf",
+          "control-id": "ms.sharepoint.1.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "e3b91e77-2f77-5ce2-8a14-845510fee004",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "f3dee18d-a41f-55cd-8c1d-cf73bc40dc85",
+          "control-id": "ms.sharepoint.1.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "fbf3a2d4-f991-5cd0-8250-b72ace2ef75e",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "24fefc56-4504-529b-96ab-375f4becd4bc",
+          "control-id": "ms.sharepoint.1.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "77c7f2b9-1007-5e9f-ad7b-f4461357a6d7",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "c3fc9c2c-663e-5633-913d-66ab3fa2c3f7",
+          "control-id": "ms.sharepoint.2.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "dd6ad456-9646-5070-a062-a50fef4596ab",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "967d35f9-d132-5e91-9dcd-31bf66bf4851",
+          "control-id": "ms.sharepoint.2.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "9a4d70d2-dc47-5999-91ae-42070d9f1452",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "cd64de3f-51e9-5e29-812f-c390e63f48c7",
+          "control-id": "ms.sharepoint.3.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "8e327162-58ad-532c-b41c-98248d12fcd7",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "ec87d6d9-7ea2-5115-9f49-7ca236e4c980",
+          "control-id": "ms.sharepoint.3.2v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "8565b511-cb10-599a-9d79-2b4e54a0e987",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "cf9ff974-567d-5c06-b85e-fa5933261088",
+          "control-id": "ms.teams.1.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "1608fe76-0bf9-5f35-a6d6-13090d4d78d8",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "17b4917b-56c6-5d4a-85a6-270ef694f0ed",
+          "control-id": "ms.teams.1.2v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "48204127-3288-57d1-b80e-e8c3c756c607",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "f4b60134-9270-5d44-a430-9c8e1a2ac996",
+          "control-id": "ms.teams.1.3v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "a0e02406-3d46-584d-90c2-631781f3d4c4",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2c32dabc-1184-5422-8ef6-7cd05effef06",
+          "control-id": "ms.teams.1.4v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "31418476-b9c7-5656-9e50-ba7e60e4a38e",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "4f25fcbd-ca18-5fbb-9347-7ec93bd115e3",
+          "control-id": "ms.teams.1.5v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "366efb31-809e-5779-ab74-67e5fa603a19",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "258c3e6e-cd3b-50ab-9612-f82fa124f5e6",
+          "control-id": "ms.teams.1.6v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "321324e2-8e7a-573c-924f-e4e2deb9caea",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "a06c75d9-ae37-5f96-98d8-cf7fa679bee2",
+          "control-id": "ms.teams.1.7v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "7ac757a0-0f8f-53d2-9877-bd38d2c28199",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "87a30ef8-a063-51ac-a9c9-2efd2a426089",
+          "control-id": "ms.teams.2.1v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "6f507b0f-2ee5-5119-8212-d54f2e1d8a9f",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "3329d280-1ec7-541f-b371-86db2f427c25",
+          "control-id": "ms.teams.2.2v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "395f91ce-2ece-57f1-b58f-e7c99bfae381",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2cc522cd-7811-5f43-869c-f709f4914c0d",
+          "control-id": "ms.teams.2.3v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "0a7e1d78-2df2-595c-b41f-c3bd116fd1f8",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "84ba5ae7-a30b-5890-b34d-11039399b2d3",
+          "control-id": "ms.teams.4.1v1",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "6b5c6aef-8076-55d4-854d-c9bfc083d464",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "184ead96-080d-5398-9331-afb02636da37",
+          "control-id": "ms.teams.5.1v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "96fd4ce7-cdd2-5770-be04-ae07417db4ba",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "2ca3b315-3b60-510a-b0ce-6b9590aa0bad",
+          "control-id": "ms.teams.5.2v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "9a03177f-913c-5a21-89e3-4c24377706fe",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        },
+        {
+          "uuid": "f0337275-3a32-58f9-8756-a0f638b7380b",
+          "control-id": "ms.teams.5.3v2",
+          "by-components": [
+            {
+              "component-uuid": "b4ed8da8-5ea8-50d2-8512-534eba1c41ec",
+              "uuid": "a1dfe30c-0949-5c58-af77-14d36bd85d58",
+              "description": "Implemented by Microsoft 365 tenant configuration; assessed automatically by ScubaGear."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
