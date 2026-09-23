@@ -11,6 +11,10 @@ dependencies = [
     # agent framework can derive tool schemas. It is a core dependency, not
     # an AI-extra one: the tool layer is importable and testable without Azure.
     "pydantic==2.12.3",
+    # exemptions.py reads ScubaGear's YAML configuration. Like pydantic, this
+    # arrived transitively via the AI extra in development and was invisible
+    # until CI (which installs only [dev]) failed on it.
+    "PyYAML==6.0.3",
 ]
 
 [project.optional-dependencies]
