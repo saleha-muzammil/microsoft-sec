@@ -1,0 +1,50 @@
+SCuBA Compliance Copilot
+Copyright 2026 The SCuBA Compliance Copilot contributors
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+================================================================================
+THIRD-PARTY CONTENT
+================================================================================
+
+CISA SCuBA Secure Configuration Baselines and ScubaGear
+  https://github.com/cisagov/ScubaGear
+  Licence: CC0-1.0 (Creative Commons Zero v1.0 Universal, public domain)
+
+  This project reproduces and transforms CISA-authored content:
+    - SCuBA baseline policy text, rationale, implementation guidance and
+      MITRE ATT&CK mappings, from ScubaBaselines.json
+    - The published sample assessment ScubaResults_fa5589b7-d528-4f80.json
+    - scuba-to-nist-sp-800-53-r5-fedramp-high.csv
+    - scuba-baseline-policy-migrations.csv
+
+  Baseline markdown in the upstream repository carries a CC-BY-4.0 notice for
+  prose adapted from Microsoft documentation; that attribution is carried
+  forward here.
+
+  This project is NOT a CISA product and carries no CISA endorsement.
+
+NIST Open Security Controls Assessment Language (OSCAL)
+  https://github.com/usnistgov/OSCAL
+  A work of the U.S. Government, not subject to domestic copyright protection
+  under 17 U.S.C. 105.
+
+  JSON schemas for OSCAL 1.2.3 are vendored under vendor/oscal-schemas/ and are
+  used UNMODIFIED, solely for validation. NIST does not endorse this project.
+
+NIST SP 800-53 Revision 5
+  Control identifiers referenced for cross-framework mapping. A work of the
+  U.S. Government.
+
+oscal-cli / liboscal-java
+  https://github.com/metaschema-framework/oscal-cli
+  Downloaded at build time by scripts/install_tools.sh; not vendored in this
+  repository. See that project for its licence terms.
+
+MITRE ATT&CK(R)
+  ATT&CK technique identifiers are referenced as published by The MITRE
+  Corporation. ATT&CK is a registered trademark of The MITRE Corporation.
+
+Microsoft trademarks
+  Microsoft, Azure, Microsoft 365, Entra and Foundry are trademarks of the
+  Microsoft group of companies, used here descriptively.
