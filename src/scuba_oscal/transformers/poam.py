@@ -12,7 +12,7 @@ layer later *explains and re-prioritises* these items, but it never invents one.
 
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 
 from ..ids import det_uuid, observation_uuid, poam_item_uuid, risk_uuid
 from ..models import PolicyResult, Result, ScubaRun
@@ -41,13 +41,13 @@ def severity(policy: PolicyResult) -> str:
 
 def _deadline(assessed: datetime, sev: str) -> str:
     due: date = (assessed + timedelta(days=DEADLINE_DAYS[sev])).date()
-    return datetime(due.year, due.month, due.day, tzinfo=timezone.utc).isoformat(
+    return datetime(due.year, due.month, due.day, tzinfo=UTC).isoformat(
         timespec="milliseconds"
     ).replace("+00:00", "Z")
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 def build_poam(

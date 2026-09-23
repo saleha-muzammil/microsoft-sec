@@ -30,7 +30,7 @@ class Result(str, Enum):
     ERROR_MISSING = "Error - Test results missing"
 
     @classmethod
-    def parse(cls, raw: str) -> "Result":
+    def parse(cls, raw: str) -> Result:
         value = (raw or "").strip()
         for member in cls:
             if member.value.lower() == value.lower():
@@ -65,7 +65,7 @@ class Criticality(str, Enum):
     SHOULD_NOT_IMPL = "Should/Not-Implemented"
 
     @classmethod
-    def parse(cls, raw: str) -> "Criticality":
+    def parse(cls, raw: str) -> Criticality:
         value = (raw or "").strip().lower()
         for member in cls:
             if member.value.lower() == value:

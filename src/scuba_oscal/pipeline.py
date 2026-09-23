@@ -6,16 +6,18 @@ import json
 from pathlib import Path
 
 from .parsers.baselines import parse_baselines
+from .parsers.mappings import MappingIndex
 from .parsers.scubagear import parse_run
 from .transformers.assessment_results import build_assessment_results
 from .transformers.catalog import build_catalog
-from .transformers.poam import build_poam
 from .transformers.chain import (
     build_assessment_plan,
     build_component_definition,
     build_profile,
     build_ssp,
 )
+from .transformers.mapping import build_from_index
+from .transformers.poam import build_poam
 
 # Written in dependency order: each document's import target must already exist
 # on disk before the validator can resolve the one that references it.
@@ -27,7 +29,11 @@ FILENAMES = {
     "assessment-plan": "scuba-assessment-plan.json",
     "assessment-results": "scuba-assessment-results.json",
     "poam": "scuba-poam.json",
+    "mapping": "scuba-nist-mapping.json",
 }
+
+DEFAULT_CROSSWALK = "data/mappings/scuba-to-nist-sp-800-53-r5-fedramp-high.csv"
+DEFAULT_MIGRATIONS = "data/mappings/scuba-baseline-policy-migrations.csv"
 
 
 def generate(
@@ -35,6 +41,8 @@ def generate(
     run_path: str,
     out_dir: str,
     synthetic: bool = False,
+    crosswalk_path: str = DEFAULT_CROSSWALK,
+    migrations_path: str = DEFAULT_MIGRATIONS,
 ) -> dict[str, Path]:
     """Generate the full OSCAL document chain. Returns model -> written path."""
     out = Path(out_dir)
@@ -74,6 +82,13 @@ def generate(
     poam = build_poam(run, FILENAMES["ssp"], synthetic=synthetic)
     if poam is not None:
         docs["poam"] = poam
+
+    # SCuBA -> NIST 800-53 mapping, bound to CISA's published crosswalk.
+    if Path(crosswalk_path).exists():
+        index = MappingIndex(crosswalk_path, migrations_path)
+        docs["mapping"] = build_from_index(
+            index, [p.policy_id for p in run.policies], FILENAMES["catalog"]
+        )
 
     written: dict[str, Path] = {}
     for model, doc in docs.items():

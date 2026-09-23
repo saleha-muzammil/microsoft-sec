@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Tests and OSCAL validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # oscal-cli is a Java tool. It enforces Metaschema constraints that the
+      # JSON Schema does not express, so it is the authoritative gate.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check src tests
+
+      - name: Unit tests (includes CISA mapping-fidelity guard)
+        run: pytest -q
+
+      - name: Install oscal-cli
+        run: ./scripts/install_tools.sh
+
+      - name: Generate OSCAL artifacts
+        run: python scripts/generate.py
+
+      # The real gate: every generated document must validate against the
+      # NIST-compatible validator, not merely against JSON Schema.
+      - name: Validate all OSCAL documents
+        run: python scripts/validate_all.py
