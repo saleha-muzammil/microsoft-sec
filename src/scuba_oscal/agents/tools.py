@@ -449,6 +449,65 @@ class ComplianceTools:
             indent=2,
         )
 
+    # ---------------------------------------------------------------- virginia
+
+    def get_virginia_obligations(
+        self,
+        policy_id: Annotated[
+            str, Field(description="A SCuBA policy ID, or 'failures' for all failing policies.")
+        ] = "failures",
+    ) -> str:
+        """Say what a SCuBA finding means under Virginia's SEC530 standard.
+
+        SEC530 is VITA's Information Security Standard, mandatory for Virginia
+        public bodies including every public college, university and school
+        division. It adopts NIST 800-53 Rev 5 and uses its control IDs, so a
+        SCuBA finding can be composed through CISA's crosswalk to a Virginia
+        obligation, including who the Commonwealth says owns it.
+
+        Some controls are WITHDRAWN in Virginia ("not applicable to COV"). A
+        finding mapping only to withdrawn controls is a federal obligation with
+        no Virginia equivalent — say so rather than implying a state duty.
+        """
+        from ..virginia import map_to_virginia, parse_sec530
+
+        workbook = self.store.directory.parents[1] / "data/virginia/SEC530_Control_Summaries.xlsx"
+        crosswalk = self.store.directory.parents[1] / "data/mappings"
+        if not workbook.exists():
+            return json.dumps({"error": "SEC530 control summaries not available."})
+
+        from ..parsers.mappings import MappingIndex
+
+        index = MappingIndex(
+            crosswalk / "scuba-to-nist-sp-800-53-r5-fedramp-high.csv",
+            crosswalk / "scuba-baseline-policy-migrations.csv",
+        )
+        sec530 = parse_sec530(workbook)
+
+        if policy_id.lower() == "failures":
+            run = self._run()
+            ids = [p.policy_id for p in run.failures()] if run else []
+        else:
+            ids = [policy_id.strip().upper()]
+
+        rows = []
+        for obligation in map_to_virginia(ids, index, sec530):
+            rows.append(
+                {
+                    "policy_id": obligation.policy_id,
+                    "is_virginia_obligation": obligation.is_state_obligation,
+                    "sec530_controls": [c.published_id for c in obligation.in_scope],
+                    "owned_by": list(obligation.owners),
+                    "withdrawn_in_virginia": [
+                        {"control": c.published_id, "reason": c.withdrawal_note}
+                        for c in obligation.withdrawn
+                    ],
+                }
+            )
+        return json.dumps(
+            {"standard": "Virginia ITRM SEC530", "obligations": rows}, indent=2
+        )
+
     # ----------------------------------------------------------------- search
 
     def search_controls(

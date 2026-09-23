@@ -372,6 +372,40 @@ Azure AI Search runs on the free tier, so nearly all of that cost is AI question
 
 ![Impact model: measured counts, adjustable assumptions, and a range rather than a headline number](docs/images/05-impact.png)
 
+### Virginia, computed rather than asserted
+
+SCuBA is federal guidance. Virginia's public bodies — **every public college,
+university and school division** — are governed by **SEC530**, VITA's Information
+Security Standard, which adopts NIST 800-53 Rev 5 and uses its control IDs.
+
+That shared identifier is the whole opportunity. We already map SCuBA to NIST
+using CISA's crosswalk, so one more hop answers a question no tool does:
+
+```
+SCuBA policy → (CISA crosswalk) → NIST 800-53 → SEC530
+```
+
+Parsed from VITA's published `SEC530_Control_Summaries.xlsx` with the standard
+library only — **1,189 controls, and all 40 of our NIST control IDs join
+exactly.** No fuzzy matching, no model.
+
+| Of 26 failures on this tenant | |
+|---|---|
+| Also a **Virginia SEC530 obligation** | **23** |
+| **Federal only** — Virginia withdrew the control | **3** |
+
+So a Virginia institution learns not just *what failed*, but **which failures are
+also Commonwealth obligations and who VITA says owns each one** — the
+Organization, the system owner, or both.
+
+**Where the two governments differ:** `MS.DEFENDER.4.2v1`,
+`MS.POWERPLATFORM.2.1v1` and `MS.POWERPLATFORM.2.2v1` map only to `SC-7(10)`,
+which Virginia has **withdrawn** as *"not applicable to COV"*. They remain
+federal obligations but carry no SEC530 duty — a distinction an institution would
+otherwise work out by hand.
+
+![Virginia SEC530: which failures are also Commonwealth obligations, and who owns each](docs/images/09-virginia.png)
+
 ### Why Virginia
 
 CISA's baselines are **mandatory** for federal civilian agencies under BOD 25-01.

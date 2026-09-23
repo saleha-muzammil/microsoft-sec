@@ -468,6 +468,70 @@ elif view == "fix":
     st.dataframe(display, use_container_width=True, hide_index=True, height=300)
 
     st.markdown("---")
+    st.markdown("##### What this means in Virginia")
+    va_path = ROOT / "data/virginia/SEC530_Control_Summaries.xlsx"
+    if not va_path.exists():
+        st.caption("SEC530 control summaries not present.")
+    else:
+        from scuba_oscal.parsers.mappings import MappingIndex
+        from scuba_oscal.virginia import STANDARD, map_to_virginia, parse_sec530
+
+        @st.cache_resource
+        def _sec530():
+            return parse_sec530(va_path)
+
+        idx = MappingIndex(CROSSWALK, MIGRATIONS)
+        obligations = map_to_virginia([f["policy_id"] for f in items], idx, _sec530())
+        state = [o for o in obligations if o.is_state_obligation]
+        federal_only = [o for o in obligations if o.sec530 and not o.in_scope]
+
+        st.markdown(
+            explain(
+                "Why does Virginia have its own answer?",
+                "SCuBA is federal guidance. Virginia public bodies — every public college, "
+                "university and school division — are governed by <b>SEC530</b>, VITA's "
+                "Information Security Standard, which adopts NIST 800-53 and uses its control "
+                "IDs. So a ScubaGear failure can be composed through CISA's crosswalk into a "
+                "Commonwealth obligation, <b>including who Virginia says owns it</b>. "
+                "No model is involved — it is an exact join on published control identifiers.",
+            ),
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            cards([
+                (str(len(state)), "Also Virginia obligations", "under SEC530", "bad"),
+                (str(len(federal_only)), "Federal only", "Virginia withdrew the control", "warn"),
+                (str(len(items)), "Total failures", "on this tenant", ""),
+            ]),
+            unsafe_allow_html=True,
+        )
+
+        va_rows = [
+            {
+                "Rule": o.policy_id,
+                "SEC530 control": ", ".join(c.published_id for c in o.in_scope) or "—",
+                "Virginia says it is owned by": ", ".join(o.owners) or "—",
+            }
+            for o in state
+        ]
+        if va_rows:
+            st.dataframe(pd.DataFrame(va_rows), use_container_width=True, hide_index=True,
+                         height=240)
+
+        if federal_only:
+            st.info(
+                "**Where the two governments differ.** "
+                + ", ".join(o.policy_id for o in federal_only)
+                + " map only to controls the Commonwealth has **withdrawn** "
+                f"({federal_only[0].withdrawn[0].published_id} — "
+                f"\u201c{federal_only[0].withdrawn[0].withdrawal_note}\u201d). "
+                "These remain federal obligations, but carry no SEC530 duty — a distinction "
+                "a Virginia institution would otherwise have to work out by hand.",
+                icon="⚖️",
+            )
+        st.caption(f"Source: {STANDARD} — VITA control summaries, joined on NIST 800-53 IDs.")
+
+    st.markdown("---")
     st.markdown("##### Two ways to decide what to fix first")
     st.caption(
         "Compliance severity asks *what is non-compliant*. Threat coverage asks "
