@@ -1,0 +1,37 @@
+{
+  "grounded": {
+    "arm": "grounded (tools over validated OSCAL)",
+    "cases": 15,
+    "passed": 15,
+    "pass_rate": 100.0,
+    "answers_with_unsupported_identifiers": 0,
+    "unsupported_identifier_count": 0,
+    "detail": []
+  },
+  "ungrounded": {
+    "arm": "ungrounded (raw JSON, no tools)",
+    "cases": 15,
+    "passed": 12,
+    "pass_rate": 80.0,
+    "answers_with_unsupported_identifiers": 2,
+    "unsupported_identifier_count": 6,
+    "detail": [
+      {
+        "case": "unmapped-honesty",
+        "asserted_but_absent": [
+          "SI-3"
+        ]
+      },
+      {
+        "case": "mitre-technique",
+        "asserted_but_absent": [
+          "T1078",
+          "T1110",
+          "T1110.001",
+          "T1110.002",
+          "T1110.003"
+        ]
+      }
+    ]
+  }
+}

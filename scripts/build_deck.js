@@ -376,34 +376,53 @@ function stat(s, x, y, w, value, label, valColor, bg) {
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"MEASURED, NOT ASSERTED");
-  title(s,"Evaluation against a golden set");
+  title(s,"We tested our architecture against the obvious one");
 
-  stat(s, 0.7, 1.5, 2.9, "100%", "accuracy\n15 / 15 cases", GREEN, "E8F6EF");
-  stat(s, 3.8, 1.5, 2.9, "100%", "citation rate\nwhere one is required", GREEN, "E8F6EF");
-  stat(s, 6.9, 1.5, 2.9, "9.9s", "median latency\np95 19.4s", INK);
-  stat(s, 10.0, 1.5, 2.6, "59", "unit tests\nall passing", INK);
+  s.addText("Same 15 questions. Same model. Same grader. The only variable: one arm gets tools over validated OSCAL, the other gets the raw scanner output dumped into context.",
+    { isTextBox:true, x:0.7, y:1.42, w:11.9, h:0.6, fontFace:B, fontSize:14,
+      color:INK, lineSpacing:20, margin:0 });
 
-  s.addText("The probes that matter most", { isTextBox:true, x:0.7, y:3.4, w:6.0, h:0.35,
-    fontFace:B, fontSize:15, bold:true, color:INK, margin:0 });
-  s.addText([
-    { text:"Asked what MS.FAKE.9.9v9 requires → refuses, rather than inventing a control", options:{ bullet:true, breakLine:true } },
-    { text:"Asked to map an unmapped policy → reports it as unmapped, not a guess", options:{ bullet:true, breakLine:true } },
-    { text:"Returns CISA's CM-7 and never the IA-2(1) other tooling gets wrong", options:{ bullet:true, breakLine:false } },
-  ], { isTextBox:true, x:0.9, y:3.82, w:5.9, h:1.5, fontFace:B, fontSize:12.5,
-       color:INK, paraSpaceAfter:7, margin:0 });
+  const rows = [
+    ["", "GROUNDED", "UNGROUNDED"],
+    ["Pass rate", "100%", "80%"],
+    ["Answers asserting facts never given to it", "0", "2"],
+    ["Security identifiers invented from memory", "0", "6"],
+  ];
+  rows.forEach(([label,a,b],i)=>{
+    const y = 2.15 + i*0.62;
+    if (i===0) {
+      s.addText(a, { isTextBox:true, x:7.3, y, w:2.4, h:0.4, fontFace:B, fontSize:11.5,
+        bold:true, color:GREEN, align:"center", charSpacing:1, margin:0 });
+      s.addText(b, { isTextBox:true, x:9.9, y, w:2.7, h:0.4, fontFace:B, fontSize:11.5,
+        bold:true, color:RED, align:"center", charSpacing:1, margin:0 });
+      return;
+    }
+    s.addShape(pres.ShapeType.roundRect, { x:0.7, y:y-0.1, w:11.9, h:0.56,
+      fill:{color: i%2 ? LIGHT : WHITE }, rectRadius:0.05,
+      line:{color: i%2 ? "E2E8EE":"EDF1F4"} });
+    s.addText(label, { isTextBox:true, x:1.0, y:y+0.02, w:6.1, h:0.36, fontFace:B,
+      fontSize:13, color:INK, margin:0 });
+    s.addText(a, { isTextBox:true, x:7.3, y:y-0.02, w:2.4, h:0.42, fontFace:B,
+      fontSize:17, bold:true, color:GREEN, align:"center", margin:0 });
+    s.addText(b, { isTextBox:true, x:9.9, y:y-0.02, w:2.7, h:0.42, fontFace:B,
+      fontSize:17, bold:true, color:RED, align:"center", margin:0 });
+  });
 
-  s.addShape(pres.ShapeType.roundRect, { x:7.1, y:3.4, w:5.5, h:2.6,
-    fill:{color:"FFF6E0"}, rectRadius:0.1, line:{color:"FFE2A8"} });
-  s.addText("The evaluation earned its place", { isTextBox:true, x:7.35, y:3.58, w:5.0,
-    h:0.35, fontFace:B, fontSize:13.5, bold:true, color:"8A5A00", margin:0 });
-  s.addText("It caught a real defect in our own prompt design. The report agent wrote “a substantial set of policies passed” — no numbers at all.\n\nRoot cause: our own grounding rule. Telling a model never to state an ungrounded fact made vagueness feel like the safe option.\n\nNaming that failure mode explicitly moved the suite from 14/15 to 15/15.",
-    { isTextBox:true, x:7.35, y:3.98, w:5.0, h:1.9, fontFace:B, fontSize:11.5,
-      color:INK, lineSpacing:16, margin:0 });
+  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:4.72, w:11.9, h:1.75,
+    fill:{color:"FDECEC"}, rectRadius:0.1, line:{color:"F7C9C9"} });
+  s.addText("The pass rate is not the story. Fabrication is.", { isTextBox:true,
+    x:1.0, y:4.90, w:11.3, h:0.35, fontFace:B, fontSize:14, bold:true, color:"8A2A2A", margin:0 });
+  s.addText("The scanner file contains no NIST control IDs and no MITRE technique IDs — those come from CISA's baselines, which we integrate. Asked anyway, the ungrounded model did not decline. It asserted six identifiers from memory, and named T1110.003 \u201cCredential Stuffing\u201d when MITRE and CISA both say \u201cPassword Spraying\u201d.",
+    { isTextBox:true, x:1.0, y:5.27, w:11.3, h:0.85, fontFace:B, fontSize:12.5,
+      color:INK, lineSpacing:18, margin:0 });
+  s.addText("Fluent, confident, and wrong in a way an analyst would have acted on.",
+    { isTextBox:true, x:1.0, y:6.10, w:11.3, h:0.3, fontFace:B, fontSize:12.5,
+      bold:true, italic:true, color:"8A2A2A", margin:0 });
 
-  s.addText("Ground truth is derived from the generated artifacts, so the question set cannot drift away from the data it describes.",
-    { isTextBox:true, x:0.7, y:6.2, w:11.9, h:0.4, fontFace:B, fontSize:12.5,
-      italic:true, color:GREY, margin:0 });
-  note(s,"We report the miss as well as the score. The eval found a bug we introduced, we fixed the cause rather than the test, and both changes are in the commit history.");
+  s.addText("Our agents asserted zero facts they were not given — enforced by a test that fails the build if it ever changes.",
+    { isTextBox:true, x:0.7, y:6.67, w:11.9, h:0.4, fontFace:B, fontSize:13.5,
+      bold:true, color:NAVY2, margin:0 });
+  note(s,"This is the beat that converts restraint into measured superiority. We are not claiming the model is dangerous - we are showing what the obvious implementation actually does, with the same model and the same questions.");
 }
 
 // ============================ 10. IMPACT ============================

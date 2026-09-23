@@ -124,6 +124,34 @@ So *"how do you know the model didn't invent that number?"* has a concrete
 answer: **it couldn't have**, and [`tests/test_agent_tools.py`](tests/test_agent_tools.py)
 proves the tools return what the artifacts contain.
 
+#### We measured it against the obvious alternative
+
+An architecture claim is only meaningful if the naive approach measurably does
+worse. So we ran the **same 15 questions, same model, same grader**, with the raw
+ScubaGear output dumped into context and **no tools** — what a straightforward
+implementation looks like. The only variable is the architecture.
+
+| | Grounded | Ungrounded |
+|---|---|---|
+| Pass rate | **100%** | 80% |
+| Answers asserting facts never given to it | **0** | **2** |
+| Security identifiers asserted from memory | **0** | **6** |
+
+Pass rate understates it. What separates the two arms is **fabrication**. The
+ScubaGear file contains no NIST control IDs and no MITRE technique IDs at all —
+those come from CISA's baselines and crosswalk, which our pipeline integrates.
+Asked anyway, the ungrounded model did not decline. It produced:
+
+- `SI-3` for a policy, with an invented justification describing a derivation it never performed
+- `T1078`, `T1110`, `T1110.001/002/003` from training memory — **and named `T1110.003`
+  "Credential Stuffing" when MITRE and CISA both say it is "Password Spraying"**
+
+That last one is the whole argument. The answer was fluent, confident, and wrong
+in a way an analyst mapping controls to threats would have acted on. Our agents
+asserted **zero** identifiers they were not given — enforced by a test.
+
+Reproduce it: `python evals/run_eval.py && python evals/run_baseline.py && python evals/compare.py`
+
 ### 5. Semantic retrieval over baseline guidance (Azure AI Search)
 
 Engineers arrive with a *problem*, not a policy ID. Keyword search cannot help

@@ -1,0 +1,213 @@
+{
+  "summary": {
+    "arm": "ungrounded (raw ScubaGear JSON in context, no tools)",
+    "total_cases": 15,
+    "passed": 12,
+    "pass_rate": 80.0,
+    "total_runtime_s": 140.8
+  },
+  "cases": [
+    {
+      "id": "posture-total",
+      "specialist": "posture",
+      "accurate": false,
+      "missing_terms": [
+        "92"
+      ],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": false,
+      "latency_s": 10.6,
+      "answer": "91"
+    },
+    {
+      "id": "posture-failures",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 12.8,
+      "answer": "14 policies failed outright, and 12 produced warnings."
+    },
+    {
+      "id": "posture-rate",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 18.3,
+      "answer": "Excluding N/A policies:\n\n- Total policies: 92\n- N/A policies: 9\n- Evaluated (non\u2011N/A): 83\n- Pass: 57\n- Fail: 14\n- Warning: 12\n\nCompliance rate = 57 / 83 = 68.7% (approximately)."
+    },
+    {
+      "id": "mapping-aad11",
+      "specialist": "posture",
+      "accurate": false,
+      "missing_terms": [
+        "CM-7"
+      ],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": false,
+      "latency_s": 12.1,
+      "answer": "The ScubaGear assessment output you provided does not include the NIST SP 800-53 mapping for MS.AAD.1.1v1. I cannot find a NIST control identifier in that JSON for MS.AAD.1.1v1 (\"Legacy authentication SHALL be blocked\").\n\nProvenance / where to get the mapping\n- ScubaGear derives its checks from the CISA Microsoft 365 Secure Configuration Baseline. The baseline files in the ScubaGear GitHub repository include control mappings and rationale. See the AAD baseline here:\n  https://github.com/cisagov/ScubaGear/blob/v1.8.0/PowerShell/ScubaGear/baselines/aad.md#ms\n- The CISA M365 Secure Configuration Baseline (the source referenced by ScubaGear) is the authoritative provenance for the mapping; ScubaGear\u2019s baseline files reference that material.\n\nIf you want, I can:\n- Look up the exact NIST SP 800-53 control(s) that MS.AAD.1.1v1 maps to (and return the control identifier and the line(s) in the Sc"
+    },
+    {
+      "id": "mapping-provenance",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 7.9,
+      "answer": "The ScubaGear JSON you provided does not include provenance for NIST mappings (it only shows the policy id, requirement, and result). So from this output alone I cannot tell you whether the NIST mapping for MS.AAD.1.1v1 is an authoritative (human\u2011curated) mapping or an AI\u2011proposed mapping.\n\nHow to verify:\n- Check the ScubaGear baseline source referenced in the report (AAD baseline): https://github.com/cisagov/ScubaGear/blob/v1.8.0/PowerShell/ScubaGear/baselines/aad.md#ms\n- Search the repository for \"MS.AAD.1.1v1\" to see any mapping notes or provenance comments.\n- If the repo or baseline file doesn\u2019t show provenance, ask the ScubaGear maintainers (open an issue) or refer to the tool documentation for mapping policy (some mappings are labeled when AI\u2011generated).\n\nIf you want, I can search the ScubaGear baseline file for that policy and report back what it shows (if you give me permission t"
+    },
+    {
+      "id": "control-detail-legacy-auth",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 2.3,
+      "answer": "MS.AAD.1.1v1 requires that legacy authentication be blocked. The tenant passed \u2014 ScubaGear found 1 conditional access policy that meets this requirement."
+    },
+    {
+      "id": "criticality-shall",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 4.0,
+      "answer": "MS.AAD.3.1v1 is a SHALL requirement \u2014 \"Phishing-resistant MFA SHALL be enforced for all users.\""
+    },
+    {
+      "id": "unmapped-honesty",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 8.1,
+      "answer": "- NIST 800-53 mapping: SI-3 (Malicious code protection).\n- How it was resolved: the tenant has the Microsoft Defender \"standard\" and \"strict\" preset security policies enabled for Office 365/Exchange (ScubaGear reports \"Requirement met\" for MS.DEFENDER.1.1v1), which satisfies the control."
+    },
+    {
+      "id": "nonexistent-policy",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 4.9,
+      "answer": "That policy ID (MS.FAKE.9.9v9) does not appear in the ScubaGear assessment output for tenant \"tqhjy\". The provided scan lists all evaluated policy IDs and MS.FAKE.9.9v9 is not present.\n\nIf you meant a different policy ID, tell me the correct one and I\u2019ll report the requirement and result. If you want to look it up yourself, search the ScubaGear baselines on GitHub (https://github.com/cisagov/ScubaGear/tree/v1.8.0/PowerShell/ScubaGear/baselines) or tell me which product area (AAD, EXO, Defender, etc.) and I can locate the matching requirement."
+    },
+    {
+      "id": "high-severity-count",
+      "specialist": "risk",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 16.7,
+      "answer": "There are 14 open high-severity (Shall + Fail) POA&M items. Would you like a list of those specific controls?"
+    },
+    {
+      "id": "top-risk",
+      "specialist": "risk",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 5.6,
+      "answer": "MS.AAD.3.1v1"
+    },
+    {
+      "id": "mitre-technique",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 8.8,
+      "answer": "MS.AAD.1.1v1 (\"Legacy authentication SHALL be blocked\") primarily reduces risk from credential-based techniques in MITRE ATT&CK, notably:\n\n- T1078 \u2014 Valid Accounts: blocking legacy auth reduces the ability for attackers to sign in with stolen/compromised credentials via protocols that bypass modern protections (MFA, token-based auth).\n- T1110 \u2014 Brute Force\n  - T1110.001 \u2014 Password Guessing\n  - T1110.002 \u2014 Password Spraying\n  - T1110.003 \u2014 Credential Stuffing\n\nWhy: legacy/authentication protocols (e.g., basic auth) do not support modern authentication features (MFA, conditional access signals, risk-based authentication), so blocking them prevents attackers from using automated credential-guessing/stuffing and from authenticating with stolen passwords via those protocols."
+    },
+    {
+      "id": "remediation-grounded",
+      "specialist": "remediation",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": true,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 15.4,
+      "answer": "Short answer\n- Create a Conditional Access policy that requires a phishing\u2011resistant authentication strength for all users (with only emergency/break\u2011glass exclusions).  \n- Ensure phishing\u2011resistant methods (FIDO2 security keys, Windows Hello for Business, and/or certificate\u2011based auth or other supported passwordless methods) are enabled and available to users.  \n- Verify the Authentication Methods Migration is set to Migration Complete (so new methods and strengths are enforced).\n\nDetailed remediation steps (portal + verification)\n\n1) Enable phishing\u2011resistant authentication methods\n- Azure portal > Entra ID (Azure AD) > Security > Authentication methods.\n- Enable and configure passwordless / phishing\u2011resistant methods you plan to use, typically:\n  - FIDO2 Security Keys (recommended)\n  - Windows Hello for Business\n  - Certificate-based auth (if used)\n  - Microsoft Authenticator password"
+    },
+    {
+      "id": "product-breakdown",
+      "specialist": "posture",
+      "accurate": true,
+      "missing_terms": [],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": true,
+      "citation_ok": true,
+      "passed": true,
+      "latency_s": 8.0,
+      "answer": "11 AAD policies failed.\n\nFailed policy IDs:\n- MS.AAD.3.1v1\n- MS.AAD.3.4v1\n- MS.AAD.3.6v1\n- MS.AAD.5.1v1\n- MS.AAD.5.2v1\n- MS.AAD.6.1v1\n- MS.AAD.7.2v1\n- MS.AAD.7.4v1\n- MS.AAD.7.5v1\n- MS.AAD.7.6v1\n- MS.AAD.7.7v1"
+    },
+    {
+      "id": "exec-summary",
+      "specialist": "report",
+      "accurate": false,
+      "missing_terms": [
+        "68.7",
+        "14"
+      ],
+      "forbidden_terms_present": [],
+      "requires_citation": false,
+      "cited_policy_id": false,
+      "citation_ok": true,
+      "passed": false,
+      "latency_s": 5.5,
+      "answer": "The tenant demonstrates a strong baseline: legacy authentication is blocked, MFA is enforced with high\u2011risk users/sign\u2011ins blocked, and most Defender, Exchange Online, SharePoint, and Teams controls are configured in compliance. However, several high\u2011criticality gaps remain \u2014 phishing\u2011resistant MFA is not enforced and the Authentication Methods migration is incomplete; privileged role management (permanent assignments, PIM coverage, approval and notification settings) is deficient; non\u2011admins can register and consent to risky applications; passwords still expire; sensitive accounts are not placed in Defender strict policies; and the Power Platform default environment lacks a required DLP policy."
+    }
+  ]
+}

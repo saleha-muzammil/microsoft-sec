@@ -115,7 +115,27 @@ Then ask: **"What does MS.FAKE.9.9v9 require?"**
 > "And when we ask about a policy that doesn't exist, it refuses — rather than
 > inventing a plausible-looking control. That's the guardrail working."
 
-## 4:10 – 4:35 · Measured quality *(Slide 9)*
+## 4:05 – 4:30 · The comparison that makes the point *(Slide 9)*
+
+> "It's easy to claim an architecture is safer. So we measured it.
+>
+> Same fifteen questions, same model, same grader — but the raw scanner output
+> dumped into context and no tools. That's what a straightforward implementation
+> looks like.
+>
+> It scored eighty percent to our hundred. But the pass rate isn't the story.
+> The scanner file contains no NIST control IDs and no MITRE technique IDs —
+> those come from CISA's baselines, which we integrate. Asked anyway, the
+> ungrounded model didn't decline. It invented six security identifiers — and it
+> named this MITRE technique *Credential Stuffing* when MITRE says it's *Password
+> Spraying*.
+>
+> Fluent, confident, wrong. An analyst would have acted on it.
+>
+> Our agents asserted zero facts they weren't given. That's not restraint —
+> it's measured, and there's a test that fails the build if it ever changes."
+
+## 4:30 – 4:45 · Measured quality *(Slide 9)*
 
 > "We didn't just assert this works. Fifteen golden questions whose ground truth
 > is derived from the artifacts themselves: 100% accuracy, 100% citation rate on
