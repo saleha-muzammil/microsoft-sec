@@ -23,7 +23,15 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
 from scuba_oscal.agents.tools import ComplianceTools  # noqa: E402
-from scuba_oscal.app.theme import CSS, cards, explain, page_head, step  # noqa: E402
+from scuba_oscal.app.theme import (  # noqa: E402
+    CSS,
+    PIPELINE_CSS,
+    cards,
+    explain,
+    page_head,
+    pipeline_html,
+    step,
+)
 from scuba_oscal.drift import compare, false_signal_count  # noqa: E402
 from scuba_oscal.impact import (  # noqa: E402
     SOURCES,
@@ -46,6 +54,7 @@ RESULT_COLOURS = {"Pass": "#1A7F37", "Fail": "#CF222E", "Warning": "#BF8700", "N
 
 st.set_page_config(page_title="SCuBA Compliance Copilot", page_icon="🛡️", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
+st.markdown(PIPELINE_CSS, unsafe_allow_html=True)
 
 
 # --------------------------------------------------------------------- loaders
@@ -212,6 +221,27 @@ if view == "start":
             "documents in <b>OSCAL</b> — the machine-readable standard that US government "
             "auditors already use. Then it puts an AI assistant on top so you can ask "
             "“what are our biggest risks?” instead of reading 92 rows of JSON.",
+        ),
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("#### How it works")
+    st.markdown(pipeline_html(), unsafe_allow_html=True)
+    st.markdown(
+        '<div class="pipe-legend">'
+        "<span>🟢 <b>Deterministic</b> — plain Python. Same input, same output, every time.</span>"
+        "<span>🟡 <b>Gate</b> — the build fails if these do not hold.</span>"
+        "<span>🔵 <b>AI</b> — judgement, explanation and prioritisation only.</span>"
+        "</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        explain(
+            "Why does the order matter?",
+            "Stages 2–4 contain <b>no AI at all</b>. By the time a model sees anything, the "
+            "facts are already fixed in documents that passed a government validator. The AI "
+            "reads those documents through stage 5 and cannot reach around it — which is why "
+            "it can explain a finding, but cannot invent one.",
         ),
         unsafe_allow_html=True,
     )

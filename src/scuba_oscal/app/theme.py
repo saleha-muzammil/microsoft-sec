@@ -111,3 +111,79 @@ def cards(items: list[tuple[str, str, str, str]]) -> str:
 
 def step(number: int, text: str) -> str:
     return f'<div class="step"><div class="n">{number}</div><div class="t">{text}</div></div>'
+
+
+PIPELINE_CSS = """
+<style>
+  /* Grid rather than flex: a flex row leaves the final wrapped stage stretched
+     across the full width, which reads as a different kind of element. A grid
+     wraps evenly at every breakpoint. */
+  .pipe {
+    display:grid; gap:.55rem; margin:.6rem 0 1rem 0;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  @media (max-width: 1500px) { .pipe { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+  @media (max-width: 820px)  { .pipe { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+  .pipe-stage {
+    background:#fff; border:1px solid #E2E8EE; border-radius:12px;
+    padding:.8rem .75rem .7rem .75rem; position:relative;
+  }
+  .pipe-stage .num {
+    position:absolute; top:-9px; left:.75rem; background:#0A1A2F; color:#fff;
+    width:21px; height:21px; border-radius:50%; font-size:.7rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* Flow arrow between cards, drawn on the card so it survives wrapping. */
+  .pipe-stage:not(:last-child)::after {
+    content:"›"; position:absolute; right:-.42rem; top:50%;
+    transform:translateY(-50%); color:#C3CED8; font-size:1.05rem; font-weight:700;
+  }
+  .pipe-stage h4 { margin:.3rem 0 .28rem 0; font-size:.88rem; color:#0A1A2F; font-weight:700; }
+  .pipe-stage p  { margin:0; font-size:.75rem; color:#5A6B7B; line-height:1.42; }
+  .pipe-stage .tag {
+    display:inline-block; margin-top:.45rem; font-size:.64rem; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; padding:.1rem .4rem; border-radius:4px;
+  }
+  .tag-det  { background:#E8F6EF; color:#1A7F37; }
+  .tag-gate { background:#FFF1CC; color:#8A5A00; }
+  .tag-ai   { background:#E3F0FA; color:#0B5A8A; }
+  .pipe-legend { display:flex; gap:1.1rem; flex-wrap:wrap; font-size:.79rem;
+                 color:#5A6B7B; margin:.1rem 0 1.1rem .1rem; }
+  .pipe-legend b { color:#0A1A2F; }
+</style>
+"""
+
+#: (number, title, body, tag-label, tag-class)
+PIPELINE_STAGES = [
+    ("1", "CISA's public data",
+     "127 SCuBA security rules, a real published scan, and CISA's own NIST crosswalk.",
+     "input", "tag-det"),
+    ("2", "Parsers",
+     "Typed Python reads the scan and the rulebook. Handles the real file's quirks — BOM, HTML in fields, renamed policies.",
+     "deterministic", "tag-det"),
+    ("3", "Transformers",
+     "Builds the eight linked OSCAL documents. No model decides what a control ID is or what a result was.",
+     "deterministic", "tag-det"),
+    ("4", "NIST validator",
+     "Every document must pass oscal-cli with full Metaschema constraints. A failure stops the build.",
+     "hard gate", "tag-gate"),
+    ("5", "Function tools",
+     "Pure functions that read the validated documents. This is the only path to a fact.",
+     "the wall", "tag-gate"),
+    ("6", "Foundry agents",
+     "Four specialists reason, prioritise and explain — grounded in what the tools return.",
+     "AI", "tag-ai"),
+]
+
+
+def pipeline_html() -> str:
+    parts = ['<div class="pipe">']
+    for num, title, body, tag, cls in PIPELINE_STAGES:
+        parts.append(
+            f'<div class="pipe-stage"><div class="num">{num}</div>'
+            f"<h4>{title}</h4><p>{body}</p>"
+            f'<span class="tag {cls}">{tag}</span></div>'
+        )
+    parts.append("</div>")
+    return "".join(parts)
