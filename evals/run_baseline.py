@@ -31,12 +31,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from agent_framework import Agent  # noqa: E402
-from agent_framework.foundry import FoundryChatClient  # noqa: E402
-from azure.identity.aio import AzureCliCredential  # noqa: E402
-
-from scuba_oscal.agents.orchestrator import FoundryConfig  # noqa: E402
 from scuba_oscal.parsers.scubagear import parse_run  # noqa: E402
+
+# The Foundry SDK is imported inside main() rather than here on purpose:
+# compare.py imports compact_assessment() from this module to rebuild the
+# ungrounded arm's context, and that analysis is entirely offline. Importing
+# the SDK at module scope made the offline comparison impossible to re-run
+# without Azure credentials installed.
 
 sys.path.insert(0, str(ROOT / "evals"))
 from run_eval import GOLDEN, score  # noqa: E402
@@ -78,6 +79,12 @@ def compact_assessment() -> str:
 
 
 async def main() -> int:
+    from agent_framework import Agent
+    from agent_framework.foundry import FoundryChatClient
+    from azure.identity.aio import AzureCliCredential
+
+    from scuba_oscal.agents.orchestrator import FoundryConfig
+
     cases = json.loads(GOLDEN.read_text())["cases"]
     config = FoundryConfig.from_env(ROOT / ".env")
     data = compact_assessment()

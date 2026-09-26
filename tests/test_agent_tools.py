@@ -94,3 +94,88 @@ def test_product_filter(tools):
     data = json.loads(tools.list_failures(product="AAD", limit=100))
     assert data["count"] > 0
     assert all(f["product"] == "AAD" for f in data["failures"])
+
+
+def test_reference_data_resolves_independently_of_the_output_directory(tmp_path):
+    """Tools must not lose capabilities just because artifacts moved.
+
+    CISA's baselines, the crosswalk and VITA's workbook ship with the code;
+    generated artifacts do not, and an uploaded scan lands in a temp directory.
+    Resolving reference data relative to the *output* directory silently
+    disabled threat coverage and the Virginia join for every upload -- the
+    tools returned "not available" and the agent quietly lost two capabilities.
+    """
+    import shutil
+
+    from scuba_oscal.agents.tools import ComplianceTools
+
+    elsewhere = tmp_path / "somewhere" / "else"
+    elsewhere.mkdir(parents=True)
+    for path in OSCAL_DIR.glob("*.json"):
+        shutil.copy(path, elsewhere / path.name)
+
+    moved = ComplianceTools(elsewhere, semantic=False)
+    assert moved.store.baselines is not None
+
+    coverage = json.loads(moved.get_threat_coverage())
+    assert "error" not in coverage
+    assert coverage["counts"]["uncovered"] == 6
+
+    virginia = json.loads(moved.get_virginia_obligations())
+    assert "error" not in virginia
+    assert len(virginia["obligations"]) == 26
+
+
+def test_exemptions_tool_reports_nothing_without_a_config(tools):
+    """No config supplied is a real answer, not a silent empty result."""
+    data = json.loads(tools.get_exemptions())
+    assert data["exemptions"] == []
+    assert "No ScubaGear configuration" in data["note"]
+
+
+def test_exemptions_tool_quantifies_the_gap_when_given_a_config():
+    from scuba_oscal.agents.tools import ComplianceTools
+
+    config = ROOT / "data/scubagear_samples/scuba_config_example.yaml"
+    data = json.loads(
+        ComplianceTools(OSCAL_DIR, semantic=False, config_path=config).get_exemptions()
+    )
+    assert data["reported_compliance_rate"] == "69.6%"
+    assert data["true_rate_all_assessed"] == "68.7%"
+    assert data["inflation_percentage_points"] == 0.9
+    # The conservative bound must be labelled as such, not as the true rate.
+    assert data["worst_case_rate_if_all_exemptions_hid_failures"] == "66.3%"
+    assert "NOT the true rate" in data["worst_case_note"]
+    assert data["suppressed_that_were_actually_passing"] == [
+        "MS.EXO.4.3v1",
+        "MS.SHAREPOINT.1.1v1",
+    ]
+    assert len(data["expired_but_still_suppressing"]) == 2
+
+
+def test_every_tool_is_reachable_by_at_least_one_agent():
+    """A tool no agent holds cannot ground an answer.
+
+    get_exemptions and get_virginia_obligations were both implemented, tested
+    and wired into the UI, but appeared in no agent's tool list -- so asking
+    "is this compliance number real?" had no grounded path to an answer, which
+    is precisely the failure mode the architecture exists to prevent.
+
+    The orchestrator is read as source rather than imported: it depends on the
+    Foundry SDK, which the `dev` extra does not install, and this invariant
+    should hold in CI too.
+    """
+    import inspect
+
+    from scuba_oscal.agents.tools import ComplianceTools
+
+    public = {
+        name
+        for name, _ in inspect.getmembers(ComplianceTools, inspect.isfunction)
+        if not name.startswith("_")
+    }
+    assert public, "expected to find tool methods"
+
+    source = (ROOT / "src/scuba_oscal/agents/orchestrator.py").read_text()
+    unwired = sorted(name for name in public if f"self.tools.{name}" not in source)
+    assert not unwired, f"tools no agent can call: {unwired}"

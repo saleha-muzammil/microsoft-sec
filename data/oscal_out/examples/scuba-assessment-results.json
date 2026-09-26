@@ -3,24 +3,48 @@
     "uuid": "8f87cc38-f074-5834-8576-1666d8a5929c",
     "metadata": {
       "title": "SCuBA Assessment Results - tqhjy",
-      "last-modified": "2026-09-23T04:05:59.380Z",
+      "last-modified": "2026-05-04T17:15:48.307Z",
       "version": "1.8.0",
       "oscal-version": "1.2.3",
       "props": [
         {
           "name": "tool",
-          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
           "value": "ScubaGear"
         },
         {
           "name": "tool-version",
-          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
           "value": "1.8.0"
         },
         {
           "name": "tenant-id",
-          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
           "value": "ca08493a-c9c8-4db0-a9e8-d3b4bafac269"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-results",
+          "value": "8746a9ea9142d04ed80f957bf6cdc57e950da6fa9def1b1f16b79886311dee64"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scuba-baselines",
+          "value": "25c5c6aa260a1dfa911cf18f91a715241a70fd60721d117129207630cb8349bf"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "nist-crosswalk",
+          "value": "d6a5d4a8880e325ebc34d5f6344e89018ba444336edca76def9622c68fea4ed8"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-config",
+          "value": "14204f106bc730af2b4ceb7a470b0156d7a1572783b73a32a5f58b15caf65022"
         }
       ],
       "remarks": "Generated from ScubaGear output. Observation methods reflect how each policy was actually assessed: TEST for automated checks, EXAMINE for policies ScubaGear cannot evaluate automatically."
@@ -331,22 +355,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.1.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -362,22 +386,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -393,22 +417,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -424,22 +448,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -455,22 +479,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -486,22 +510,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.2v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -517,22 +541,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.3v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -548,22 +572,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -579,22 +603,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.5v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -610,22 +634,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.6v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -641,22 +665,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.7v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -672,22 +696,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.8v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -703,22 +727,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.9v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -734,22 +758,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.4.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -765,22 +789,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -796,22 +820,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -827,22 +851,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -858,22 +882,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.6.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -889,22 +913,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -920,22 +944,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -951,22 +975,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -982,22 +1006,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1013,22 +1037,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.5v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1044,22 +1068,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.6v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1075,22 +1099,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.7v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1106,22 +1130,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.8v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1137,22 +1161,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.9v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1168,22 +1192,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1199,22 +1223,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1230,22 +1254,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AAD"
               }
             ],
@@ -1261,22 +1285,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1292,22 +1316,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1323,22 +1347,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1354,22 +1378,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1385,22 +1409,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.5v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1416,22 +1440,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1447,22 +1471,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1478,22 +1502,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1509,22 +1533,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.3.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1540,22 +1564,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.1v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1571,22 +1595,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1602,22 +1626,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1633,22 +1657,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1664,22 +1688,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.5v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1695,22 +1719,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.6v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1726,22 +1750,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.5.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1757,22 +1781,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.5.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1788,22 +1812,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.6.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1819,22 +1843,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.6.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Defender"
               }
             ],
@@ -1850,22 +1874,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.1.1v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -1881,22 +1905,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.2.2v3"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -1912,22 +1936,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.3.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -1943,22 +1967,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -1974,22 +1998,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2005,22 +2029,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2036,22 +2060,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2067,22 +2091,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.5.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2098,22 +2122,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2129,22 +2153,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2160,22 +2184,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.7.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2191,22 +2215,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.13.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "EXO"
               }
             ],
@@ -2222,22 +2246,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2253,22 +2277,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2284,22 +2308,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Fail"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2315,22 +2339,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2346,22 +2370,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.3.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2377,22 +2401,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.3.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2408,22 +2432,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.4.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "N/A"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall/Not-Implemented"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2439,22 +2463,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.5.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2470,22 +2494,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.6.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "PowerPlatform"
               }
             ],
@@ -2501,22 +2525,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2532,22 +2556,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2563,22 +2587,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2594,22 +2618,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2625,22 +2649,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2656,22 +2680,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2687,22 +2711,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.2v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2718,22 +2742,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SharePoint"
               }
             ],
@@ -2749,22 +2773,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2780,22 +2804,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.2v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2811,22 +2835,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.3v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2842,22 +2866,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.4v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2873,22 +2897,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.5v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2904,22 +2928,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.6v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2935,22 +2959,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.7v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2966,22 +2990,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.1v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -2997,22 +3021,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.2v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3028,22 +3052,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.3v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3059,22 +3083,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.4.1v1"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Pass"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3090,22 +3114,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.1v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3121,22 +3145,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.2v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3152,22 +3176,22 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.3v2"
               },
               {
                 "name": "scuba-result",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Warning"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               },
               {
                 "name": "product",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Teams"
               }
             ],
@@ -3182,12 +3206,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.1.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3211,12 +3235,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3240,12 +3264,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3269,12 +3293,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3298,12 +3322,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.2v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3327,12 +3351,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.3v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3356,12 +3380,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3385,12 +3409,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.5v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3414,12 +3438,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.6v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3443,12 +3467,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.7v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3472,12 +3496,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.8v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3501,12 +3525,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.9v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3530,12 +3554,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3559,12 +3583,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3588,12 +3612,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3617,12 +3641,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.6.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3646,12 +3670,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3675,12 +3699,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3704,12 +3728,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3733,12 +3757,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3762,12 +3786,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.5v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3791,12 +3815,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.6v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3820,12 +3844,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.7v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3849,12 +3873,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.8v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3878,12 +3902,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.9v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3907,12 +3931,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3936,12 +3960,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -3965,12 +3989,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -3994,12 +4018,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4023,12 +4047,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4052,12 +4076,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4081,12 +4105,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.5v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4110,12 +4134,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4139,12 +4163,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4168,12 +4192,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4197,12 +4221,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.3.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4226,12 +4250,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.1v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4255,12 +4279,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4284,12 +4308,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4313,12 +4337,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4342,12 +4366,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.5.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4371,12 +4395,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.6.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4400,12 +4424,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.1.1v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4429,12 +4453,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.2.2v3"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4458,12 +4482,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.3.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4487,12 +4511,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4516,12 +4540,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4545,12 +4569,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4574,12 +4598,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4603,12 +4627,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.5.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4632,12 +4656,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4661,12 +4685,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4690,12 +4714,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.7.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4719,12 +4743,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.13.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4748,12 +4772,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4777,12 +4801,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4806,12 +4830,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4835,12 +4859,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4864,12 +4888,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.3.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4893,12 +4917,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.5.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4922,12 +4946,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.6.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -4951,12 +4975,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -4980,12 +5004,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5009,12 +5033,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5038,12 +5062,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5067,12 +5091,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5096,12 +5120,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5125,12 +5149,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.2v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5154,12 +5178,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5183,12 +5207,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5212,12 +5236,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.2v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5241,12 +5265,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.3v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5270,12 +5294,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.4v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5299,12 +5323,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.5v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5328,12 +5352,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.6v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5357,12 +5381,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.7v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5386,12 +5410,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.1v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5415,12 +5439,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.2v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5444,12 +5468,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.3v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5473,12 +5497,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.4.1v1"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Shall"
               }
             ],
@@ -5502,12 +5526,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.1v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5531,12 +5555,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.2v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5560,12 +5584,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.3v2"
               },
               {
                 "name": "criticality",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "Should"
               }
             ],
@@ -5592,12 +5616,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.1v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5616,12 +5640,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.4v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5640,12 +5664,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.6v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5664,12 +5688,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.7v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -5688,12 +5712,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.8v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -5712,12 +5736,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.9v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -5736,12 +5760,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.1v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5760,12 +5784,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.2v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5784,12 +5808,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.6.1v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5808,12 +5832,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.2v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5832,12 +5856,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.4v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5856,12 +5880,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.5v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5880,12 +5904,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.6v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5904,12 +5928,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.7v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5928,12 +5952,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.9v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -5952,12 +5976,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.4v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -5976,12 +6000,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.1.5v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -6000,12 +6024,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.2v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6024,12 +6048,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.3v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6048,12 +6072,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.2v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6072,12 +6096,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.3.1v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6096,12 +6120,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.1v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "true"
               }
             ],
@@ -6120,12 +6144,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.2v1"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6144,12 +6168,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.1v2"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6168,12 +6192,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.2v2"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6192,12 +6216,12 @@
             "props": [
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.3v2"
               },
               {
                 "name": "mandatory",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "false"
               }
             ],
@@ -6216,7 +6240,7 @@
         {
           "uuid": "c004abb0-5420-597d-9047-152b8712dc09",
           "title": "ScubaGear automated assessment procedure",
-          "description": "ScubaGear evaluates SCuBA policies via Microsoft Graph and service-specific APIs, applying Rego policy rules to the exported configuration. No separate OSCAL assessment-plan document is produced; this resource stands in as the assessment procedure of record. See https://github.com/cisagov/ScubaGear.",
+          "description": "ScubaGear evaluates SCuBA policies via Microsoft Graph and service-specific APIs, applying Rego policy rules to the exported configuration. This resource names that procedure and resolves to the companion OSCAL assessment-plan document generated alongside this one. See https://github.com/cisagov/ScubaGear.",
           "rlinks": [
             {
               "href": "scuba-assessment-plan.json"

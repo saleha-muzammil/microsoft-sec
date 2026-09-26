@@ -14,9 +14,10 @@ from __future__ import annotations
 
 from datetime import UTC, date, datetime, timedelta
 
+from ..exemptions import Exemption, build_ledger, to_oscal_risks
 from ..ids import det_uuid, observation_uuid, poam_item_uuid, risk_uuid
 from ..models import PolicyResult, Result, ScubaRun
-from .catalog import OSCAL_VERSION, SCUBA_NS, _line
+from .catalog import OSCAL_VERSION, SCUBA_NS, _line, oscal_timestamp
 
 #: Remediation windows follow the convention used in federal POA&M practice
 #: (FedRAMP: high 30 days, moderate 90, low 180). Chosen because it is an
@@ -46,21 +47,30 @@ def _deadline(assessed: datetime, sev: str) -> str:
     ).replace("+00:00", "Z")
 
 
-def _now() -> str:
-    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
-
-
 def build_poam(
     run: ScubaRun,
     ssp_href: str | None = "scuba-m365-ssp.json",
     remediation_guidance: dict[str, str] | None = None,
     synthetic: bool = False,
+    last_modified: datetime | None = None,
+    exemptions: list[Exemption] | None = None,
 ) -> dict | None:
     """Build a POA&M from a run's actionable failures.
 
     :param remediation_guidance: optional ``policy_id -> prose`` overrides. This
         is the single seam where AI-generated remediation text may enter, and
         it is clearly labelled in the output when it does.
+    :param exemptions: policies omitted from the report by ScubaGear
+        configuration. Each becomes an OSCAL **risk** carrying a deviation
+        status, which is the whole point: an exemption that exists only in a
+        YAML file cannot be reviewed, aggregated or audited, and OSCAL already
+        has the vocabulary for one (``deviation-requested`` /
+        ``deviation-approved``, and plain ``open`` once it has expired).
+
+        They are emitted as risks and **not** as poam-items on purpose. A
+        poam-item is a commitment to remediate by a date; a deviation is the
+        opposite -- a decision not to. Filing one as the other would overstate
+        what the organisation has actually undertaken to do.
     :returns: the POA&M document, or ``None`` when there is nothing to plan.
     """
     failures = run.failures()
@@ -154,10 +164,36 @@ def build_poam(
             }
         )
 
+    # Exemptions become risks carrying a deviation status, so what the config
+    # silently removes from the compliance figure is at least on the record.
+    exemption_remark = ""
+    if exemptions:
+        ledger = build_ledger(run, exemptions)
+        exemption_risks = to_oscal_risks(ledger, run.run_id)
+        risks.extend(exemption_risks)
+        expired = len(ledger.expired)
+        exemption_remark = (
+            f" {len(exemption_risks)} risk(s) record policies excluded from the reported "
+            f"compliance figure by the ScubaGear configuration; {expired} of those "
+            "exemption(s) have expired and are carried as 'open' rather than as an "
+            "approved deviation, because nothing in the scanner enforces the expiry date."
+        )
+
     props = [
         {"name": "tool", "ns": SCUBA_NS, "value": "ScubaGear"},
         {"name": "open-items", "ns": SCUBA_NS, "value": str(len(items))},
     ]
+    if exemptions:
+        # Surfaced as props so a consumer can filter without walking every risk.
+        props += [
+            {"name": "exemptions", "ns": SCUBA_NS, "value": str(len(exemptions))},
+            {"name": "expired-exemptions", "ns": SCUBA_NS, "value": str(len(ledger.expired))},
+            {
+                "name": "exemptions-suppressing-mandatory",
+                "ns": SCUBA_NS,
+                "value": str(len(ledger.suppressed_mandatory)),
+            },
+        ]
     if synthetic:
         props.append({"name": "data-classification", "ns": SCUBA_NS, "value": "SYNTHETIC"})
 
@@ -166,7 +202,7 @@ def build_poam(
             "uuid": det_uuid("poam", run.run_id),
             "metadata": {
                 "title": f"SCuBA Plan of Action and Milestones - {run.tenant_display_name}",
-                "last-modified": _now(),
+                "last-modified": oscal_timestamp(last_modified),
                 "version": run.tool_version,
                 "oscal-version": OSCAL_VERSION,
                 "props": props,
@@ -175,6 +211,7 @@ def build_poam(
                     + "Severity is derived deterministically from SCuBA criticality "
                     "(SHALL/SHOULD) and the ScubaGear result. Remediation deadlines follow "
                     "federal POA&M convention: high 30 days, moderate 90, low 180."
+                    + exemption_remark
                 ),
             },
             "system-id": {

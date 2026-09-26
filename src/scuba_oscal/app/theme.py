@@ -115,75 +115,161 @@ def step(number: int, text: str) -> str:
 
 PIPELINE_CSS = """
 <style>
-  /* Grid rather than flex: a flex row leaves the final wrapped stage stretched
-     across the full width, which reads as a different kind of element. A grid
-     wraps evenly at every breakpoint. */
-  .pipe {
-    display:grid; gap:.55rem; margin:.6rem 0 1rem 0;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-  @media (max-width: 1500px) { .pipe { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-  @media (max-width: 820px)  { .pipe { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  /* The architecture is three bands, not six equal cards: everything above the
+     amber band is deterministic, and the agents below it can only reach the data
+     through it. That boundary is the point of the diagram, so it is drawn as a
+     boundary rather than described in a legend.
 
-  .pipe-stage {
-    background:#fff; border:1px solid #E2E8EE; border-radius:12px;
-    padding:.8rem .75rem .7rem .75rem; position:relative;
+     Every rule is prefixed with .pipe. Streamlit's own markdown stylesheet sets
+     margins on p/h4 at the same specificity as a bare .node p and lands later in
+     the cascade, which silently doubled the height of every card. */
+  .pipe { margin:.5rem 0 .4rem 0; }
+
+  .pipe .band { border-radius:12px; padding:.45rem .7rem .7rem .7rem; border:1px solid; }
+  .pipe .band-det { background:#FBFDFC; border-color:#CFE7DA; }
+  .pipe .band-gate { background:#FFFCF3; border-color:#F0DCA8; }
+  .pipe .band-ai { background:#FAFCFE; border-color:#CFE0EE; }
+
+  .pipe .band-head { display:flex; align-items:baseline; gap:.45rem; flex-wrap:wrap;
+                     margin:0 0 .45rem 0; padding-bottom:.28rem; border-bottom:1px solid #EDF1F5; }
+  .pipe .band-head .bl { font-size:.74rem; font-weight:800; letter-spacing:.1em;
+                         text-transform:uppercase; line-height:1.2; }
+  .pipe .band-head .bn { font-size:.8rem; color:#8496A6; line-height:1.2; }
+  .pipe .band-det  .bl { color:#1A7F37; }
+  .pipe .band-gate .bl { color:#8A5A00; }
+  .pipe .band-ai   .bl { color:#0B5A8A; }
+
+  /* Row of nodes with labelled arrows in between. The arrow cells are real grid
+     tracks so the label sits under the glyph instead of overlapping a card. */
+  .pipe .row { display:grid; align-items:stretch; grid-template-columns:1fr 92px 1fr 92px 1fr; }
+  .pipe .row.two { grid-template-columns:1fr 104px 1fr; }
+  @media (max-width: 900px) {
+    .pipe .row, .pipe .row.two { grid-template-columns:1fr; }
+    .pipe .arrow { padding:.3rem 0; }
+    .pipe .arrow .g { transform:rotate(90deg); }
   }
-  .pipe-stage .num {
-    position:absolute; top:-9px; left:.75rem; background:#0A1A2F; color:#fff;
-    width:21px; height:21px; border-radius:50%; font-size:.7rem; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-  }
-  /* Flow arrow between cards, drawn on the card so it survives wrapping. */
-  .pipe-stage:not(:last-child)::after {
-    content:"›"; position:absolute; right:-.42rem; top:50%;
-    transform:translateY(-50%); color:#C3CED8; font-size:1.05rem; font-weight:700;
-  }
-  .pipe-stage h4 { margin:.3rem 0 .28rem 0; font-size:.88rem; color:#0A1A2F; font-weight:700; }
-  .pipe-stage p  { margin:0; font-size:.75rem; color:#5A6B7B; line-height:1.42; }
-  .pipe-stage .tag {
-    display:inline-block; margin-top:.45rem; font-size:.64rem; font-weight:700;
-    letter-spacing:.04em; text-transform:uppercase; padding:.1rem .4rem; border-radius:4px;
-  }
-  .tag-det  { background:#E8F6EF; color:#1A7F37; }
-  .tag-gate { background:#FFF1CC; color:#8A5A00; }
-  .tag-ai   { background:#E3F0FA; color:#0B5A8A; }
-  .pipe-legend { display:flex; gap:1.1rem; flex-wrap:wrap; font-size:.79rem;
-                 color:#5A6B7B; margin:.1rem 0 1.1rem .1rem; }
-  .pipe-legend b { color:#0A1A2F; }
+
+  .pipe .node { background:#fff; border:1px solid #E2E8EE; border-radius:9px;
+                padding:.55rem .7rem .6rem .7rem; }
+  .pipe .node .kicker { display:block; font-size:.67rem; font-weight:800; letter-spacing:.09em;
+                        text-transform:uppercase; color:#98A7B5; line-height:1.2; margin:0; }
+  .pipe .node h4 { margin:.16rem 0 .18rem 0; font-size:1rem; font-weight:700;
+                   color:#0A1A2F; line-height:1.25; padding:0; }
+  .pipe .node p  { margin:0; padding:0; font-size:.86rem; color:#44586B; line-height:1.35; }
+  .pipe .node .fine { margin:.22rem 0 0 0; font-size:.76rem; color:#98A7B5; line-height:1.3; }
+
+  /* The two gates are the architectural boundary, so they are the only nodes
+     that carry weight: the validator a solid amber edge, the tool layer a
+     double wall, because it is a wall. */
+  .pipe .node-gate { border:1.5px solid #E5B94F; }
+  .pipe .node-wall { border:5px double #BF8700; padding:.6rem .75rem .65rem .75rem; }
+  .pipe .node-wall h4 { color:#8A5A00; }
+  .pipe .node-wall .only { display:block; margin:.3rem 0 0 0; font-size:.76rem; font-weight:800;
+                           letter-spacing:.07em; text-transform:uppercase; color:#8A5A00;
+                           line-height:1.2; }
+
+  .pipe .arrow { display:flex; flex-direction:column; align-items:center; justify-content:center;
+                 min-width:0; padding:0 .2rem; }
+  .pipe .arrow .g { color:#B6C2CD; font-size:1.1rem; line-height:1; }
+  .pipe .arrow .l { margin:.18rem 0 0 0; font-size:.72rem; color:#7E8FA0;
+                    text-align:center; line-height:1.25; }
+
+  /* Vertical connector carrying what crosses from one band to the next. */
+  .pipe .bridge { display:flex; flex-direction:column; align-items:center; gap:0;
+                  padding:.18rem 0 .14rem 0; }
+  .pipe .bridge .g { color:#B6C2CD; font-size:1rem; line-height:1.1; }
+  .pipe .bridge .l { margin:0; font-size:.75rem; color:#7E8FA0; line-height:1.25; }
+
+  .pipe .agents { display:flex; gap:.3rem; flex-wrap:wrap; margin:.3rem 0 0 0; }
+  .pipe .agents span { font-size:.76rem; font-weight:600; color:#0B5A8A; background:#EDF5FB;
+                       border:1px solid #D3E5F2; border-radius:999px; padding:.05rem .45rem; }
 </style>
 """
 
-#: (number, title, body, tag-label, tag-class)
-PIPELINE_STAGES = [
-    ("1", "CISA's public data",
-     "127 SCuBA security rules, a real published scan, and CISA's own NIST crosswalk.",
-     "input", "tag-det"),
-    ("2", "Parsers",
-     "Typed Python reads the scan and the rulebook. Handles the real file's quirks — BOM, HTML in fields, renamed policies.",
-     "deterministic", "tag-det"),
-    ("3", "Transformers",
-     "Builds the eight linked OSCAL documents. No model decides what a control ID is or what a result was.",
-     "deterministic", "tag-det"),
-    ("4", "NIST validator",
-     "Every document must pass oscal-cli with full Metaschema constraints. A failure stops the build.",
-     "hard gate", "tag-gate"),
-    ("5", "Function tools",
-     "Pure functions that read the validated documents. This is the only path to a fact.",
-     "the wall", "tag-gate"),
-    ("6", "Foundry agents",
-     "Four specialists reason, prioritise and explain — grounded in what the tools return.",
-     "AI", "tag-ai"),
+#: (kicker, title, body, fine-print) for the deterministic band.
+_DETERMINISTIC = [
+    ("source", "CISA public data",
+     "127 SCuBA rules, a published scan, CISA's NIST crosswalk.", ""),
+    ("parse", "Parsers",
+     "Typed Python to normalised records.", "BOM · HTML in fields · renamed policies"),
+    ("generate", "Transformers",
+     "Eight linked OSCAL documents.", "no model picks a control ID or a result"),
 ]
+
+#: Labels on the arrows between the deterministic nodes.
+_DETERMINISTIC_FLOW = ["raw files", "typed records"]
+
+
+def _node(kicker: str, title: str, body: str, fine: str = "", cls: str = "",
+          extra: str = "") -> str:
+    return (
+        f'<div class="node {cls}"><span class="kicker">{kicker}</span>'
+        f"<h4>{title}</h4><p>{body}</p>"
+        + (f'<div class="fine">{fine}</div>' if fine else "")
+        + extra
+        + "</div>"
+    )
+
+
+def _arrow(label: str) -> str:
+    return f'<div class="arrow"><span class="g">&rarr;</span><span class="l">{label}</span></div>'
+
+
+def _bridge(label: str) -> str:
+    return f'<div class="bridge"><span class="g">&darr;</span><span class="l">{label}</span></div>'
+
+
+def _band(label: str, note: str, cls: str, body: str) -> str:
+    return (
+        f'<section class="band {cls}"><div class="band-head">'
+        f'<span class="bl">{label}</span><span class="bn">{note}</span></div>'
+        f"{body}</section>"
+    )
 
 
 def pipeline_html() -> str:
-    parts = ['<div class="pipe">']
-    for num, title, body, tag, cls in PIPELINE_STAGES:
-        parts.append(
-            f'<div class="pipe-stage"><div class="num">{num}</div>'
-            f"<h4>{title}</h4><p>{body}</p>"
-            f'<span class="tag {cls}">{tag}</span></div>'
+    """The architecture as three bands divided by the trust boundary."""
+    deterministic = '<div class="row">'
+    for i, (kicker, title, body, fine) in enumerate(_DETERMINISTIC):
+        deterministic += _node(kicker, title, body, fine)
+        if i < len(_DETERMINISTIC_FLOW):
+            deterministic += _arrow(_DETERMINISTIC_FLOW[i])
+    deterministic += "</div>"
+
+    gate = (
+        '<div class="row two">'
+        + _node(
+            "validate", "NIST validator",
+            "Nothing reaches disk unless it validates.",
+            "oscal-cli Metaschema in CI — 7 of 8 models",
+            "node-gate",
         )
-    parts.append("</div>")
-    return "".join(parts)
+        + _arrow("validated OSCAL")
+        + _node(
+            "access", "Function tools",
+            "Pure reads over the validated documents.",
+            cls="node-wall",
+            extra='<span class="only">the only path to a fact</span>',
+        )
+        + "</div>"
+    )
+
+    agents = _node(
+        "reason", "Foundry agents",
+        "Four specialists prioritise and explain what the tools return.",
+        extra='<div class="agents"><span>posture</span><span>risk</span>'
+              "<span>remediation</span><span>report</span></div>",
+    )
+
+    return (
+        '<div class="pipe">'
+        + _band("Deterministic pipeline", "plain Python · same input, same output, every run",
+                "band-det", deterministic)
+        + _bridge("candidate documents")
+        + _band("Validation boundary", "no model reaches past this line",
+                "band-gate", gate)
+        + _bridge("tool results only")
+        + _band("AI layer", "judgement, prioritisation and wording only",
+                "band-ai", agents)
+        + "</div>"
+    )

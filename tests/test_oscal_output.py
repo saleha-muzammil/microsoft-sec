@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import re
 
+import pytest
+
 from scuba_oscal.ids import control_uuid, det_uuid
 from scuba_oscal.transformers.assessment_results import build_assessment_results
 from scuba_oscal.transformers.catalog import build_catalog, control_count
@@ -38,14 +40,22 @@ def test_catalog_is_schema_valid(baselines):
 
 
 def test_catalog_regeneration_is_byte_stable(baselines):
-    """Identical input must produce an identical document, or drift is noise."""
-    import json
+    """Identical input must produce an identical document, or drift is noise.
 
-    first = build_catalog(baselines)
-    second = build_catalog(baselines)
-    for doc in (first, second):
-        doc["catalog"]["metadata"].pop("last-modified")
+    ``last-modified`` is compared too, and deliberately so: an earlier version
+    of this test popped that field before comparing, which made it pass while
+    every regenerated document in fact differed. The whole value of the
+    deterministic UUIDs is a meaningful git diff, and one wall-clock timestamp
+    per document is enough to destroy it.
+    """
+    import json
+    from datetime import UTC, datetime
+
+    stamp = datetime(2026, 5, 4, 17, 15, 48, tzinfo=UTC)
+    first = build_catalog(baselines, last_modified=stamp)
+    second = build_catalog(baselines, last_modified=stamp)
     assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
+    assert first["catalog"]["metadata"]["last-modified"] == "2026-05-04T17:15:48.000Z"
 
 
 def test_assessment_results_is_schema_valid(run):
@@ -121,3 +131,84 @@ def test_ai_remediation_is_provenance_tagged(run):
     ]
     assert len(tagged) == 1
     assert tagged[0]["remediations"][0]["description"] == "Do the thing."
+
+
+def test_mapping_provenance_method_matches_what_produced_it(index, run):
+    """`method` must describe this document, not the data model's capability.
+
+    It read "hybrid" while the document's own ai-proposed-mappings prop read 0,
+    which tells any OSCAL-aware consumer that a model produced some of these
+    mappings. None did.
+    """
+    from scuba_oscal.transformers.mapping import build_from_index
+
+    doc = build_from_index(index, [p.policy_id for p in run.policies])["mapping-collection"]
+    ai_proposed = next(
+        p["value"] for p in doc["metadata"]["props"] if p["name"] == "ai-proposed-mappings"
+    )
+    assert ai_proposed == "0"
+    assert doc["provenance"]["method"] == "automation"
+
+    description = doc["provenance"]["mapping-description"]
+    assert "none is model-generated" in description
+    assert "are marked ai-proposed" not in description
+
+
+def test_mapping_declares_hybrid_only_when_a_model_contributed():
+    """The other branch, so the honest label is not merely a constant."""
+    from scuba_oscal.parsers.mappings import ControlMapping, Provenance
+    from scuba_oscal.transformers.mapping import build_mapping_collection
+
+    proposed = ControlMapping(
+        policy_id="MS.FAKE.1.1v1",
+        nist_controls=("si-4",),
+        raw_controls=("SI-4",),
+        provenance=Provenance.AI,
+        confidence=0.82,
+    )
+    doc = build_mapping_collection([proposed])
+    assert validate_schema(doc) == []
+
+    provenance = doc["mapping-collection"]["provenance"]
+    assert provenance["method"] == "hybrid"
+    assert "ai-proposed" in provenance["mapping-description"]
+
+
+def test_ssp_flags_the_categorisation_it_did_not_assess(run):
+    """FIPS 199 is required by OSCAL and not determined by ScubaGear.
+
+    The value therefore has to be supplied, and the artifact has to say it is a
+    default -- in an ATO package the categorisation selects the control
+    baseline, so an unlabelled placeholder is a consequential invention.
+    """
+    from scuba_oscal.transformers.chain import build_ssp
+
+    chars = build_ssp(run, ["ms.aad.1.1v1"], "p.json")["system-security-plan"][
+        "system-characteristics"
+    ]
+    source = next(p for p in chars["props"] if p["name"] == "categorisation-source")
+    assert source["value"] == "default-not-assessed"
+    assert "NOT determined by ScubaGear" in source["remarks"]
+    assert chars["security-sensitivity-level"] == "moderate"
+
+
+def test_ssp_records_an_operator_supplied_categorisation_as_assessed(run):
+    from scuba_oscal.transformers.chain import build_ssp
+
+    doc = build_ssp(run, ["ms.aad.1.1v1"], "p.json", sensitivity="high")
+    chars = doc["system-security-plan"]["system-characteristics"]
+    source = next(p for p in chars["props"] if p["name"] == "categorisation-source")
+
+    assert source["value"] == "assessed"
+    assert chars["security-sensitivity-level"] == "high"
+    assert chars["security-impact-level"]["security-objective-confidentiality"] == "fips-199-high"
+    info = chars["system-information"]["information-types"][0]
+    assert info["integrity-impact"]["base"] == "fips-199-high"
+    assert validate_schema(doc) == []
+
+
+def test_ssp_rejects_a_categorisation_outside_fips_199(run):
+    from scuba_oscal.transformers.chain import build_ssp
+
+    with pytest.raises(ValueError):
+        build_ssp(run, ["ms.aad.1.1v1"], "p.json", sensitivity="very-high")

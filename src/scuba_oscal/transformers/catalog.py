@@ -23,7 +23,14 @@ OSCAL_VERSION = "1.2.3"
 
 #: Namespace for SCuBA-specific properties, so they cannot be confused with
 #: OSCAL core props of the same name.
-SCUBA_NS = "https://github.com/cisagov/ScubaGear/ns/oscal"
+#:
+#: Deliberately a namespace we control rather than one under `cisagov`. These
+#: prop names are this project's extensions, not CISA's: putting them in CISA's
+#: namespace would attribute an extension vocabulary to an organisation that
+#: never published one, which is precisely the kind of provenance blurring the
+#: rest of this codebase exists to prevent. Matches the UUIDv5 namespace in
+#: `scuba_oscal.ids`.
+SCUBA_NS = "https://scuba-oscal.cci-va.dev/ns/oscal"
 
 PRODUCT_TITLES = {
     "aad": "Microsoft Entra ID (Azure Active Directory)",
@@ -40,6 +47,24 @@ PRODUCT_TITLES = {
 def _control_id(policy_id: str) -> str:
     """OSCAL control id. Lowercased by convention; dots are legal in a token."""
     return policy_id.lower()
+
+
+def oscal_timestamp(value: datetime | None = None) -> str:
+    """Format ``value`` as an OSCAL ``dateTime-with-timezone``.
+
+    ``last-modified`` is the one field that would otherwise make every document
+    differ on every run, which would defeat the whole point of the deterministic
+    UUIDs in :mod:`scuba_oscal.ids`: a byte-stable diff. So the pipeline passes
+    the *assessment* timestamp -- the document is a pure function of that
+    assessment, and therefore changes only when the assessment does.
+
+    ``None`` falls back to wall-clock time so the builders remain usable on
+    their own, but output generated that way is not reproducible.
+    """
+    moment = value if value is not None else datetime.now(UTC)
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=UTC)
+    return moment.astimezone(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 BASELINE_DOC_URL = (
@@ -183,11 +208,16 @@ def _build_control(policy: BaselinePolicy) -> dict:
     return control
 
 
-def build_catalog(baselines: BaselineCatalog, products: list[str] | None = None) -> dict:
+def build_catalog(
+    baselines: BaselineCatalog,
+    products: list[str] | None = None,
+    last_modified: datetime | None = None,
+) -> dict:
     """Return a complete OSCAL catalog document.
 
     :param products: restrict to these product keys (e.g. ``["aad", "exo"]``).
         ``None`` includes every product in the baseline set.
+    :param last_modified: see :func:`oscal_timestamp`.
     """
     selected = [p.lower() for p in products] if products else baselines.products
     groups = []
@@ -235,7 +265,7 @@ def build_catalog(baselines: BaselineCatalog, products: list[str] | None = None)
             "uuid": det_uuid("catalog", "scuba-m365", baselines.version, ",".join(selected)),
             "metadata": {
                 "title": "CISA SCuBA Secure Configuration Baselines for Microsoft 365",
-                "last-modified": datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
+                "last-modified": oscal_timestamp(last_modified),
                 "version": baselines.version,
                 "oscal-version": OSCAL_VERSION,
                 "props": [

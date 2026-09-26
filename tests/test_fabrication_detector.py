@@ -52,14 +52,56 @@ def test_grounded_arm_asserts_nothing_unsupported():
 
     Every identifier our agents state must appear in the OSCAL documents their
     tools read. If this ever fails, the grounding boundary has leaked.
+
+    This re-runs the analysis over the recorded *answers* and the *current*
+    artifacts rather than reading the stored aggregate out of comparison.json.
+    Asserting that a checked-in number equals itself would pass no matter what
+    the pipeline later did to the catalog.
     """
     import json
 
-    root = Path(__file__).resolve().parents[1]
-    report = root / "evals/comparison.json"
-    if not report.exists():
-        import pytest
+    import pytest
 
-        pytest.skip("run evals/compare.py to generate the comparison")
-    grounded = json.loads(report.read_text())["grounded"]
-    assert grounded["unsupported_identifier_count"] == 0
+    root = Path(__file__).resolve().parents[1]
+    results = root / "evals/results.json"
+    oscal = root / "data/oscal_out"
+
+    if not results.exists():
+        pytest.skip("run evals/run_eval.py to record grounded answers")
+    if not list(oscal.glob("*.json")):
+        pytest.skip("run scripts/generate.py to produce the artifacts")
+
+    cases = json.loads(results.read_text())["cases"]
+    # The corpus definition and the question exemption mirror compare.main()
+    # exactly: everything the tools can reach counts as evidence, and an
+    # identifier the question itself supplied is quotation, not assertion.
+    context = "\n".join(
+        [p.read_text() for p in sorted(oscal.glob("*.json"))]
+        + [p.read_text() for p in sorted((root / "data/mappings").glob("*.csv"))]
+    )
+    golden = json.loads((root / "evals/golden_set.json").read_text())
+    questions = {c["id"]: c.get("question", "") for c in golden["cases"]}
+
+    report = analyse(cases, context, "grounded", questions)
+    assert report["unsupported_identifier_count"] == 0, (
+        "agents asserted identifiers absent from the artifacts their tools read: "
+        f"{report['detail']}"
+    )
+
+
+def test_analysis_scope_is_the_whole_corpus_not_one_conversation():
+    """Pin the known limit of this instrument, so the claim is not overstated.
+
+    "Supported" here means *the identifier appears somewhere in the OSCAL
+    document set the tools can reach* -- not "this answer's own tool calls
+    returned it". The catalog carries every NIST and ATT&CK identifier in
+    scope, so this test is a floor on fabrication, not a proof of per-answer
+    citation. Narrowing it would require recording per-conversation tool
+    output, which the eval harness does not yet capture.
+    """
+    cases = [{"id": "x", "passed": True, "answer": "Mitigates T1110.003."}]
+    # Present anywhere in the corpus -> counted as supported, even though this
+    # particular answer may never have called a tool that returned it.
+    assert analyse(cases, "unrelated prose mentioning T1110.003", "t")[
+        "unsupported_identifier_count"
+    ] == 0

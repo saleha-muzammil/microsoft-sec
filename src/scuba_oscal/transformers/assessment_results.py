@@ -16,20 +16,16 @@ output, which is precisely why the resulting artifact can be cited as evidence.
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime
 
 from ..ids import det_uuid, finding_uuid, observation_uuid, risk_uuid
 from ..models import Result, ScubaRun
-from .catalog import OSCAL_VERSION, SCUBA_NS, _line
+from .catalog import OSCAL_VERSION, SCUBA_NS, _line, oscal_timestamp
 
 #: Anything not automatically testable is recorded as EXAMINE, because
 #: reporting a human-assessed policy as a machine TEST would misstate evidence.
 METHOD_AUTOMATED = "TEST"
 METHOD_MANUAL = "EXAMINE"
-
-
-def _now() -> str:
-    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 def _ts(value: datetime) -> str:
@@ -44,6 +40,7 @@ def build_assessment_results(
     run: ScubaRun,
     ap_href: str = "scuba-assessment-plan.json",
     synthetic: bool = False,
+    last_modified: datetime | None = None,
 ) -> dict:
     """Render ``run`` as an OSCAL assessment-results document.
 
@@ -168,7 +165,7 @@ def build_assessment_results(
             "uuid": det_uuid("assessment-results", run.run_id),
             "metadata": {
                 "title": f"SCuBA Assessment Results - {run.tenant_display_name}",
-                "last-modified": _now(),
+                "last-modified": oscal_timestamp(last_modified),
                 "version": run.tool_version,
                 "oscal-version": OSCAL_VERSION,
                 "props": metadata_props,
@@ -193,9 +190,9 @@ def build_assessment_results(
                         "description": (
                             "ScubaGear evaluates SCuBA policies via Microsoft Graph and "
                             "service-specific APIs, applying Rego policy rules to the "
-                            "exported configuration. No separate OSCAL assessment-plan "
-                            "document is produced; this resource stands in as the "
-                            "assessment procedure of record. See "
+                            "exported configuration. This resource names that procedure "
+                            "and resolves to the companion OSCAL assessment-plan document "
+                            "generated alongside this one. See "
                             "https://github.com/cisagov/ScubaGear."
                         ),
                         # The rlink MUST resolve to a real assessment-plan

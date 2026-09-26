@@ -7,26 +7,42 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from scuba_oscal.validation import validate_file  # noqa: E402
+from scuba_oscal.validation import cli_available, summarise, validate_directory  # noqa: E402
 
 
 def main(directory: str = "data/oscal_out") -> int:
-    files = sorted(Path(directory).glob("*.json"))
-    if not files:
+    if not sorted(Path(directory).glob("*.json")):
         print(f"No OSCAL documents found in {directory}")
+        print("Run `python scripts/generate.py` first.")
         return 1
 
-    failures = 0
-    for path in files:
-        report = validate_file(path)
+    # Say up front which tier is actually running. Reporting schema-only
+    # results under a heading that implies NIST Metaschema validation is
+    # exactly the overstatement this script exists to avoid.
+    if not cli_available():
+        print(
+            "WARNING: oscal-cli is not installed, so only JSON Schema validation runs.\n"
+            "         Run ./scripts/install_tools.sh for full NIST Metaschema validation.\n"
+        )
+
+    reports = validate_directory(directory)
+    for report in reports:
         print(report)
         if not report.ok:
-            failures += 1
             for err in report.errors:
                 print(f"       {err}")
 
-    print(f"\n{len(files) - failures}/{len(files)} documents valid")
-    return 1 if failures else 0
+    counts = summarise(reports)
+    print(f"\n{counts['documents'] - counts['failed']}/{counts['documents']} documents valid")
+    print(f"  JSON Schema : {counts['schema_valid']}/{counts['documents']}")
+    if cli_available():
+        print(
+            f"  oscal-cli   : {counts['cli_valid']}/{counts['documents']}"
+            f"  ({counts['cli_not_applicable']} unsupported by oscal-cli 3.2.0)"
+        )
+    else:
+        print("  oscal-cli   : not run (not installed)")
+    return 1 if counts["failed"] else 0
 
 
 if __name__ == "__main__":

@@ -18,21 +18,22 @@ This module implements those layers, so the chain resolves end to end.
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime
 
 from ..ids import det_uuid
 from ..models import ScubaRun
-from .catalog import OSCAL_VERSION, PRODUCT_TITLES, SCUBA_NS, _line
+from .catalog import OSCAL_VERSION, PRODUCT_TITLES, SCUBA_NS, _line, oscal_timestamp
 
 
-def _now() -> str:
-    return datetime.now(UTC).isoformat(timespec="milliseconds").replace("+00:00", "Z")
-
-
-def _meta(title: str, version: str, extra_props: list[dict] | None = None) -> dict:
+def _meta(
+    title: str,
+    version: str,
+    extra_props: list[dict] | None = None,
+    last_modified: datetime | None = None,
+) -> dict:
     meta = {
         "title": title,
-        "last-modified": _now(),
+        "last-modified": oscal_timestamp(last_modified),
         "version": version,
         "oscal-version": OSCAL_VERSION,
     }
@@ -41,19 +42,29 @@ def _meta(title: str, version: str, extra_props: list[dict] | None = None) -> di
     return meta
 
 
-def build_profile(control_ids: list[str], catalog_href: str, version: str) -> dict:
+def build_profile(
+    control_ids: list[str],
+    catalog_href: str,
+    version: str,
+    last_modified: datetime | None = None,
+) -> dict:
     """A profile selecting the SCuBA controls actually assessed."""
     return {
         "profile": {
             "uuid": det_uuid("profile", catalog_href, ",".join(sorted(control_ids))),
-            "metadata": _meta("SCuBA M365 Assessed Control Selection", version),
+            "metadata": _meta("SCuBA M365 Assessed Control Selection", version, last_modified=last_modified),
             "imports": [{"href": catalog_href, "include-controls": [{"with-ids": sorted(control_ids)}]}],
             "merge": {"as-is": True},
         }
     }
 
 
-def build_component_definition(products: list[str], catalog_href: str, version: str) -> dict:
+def build_component_definition(
+    products: list[str],
+    catalog_href: str,
+    version: str,
+    last_modified: datetime | None = None,
+) -> dict:
     """Component definition describing the M365 services under assessment."""
     components = []
     for product in sorted(products):
@@ -69,19 +80,56 @@ def build_component_definition(products: list[str], catalog_href: str, version: 
     return {
         "component-definition": {
             "uuid": det_uuid("component-definition", ",".join(sorted(products))),
-            "metadata": _meta("Microsoft 365 Services Component Definition", version),
+            "metadata": _meta(
+                "Microsoft 365 Services Component Definition", version, last_modified=last_modified
+            ),
             "components": components,
         }
     }
 
 
-def build_ssp(run: ScubaRun, control_ids: list[str], profile_href: str) -> dict:
+#: FIPS 199 categorisation is **required** by the OSCAL SSP model, and
+#: ScubaGear does not determine it -- it grades configuration, it does not
+#: categorise a system. So a value has to be supplied, and the only honest
+#: thing to do is say where it came from.
+#:
+#: `moderate` is the placeholder because it is the most common categorisation
+#: for a general-purpose M365 tenant, not because this tenant was assessed as
+#: moderate. It is marked in the artifact with `categorisation-source =
+#: default-not-assessed` so a reader -- or an ATO package pulling this in,
+#: where the categorisation selects the control baseline -- cannot mistake it
+#: for a finding. Pass `sensitivity` to state the real one.
+DEFAULT_SENSITIVITY = "moderate"
+
+FIPS_199 = {"low": "fips-199-low", "moderate": "fips-199-moderate", "high": "fips-199-high"}
+
+
+def build_ssp(
+    run: ScubaRun,
+    control_ids: list[str],
+    profile_href: str,
+    last_modified: datetime | None = None,
+    sensitivity: str | None = None,
+) -> dict:
     """A system security plan for the assessed M365 tenant.
 
     Deliberately minimal but *honest*: it asserts only what ScubaGear actually
     establishes -- which controls are in scope and which service implements
     them -- rather than inventing implementation narrative prose.
+
+    :param sensitivity: FIPS 199 categorisation (``low``/``moderate``/``high``).
+        ``None`` emits :data:`DEFAULT_SENSITIVITY`, explicitly flagged in the
+        document as a default rather than an assessed value. See the note on
+        that constant: this is the one required field ScubaGear cannot supply.
     """
+    assessed_sensitivity = (sensitivity or "").strip().lower()
+    if assessed_sensitivity and assessed_sensitivity not in FIPS_199:
+        raise ValueError(
+            f"sensitivity must be one of {sorted(FIPS_199)}, got {sensitivity!r}"
+        )
+    level = assessed_sensitivity or DEFAULT_SENSITIVITY
+    impact = FIPS_199[level]
+    was_assessed = bool(assessed_sensitivity)
     component_uuid = det_uuid("component", "m365-tenant", run.run_id)
 
     implemented = [
@@ -105,7 +153,11 @@ def build_ssp(run: ScubaRun, control_ids: list[str], profile_href: str) -> dict:
     return {
         "system-security-plan": {
             "uuid": det_uuid("ssp", run.run_id),
-            "metadata": _meta(f"M365 Tenant SSP - {run.tenant_display_name}", run.tool_version),
+            "metadata": _meta(
+                f"M365 Tenant SSP - {run.tenant_display_name}",
+                run.tool_version,
+                last_modified=last_modified,
+            ),
             "import-profile": {"href": profile_href},
             "system-characteristics": {
                 # The field is `id`, not `identifier`. M365 tenant IDs are
@@ -122,7 +174,27 @@ def build_ssp(run: ScubaRun, control_ids: list[str], profile_href: str) -> dict:
                     f"Microsoft 365 tenant {run.tenant_domain}, assessed against the CISA "
                     f"SCuBA secure configuration baselines."
                 ),
-                "security-sensitivity-level": "moderate",
+                "props": [
+                    {
+                        "name": "categorisation-source",
+                        "ns": SCUBA_NS,
+                        "value": "assessed" if was_assessed else "default-not-assessed",
+                        "remarks": (
+                            "FIPS 199 categorisation supplied by the operator."
+                            if was_assessed
+                            else (
+                                "FIPS 199 categorisation is required by the OSCAL SSP model "
+                                "but is NOT determined by ScubaGear, which grades "
+                                f"configuration rather than categorising a system. '{level}' "
+                                "is a default placeholder, not an assessment of this tenant. "
+                                "Replace it with the system's actual categorisation before "
+                                "using this SSP in an authorisation package, where the "
+                                "categorisation selects the control baseline."
+                            )
+                        ),
+                    }
+                ],
+                "security-sensitivity-level": level,
                 "system-information": {
                     "information-types": [
                         {
@@ -132,16 +204,16 @@ def build_ssp(run: ScubaRun, control_ids: list[str], profile_href: str) -> dict:
                                 "Email, files, chat, and identity configuration held in the "
                                 "assessed tenant."
                             ),
-                            "confidentiality-impact": {"base": "fips-199-moderate"},
-                            "integrity-impact": {"base": "fips-199-moderate"},
-                            "availability-impact": {"base": "fips-199-moderate"},
+                            "confidentiality-impact": {"base": impact},
+                            "integrity-impact": {"base": impact},
+                            "availability-impact": {"base": impact},
                         }
                     ]
                 },
                 "security-impact-level": {
-                    "security-objective-confidentiality": "fips-199-moderate",
-                    "security-objective-integrity": "fips-199-moderate",
-                    "security-objective-availability": "fips-199-moderate",
+                    "security-objective-confidentiality": impact,
+                    "security-objective-integrity": impact,
+                    "security-objective-availability": impact,
                 },
                 "status": {"state": "operational"},
                 "authorization-boundary": {
@@ -173,7 +245,12 @@ def build_ssp(run: ScubaRun, control_ids: list[str], profile_href: str) -> dict:
     }
 
 
-def build_assessment_plan(run: ScubaRun, control_ids: list[str], ssp_href: str) -> dict:
+def build_assessment_plan(
+    run: ScubaRun,
+    control_ids: list[str],
+    ssp_href: str,
+    last_modified: datetime | None = None,
+) -> dict:
     """The assessment procedure ScubaGear performs."""
     return {
         "assessment-plan": {
@@ -182,6 +259,7 @@ def build_assessment_plan(run: ScubaRun, control_ids: list[str], ssp_href: str) 
                 f"ScubaGear Assessment Plan - {run.tenant_display_name}",
                 run.tool_version,
                 [{"name": "tool", "ns": SCUBA_NS, "value": "ScubaGear"}],
+                last_modified=last_modified,
             ),
             "import-ssp": {"href": ssp_href},
             "reviewed-controls": {

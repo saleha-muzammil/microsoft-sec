@@ -181,7 +181,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   s.addText("No model decides what a control ID is,\nwhat a result was, or what belongs in a\nrequired schema field.",
     { isTextBox:true, x:4.45, y:2.5, w:3.2, h:0.9, fontFace:B, fontSize:11,
       color:"BBD0E2", align:"center", lineSpacing:16, margin:0 });
-  s.addText("59 tests", { isTextBox:true, x:4.45, y:3.5, w:3.2, h:0.4, fontFace:B,
+  s.addText("175 tests", { isTextBox:true, x:4.45, y:3.5, w:3.2, h:0.4, fontFace:B,
     fontSize:15, bold:true, color:CYAN, align:"center", margin:0 });
 
   s.addShape(pres.ShapeType.roundRect, { x:8.3, y:1.55, w:4.3, h:1.2,
@@ -215,7 +215,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"RESULT #1  ·  PERFORMANCE");
-  title(s,"The complete OSCAL chain — all eight validate");
+  title(s,"The complete OSCAL chain — eight documents, all valid");
 
   const rows = [
     ["catalog","127 SCuBA policies, rationale, guidance, MITRE ATT&CK"],
@@ -246,7 +246,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
     }
   });
 
-  s.addText("Validated with NIST's own oscal-cli 3.2.0 / liboscal-java 7.2.0 — full Metaschema constraints, not merely JSON Schema. Zero errors, zero warnings, enforced in CI.",
+  s.addText("8/8 pass NIST JSON Schema. 7/8 also pass NIST's own oscal-cli 3.2.0 with full Metaschema constraints — mapping-collection has no CLI command yet, and we report cli:n/a rather than implying more. Enforced in CI.",
     { isTextBox:true, x:0.7, y:6.4, w:11.9, h:0.5, fontFace:B, fontSize:13,
       bold:true, color:NAVY2, lineSpacing:19, margin:0 });
   note(s,"Three of these — component-definition, SSP and POA&M — are the ones CISA marked TODO. Passing JSON Schema is necessary but not sufficient; Metaschema enforces cardinality and cross-reference resolution too.");
@@ -281,7 +281,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   s.addText("Emitted as an OSCAL 1.2 mapping-collection — where provenance, confidence-score and matching-rationale are native fields, so the distinction lives in the standard rather than a convention we invented.",
     { isTextBox:true, x:0.7, y:6.0, w:11.9, h:0.6, fontFace:B, fontSize:12.5,
       italic:true, color:GREY, lineSpacing:18, margin:0 });
-  note(s,"This is the difference between a tool you can audit and one you have to trust. 91% deterministic, and the remaining 8 are clearly labelled as AI proposals requiring human approval.");
+  note(s,"This is the difference between a tool you can audit and one you have to trust. 97% deterministic from CISA's own published data; the remaining 3 are reported as unmapped — never inferred by a model.");
 }
 
 // ============================ 7. DRIFT ============================
@@ -328,16 +328,130 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"This is a real technical insight, not a feature list item. Every drift tool we found compares run-to-run by ID and would get this wrong.");
 }
 
-// ============================ 8. AI LAYER ============================
+// ============================ 8. THE DENOMINATOR + THREAT COVERAGE ============================
+{
+  const s = pres.addSlide(); s.background = lightBg();
+  kicker(s,"RESULT #4  ·  INNOVATION");
+  title(s,"Two questions the compliance number hides");
+
+  // -------- left: the denominator --------
+  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:1.45, w:5.8, h:4.6,
+    fill:{color:WHITE}, rectRadius:0.1, line:{color:"E2E8EE"} });
+  s.addText("“Is the number even real?”", { isTextBox:true, x:0.95, y:1.62, w:5.3, h:0.38,
+    fontFace:H, fontSize:17, bold:true, color:INK, margin:0 });
+  s.addText("ScubaGear lets an organisation omit policies from its own report. Omitted policies leave the denominator — so the compliance rate can be raised by editing YAML. Nothing reviews it, approves it, or enforces the optional expiry date.",
+    { isTextBox:true, x:0.95, y:2.05, w:5.3, h:1.0, fontFace:B, fontSize:11.5,
+      color:GREY, lineSpacing:17, margin:0 });
+
+  s.addText([
+    { text:"4", options:{ bold:true, color:RED, breakLine:false } },
+    { text:" policies suppressed — ", options:{ color:INK, breakLine:false } },
+    { text:"all 4 are SHALL", options:{ bold:true, color:RED, breakLine:true } },
+    { text:"2", options:{ bold:true, color:AMBER, breakLine:false } },
+    { text:" exemptions already expired, still suppressing", options:{ color:INK, breakLine:true } },
+    { text:"1", options:{ bold:true, color:AMBER, breakLine:false } },
+    { text:" with no rationale · ", options:{ color:INK, breakLine:false } },
+    { text:"2", options:{ bold:true, color:AMBER, breakLine:false } },
+    { text:" left over from an old baseline", options:{ color:INK, breakLine:false } },
+  ], { isTextBox:true, x:0.95, y:3.15, w:5.3, h:1.15, fontFace:B, fontSize:12,
+       lineSpacing:20, margin:0 });
+
+  s.addShape(pres.ShapeType.roundRect, { x:0.95, y:4.35, w:5.3, h:0.72,
+    fill:{color:LIGHT}, rectRadius:0.08, line:{color:"E2E8EE"} });
+  s.addText("69.6%  reported        68.7%  over all assessed", { isTextBox:true,
+    x:1.05, y:4.45, w:5.1, h:0.3, fontFace:B, fontSize:12.5, bold:true, color:INK,
+    align:"center", margin:0 });
+  s.addText("2 of the 4 suppressed policies were passing — so we report +0.9 pts, not a headline.",
+    { isTextBox:true, x:1.05, y:4.74, w:5.1, h:0.28, fontFace:B, fontSize:10,
+      italic:true, color:GREY, align:"center", margin:0 });
+
+  s.addText("Every exemption is written into the POA&M as an OSCAL risk carrying deviation-approved, deviation-requested, or open once expired — queryable by an auditor instead of living in a YAML file.",
+    { isTextBox:true, x:0.95, y:5.15, w:5.3, h:0.8, fontFace:B, fontSize:11,
+      color:NAVY2, lineSpacing:16, margin:0 });
+
+  // -------- right: threat coverage --------
+  s.addShape(pres.ShapeType.roundRect, { x:6.8, y:1.45, w:5.8, h:4.6,
+    fill:{color:WHITE}, rectRadius:0.1, line:{color:"E2E8EE"} });
+  s.addText("“What can still happen to us?”", { isTextBox:true, x:7.05, y:1.62, w:5.3, h:0.38,
+    fontFace:H, fontSize:17, bold:true, color:INK, margin:0 });
+  s.addText("CISA maps each SCuBA policy to the MITRE ATT&CK techniques it mitigates. A technique is uncovered when every policy mapped to it is failing — coverage arithmetic over CISA's published mappings, not a claim of exploitability.",
+    { isTextBox:true, x:7.05, y:2.05, w:5.3, h:1.0, fontFace:B, fontSize:11.5,
+      color:GREY, lineSpacing:17, margin:0 });
+
+  [["6","uncovered",RED,"FDECEC"],["15","degraded",AMBER,"FFF6E0"],["32","covered",GREEN,"E8F6EF"]]
+    .forEach(([v,l,c,bg],i)=>{
+      const x = 7.05 + i*1.78;
+      s.addShape(pres.ShapeType.roundRect, { x, y:3.12, w:1.6, h:1.0, fill:{color:bg},
+        rectRadius:0.08, line:{color:bg} });
+      s.addText(v, { isTextBox:true, x, y:3.22, w:1.6, h:0.5, fontFace:B, fontSize:26,
+        bold:true, color:c, align:"center", margin:0 });
+      s.addText(l, { isTextBox:true, x, y:3.72, w:1.6, h:0.3, fontFace:B, fontSize:10.5,
+        color:GREY, align:"center", margin:0 });
+    });
+
+  s.addShape(pres.ShapeType.roundRect, { x:7.05, y:4.35, w:5.3, h:1.6,
+    fill:{color:"FFF6E0"}, rectRadius:0.08, line:{color:"FFE2A8"} });
+  s.addText("The two rankings disagree — and that is the point.", { isTextBox:true,
+    x:7.25, y:4.48, w:4.9, h:0.3, fontFace:B, fontSize:12, bold:true, color:"8A5A00", margin:0 });
+  s.addText("MS.AAD.7.9v1, MS.TEAMS.5.2v2 and MS.TEAMS.5.3v2 are SHOULD, so compliance severity ranks them last. Each is the only remaining mitigation for two ATT&CK techniques.",
+    { isTextBox:true, x:7.25, y:4.82, w:4.9, h:1.0, fontFace:B, fontSize:11,
+      color:INK, lineSpacing:16, margin:0 });
+
+  s.addText("A POA&M says what is non-compliant. Neither of these questions can be answered from the scanner's own report.",
+    { isTextBox:true, x:0.7, y:6.2, w:11.9, h:0.4, fontFace:B, fontSize:13,
+      bold:true, color:NAVY2, margin:0 });
+  note(s,"Two audits of the compliance number itself. Left: exemptions are the denominator nobody checks, and we make them OSCAL risks with a status. Right: ranking by attack coverage genuinely disagrees with ranking by SHALL/SHOULD.");
+}
+
+// ============================ 9. VIRGINIA ============================
+{
+  const s = pres.addSlide(); s.background = lightBg();
+  kicker(s,"BUILT FOR THE COMMONWEALTH");
+  title(s,"What a SCuBA failure means in Virginia");
+
+  s.addText("SCuBA is federal guidance. Virginia public bodies — every public college, university and school division — are governed by SEC530, VITA's Information Security Standard, which adopts NIST 800-53 and uses its control identifiers directly.",
+    { isTextBox:true, x:0.7, y:1.42, w:11.9, h:0.65, fontFace:B, fontSize:14,
+      color:INK, lineSpacing:20, margin:0 });
+
+  const hops = ["SCuBA policy","CISA crosswalk","NIST 800-53","VITA SEC530"];
+  hops.forEach((h,i)=>{
+    const x = 0.7 + i*3.05;
+    s.addShape(pres.ShapeType.roundRect, { x, y:2.2, w:2.6, h:0.6,
+      fill:{color: i===3 ? NAVY2 : LIGHT}, rectRadius:0.08,
+      line:{color: i===3 ? NAVY2 : "E2E8EE"} });
+    s.addText(h, { isTextBox:true, x, y:2.35, w:2.6, h:0.32, fontFace:B, fontSize:12.5,
+      bold:true, color: i===3 ? WHITE : INK, align:"center", margin:0 });
+    if (i<3) s.addText("→", { isTextBox:true, x:x+2.6, y:2.33, w:0.45, h:0.34, fontFace:B,
+      fontSize:15, bold:true, color:TEAL, align:"center", margin:0 });
+  });
+  s.addText("An exact join on identifiers published by CISA and VITA. No model is involved anywhere in this chain.",
+    { isTextBox:true, x:0.7, y:2.88, w:11.9, h:0.3, fontFace:B, fontSize:11.5,
+      italic:true, color:GREY, margin:0 });
+
+  stat(s, 0.7, 3.35, 3.8, "23 of 26", "failures are also\nCommonwealth obligations", INK, "E8F6EF");
+  stat(s, 4.75, 3.35, 3.8, "1,189", "SEC530 controls parsed\nfrom VITA's own spreadsheet", INK);
+  stat(s, 8.8, 3.35, 3.8, "3", "federal only — Virginia\nwithdrew the control", "8A5A00", "FFF6E0");
+
+  s.addShape(pres.ShapeType.roundRect, { x:0.7, y:5.25, w:11.9, h:1.35,
+    fill:{color:NAVY}, rectRadius:0.1, line:{color:NAVY} });
+  s.addText("Where the two governments differ", { isTextBox:true, x:1.0, y:5.42, w:11.3,
+    h:0.32, fontFace:B, fontSize:13.5, bold:true, color:AMBER, margin:0 });
+  s.addText("Three failures map only to SC-7(10), which the Commonwealth has withdrawn — “not applicable to COV”. They remain federal obligations and carry no SEC530 duty. We also surface who Virginia says owns each control, from SEC530's own IMPLEMENTED BY column.",
+    { isTextBox:true, x:1.0, y:5.78, w:11.3, h:0.7, fontFace:B, fontSize:12,
+      color:"D2DEE8", lineSpacing:17, margin:0 });
+  note(s,"The contest is for Virginia, and this is the slide that earns that. A Virginia institution otherwise works this out by hand, per finding, per standard.");
+}
+
+// ============================ 10. AI LAYER ============================
 {
   const s = pres.addSlide(); s.background = darkBg();
   kicker(s,"MICROSOFT FOUNDRY", CYAN);
   title(s,"An AI layer that cannot fabricate", { color:WHITE });
 
-  s.addText("question  →  agent  →  tool call  →  NIST-validated OSCAL  →  answer",
+  s.addText("question  →  agent  →  tool call  →  NIST-validated OSCAL  →  answer  →  audited",
     { isTextBox:true, x:0.7, y:1.5, w:11.9, h:0.45, fontFace:"Courier New", fontSize:15,
       bold:true, color:CYAN, margin:0 });
-  s.addText("There is no other path to a fact.", { isTextBox:true, x:0.7, y:1.95, w:11.9,
+  s.addText("There is no other path to a fact — and the answer is checked again on the way out.", { isTextBox:true, x:0.7, y:1.95, w:11.9,
     h:0.35, fontFace:B, fontSize:13, italic:true, color:"9FB3C8", margin:0 });
 
   const agents = [
@@ -356,15 +470,17 @@ function stat(s, x, y, w, value, label, valColor, bg) {
       fontSize:11.5, color:"C6D4E0", lineSpacing:16, margin:0 });
   });
 
-  s.addText("Guardrails that are mechanisms, not promises", { isTextBox:true, x:0.7, y:4.25,
+  s.addText("Guardrails that are mechanisms, not promises", { isTextBox:true, x:0.7, y:4.18,
     w:11.9, h:0.35, fontFace:B, fontSize:15, bold:true, color:WHITE, margin:0 });
   s.addText([
+    { text:"Every answer is audited after the fact: each policy ID, NIST control, ATT&CK technique and OSCAL UUID it asserts is checked against the evidence, and anything unsupported is flagged on screen", options:{ bullet:true, breakLine:true } },
+    { text:"Each verified citation resolves to the exact node in the validated document that carries it — “show me the evidence” is one click", options:{ bullet:true, breakLine:true } },
     { text:"Unknown policy IDs return an error — never a plausible-looking control", options:{ bullet:true, breakLine:true } },
     { text:"Every mapping reports provenance; an AI proposal can never override CISA", options:{ bullet:true, breakLine:true } },
-    { text:"Untestable policies recorded as EXAMINE, not TEST — evidence is never overstated", options:{ bullet:true, breakLine:true } },
-    { text:"AI-authored remediation prose tagged generated-by=ai-assistant inside the POA&M", options:{ bullet:true, breakLine:false } },
-  ], { isTextBox:true, x:0.9, y:4.68, w:11.5, h:1.6, fontFace:B, fontSize:13,
-       color:"D2DEE8", paraSpaceAfter:7, margin:0 });
+    { text:"AI-authored remediation prose tagged generated-by=ai-assistant inside the POA&M", options:{ bullet:true, breakLine:true } },
+    { text:"An uploaded scan is untrusted input — instruction-like text is neutralised before it reaches an agent", options:{ bullet:true, breakLine:false } },
+  ], { isTextBox:true, x:0.9, y:4.58, w:11.5, h:1.9, fontFace:B, fontSize:11.5,
+       color:"D2DEE8", paraSpaceAfter:5, lineSpacing:16, margin:0 });
 
   s.addText("gpt-5-mini on Microsoft Foundry  ·  keyless auth  ·  Microsoft Agent Framework",
     { isTextBox:true, x:0.7, y:6.55, w:11.9, h:0.35, fontFace:B, fontSize:12,
@@ -372,7 +488,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"Four specialists share one grounding rule. The guardrails are architectural: agents have no access to data, only to tools that read validated documents.");
 }
 
-// ============================ 9. EVALUATION ============================
+// ============================ 11. EVALUATION ============================
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"MEASURED, NOT ASSERTED");
@@ -425,7 +541,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"This is the beat that converts restraint into measured superiority. We are not claiming the model is dangerous - we are showing what the obvious implementation actually does, with the same model and the same questions.");
 }
 
-// ============================ 10. IMPACT ============================
+// ============================ 12. IMPACT ============================
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"ECONOMIC VALUE & SOCIETAL IMPACT");
@@ -473,17 +589,17 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"We give a band, not a number, and every assumption is a slider in the app. Judges do not have to accept our inputs - they can change them. The measured column needs no assumption at all.");
 }
 
-// ============================ 11. FEASIBILITY ============================
+// ============================ 13. FEASIBILITY ============================
 {
   const s = pres.addSlide(); s.background = lightBg();
   kicker(s,"FEASIBILITY");
   title(s,"This is running today, not a prototype sketch");
 
   const items = [
-    ["Real data","CISA's published ScubaGear assessment — a genuine redacted run, CC0 licensed. No synthetic inputs."],
+    ["Real data","CISA's published ScubaGear assessment — a genuine redacted run, CC0 licensed. Any tenant's own ScubaResults file runs the same parser, transformers and validator — there is no separate demo path."],
     ["Real validation","NIST oscal-cli in CI. The build fails if any document stops validating."],
     ["Real deployment","Microsoft Foundry project in eastus2, gpt-5-mini, keyless auth. Provisioned and answering."],
-    ["Reproducible","Clone, install, generate, validate — four commands, fully offline for the deterministic core."],
+    ["Reproducible","From a clean clone: install, then two commands — generate and validate — reproduce every artifact byte-for-byte, fully offline. Every document carries the SHA-256 of each input inside its own metadata, so an artifact can be tied back to the exact scan that produced it."],
     ["Honest about limits","oscal-cli has no mapping command yet, so that document is JSON-Schema validated only. We report cli:n/a rather than implying more."],
   ];
   items.forEach(([h,d],i)=>{
@@ -505,7 +621,7 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"Feasibility is demonstrated rather than argued. Everything on this slide can be checked from the repository in a few minutes.");
 }
 
-// ============================ 12. CLOSE ============================
+// ============================ 14. CLOSE ============================
 {
   const s = pres.addSlide(); s.background = darkBg();
   s.addShape(pres.ShapeType.ellipse, { x:-1.8, y:4.6, w:5.0, h:5.0, fill:{color:NAVY2} });
@@ -515,9 +631,9 @@ function stat(s, x, y, w, value, label, valColor, bg) {
     x:0.9, y:1.45, w:11.2, h:1.5, fontFace:H, fontSize:38, bold:true, color:WHITE,
     lineSpacing:46, margin:0 });
 
-  s.addText("A complete, validated OSCAL chain for Microsoft 365 — with mappings provably faithful to CISA's own crosswalk, drift that survives baseline version changes, and an AI layer that cannot invent a compliance fact.",
-    { isTextBox:true, x:0.9, y:3.1, w:10.4, h:0.9, fontFace:B, fontSize:15,
-      color:"C6D4E0", lineSpacing:23, margin:0 });
+  s.addText("A complete, validated OSCAL chain for Microsoft 365 — mappings provably faithful to CISA's own crosswalk, drift that survives a baseline version change, exemptions an auditor can query, and an AI layer that cannot invent a compliance fact. For a Commonwealth institution, every finding is also traced to SEC530.",
+    { isTextBox:true, x:0.9, y:3.05, w:10.8, h:1.15, fontFace:B, fontSize:14,
+      color:"C6D4E0", lineSpacing:21, margin:0 });
 
   const stats = [["8","OSCAL documents\nNIST-validated"],["89/92","mappings deterministic\nno AI guessing"],
                  ["26","false findings\neliminated"],["100%","evaluation\naccuracy"]];
@@ -537,5 +653,5 @@ function stat(s, x, y, w, value, label, valColor, bg) {
   note(s,"Close on the framing that makes the contribution legible: CISA built detection, we built the compliance layer that turns detection into an auditable package.");
 }
 
-pres.writeFile({ fileName: "/tmp/deck/presentation.pptx" })
+pres.writeFile({ fileName: process.argv[2] || "docs/presentation.pptx" })
   .then(f => console.log("written:", f));

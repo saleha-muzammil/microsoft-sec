@@ -20,15 +20,28 @@ from typing import Annotated, Any
 
 from pydantic import Field
 
+#: Repository root, resolved from *this module* rather than from the OSCAL
+#: output directory.
+#:
+#: The reference data below (CISA's baselines, the crosswalk, VITA's SEC530
+#: workbook) ships with the code, while generated artifacts do not: an uploaded
+#: scan is written to a temporary directory. Deriving the data root from the
+#: output path therefore worked for the bundled sample and silently disabled
+#: threat coverage and the Virginia join for every upload -- the tools returned
+#: "not available" and the agent lost capabilities without anything erroring.
+DATA_ROOT = Path(__file__).resolve().parents[3]
+
 
 @dataclass
 class OscalStore:
     """Read-only view over a generated OSCAL document set."""
 
     directory: Path
+    data_root: Path = DATA_ROOT
 
     def __post_init__(self) -> None:
         self.directory = Path(self.directory)
+        self.data_root = Path(self.data_root)
 
     def _load(self, name: str) -> dict[str, Any]:
         path = self.directory / name
@@ -64,7 +77,7 @@ class OscalStore:
     def baselines(self):
         from ..parsers.baselines import parse_baselines
 
-        path = self.directory.parents[1] / "data/baselines/ScubaBaselines.json"
+        path = self.data_root / "data/baselines/ScubaBaselines.json"
         return parse_baselines(str(path)) if path.exists() else None
 
     @cached_property
@@ -141,10 +154,28 @@ def _part(control: dict, name: str) -> str:
 class ComplianceTools:
     """Bound tool implementations over one OSCAL document set."""
 
-    def __init__(self, directory: str | Path, semantic: bool = True):
-        self.store = OscalStore(Path(directory))
+    def __init__(
+        self,
+        directory: str | Path,
+        semantic: bool = True,
+        data_root: str | Path | None = None,
+        config_path: str | Path | None = None,
+    ):
+        """
+        :param data_root: where the shipped reference data lives. Defaults to
+            the repository root, which is correct whether the artifacts came
+            from ``scripts/generate.py`` or from an uploaded scan in a temp
+            directory.
+        :param config_path: optional ScubaGear YAML config, so
+            :meth:`get_exemptions` can report what it removes from the
+            compliance figure. Without one that tool correctly reports that no
+            configuration was supplied.
+        """
+        self.store = OscalStore(Path(directory), Path(data_root) if data_root else DATA_ROOT)
+        self.config_path = Path(config_path) if config_path else None
         self._coverage_cache = None
         self._run_cache = None
+        self._ledger_cache = None
         self._semantic = None
         if semantic:
             from .retrieval import SemanticIndex
@@ -157,6 +188,16 @@ class ComplianceTools:
             self._run_cache = _reconstruct_run(self.store)
         return self._run_cache
 
+    def _exemption_ledger(self):
+        """Compile the supplied ScubaGear config against the assessed policies."""
+        if self.config_path is None or not self.config_path.exists():
+            return None
+        if self._ledger_cache is None:
+            from ..exemptions import build_ledger, parse_config
+
+            self._ledger_cache = build_ledger(self._run(), parse_config(self.config_path))
+        return self._ledger_cache
+
     def _coverage(self):
         if self._coverage_cache is None:
             baselines = self.store.baselines
@@ -166,8 +207,6 @@ class ComplianceTools:
 
             self._coverage_cache = build_coverage(self._run(), baselines)
         return self._coverage_cache
-
-    # ---------------------------------------------------------------- posture
 
     def get_posture_summary(self) -> str:
         """Return the overall SCuBA compliance posture for the assessed tenant:
@@ -205,8 +244,6 @@ class ComplianceTools:
             },
             indent=2,
         )
-
-    # --------------------------------------------------------------- failures
 
     def list_failures(
         self,
@@ -247,8 +284,6 @@ class ComplianceTools:
             )
         return json.dumps({"count": len(out), "failures": out[:limit]}, indent=2)
 
-    # ---------------------------------------------------------------- control
-
     def get_control_details(
         self,
         policy_id: Annotated[str, Field(description="SCuBA policy ID, e.g. MS.AAD.3.1v1.")],
@@ -282,8 +317,6 @@ class ComplianceTools:
             },
             indent=2,
         )
-
-    # ---------------------------------------------------------------- mapping
 
     def get_nist_mapping(
         self,
@@ -336,8 +369,6 @@ class ComplianceTools:
                 ),
             }
         )
-
-    # -------------------------------------------------------- threat coverage
 
     def get_threat_coverage(
         self,
@@ -413,8 +444,6 @@ class ComplianceTools:
             )
         return json.dumps({"ranked_by_threat_coverage": rows}, indent=2)
 
-    # -------------------------------------------------------------- exemptions
-
     def get_exemptions(self) -> str:
         """Report policies excluded from the compliance figure by configuration.
 
@@ -424,8 +453,8 @@ class ComplianceTools:
         to surface exemptions that have expired but are still suppressing their
         policy. Returns nothing if no configuration was supplied.
         """
-        ledger = getattr(self, "_ledger", None)
-        if ledger is None:
+        ledger = self._exemption_ledger()
+        if ledger is None or not ledger.exemptions:
             return json.dumps(
                 {"exemptions": [], "note": "No ScubaGear configuration was supplied."}
             )
@@ -434,8 +463,21 @@ class ComplianceTools:
                 "reported_compliance_rate": f"{ledger.reported_rate:.1f}%",
                 "true_rate_all_assessed": f"{ledger.true_rate:.1f}%",
                 "inflation_percentage_points": round(ledger.inflation, 1),
+                "inflation_note": (
+                    "The true rate scores every assessed policy on its actual result, "
+                    "with the omissions put back -- the only figure directly comparable "
+                    "to the reported rate."
+                ),
+                "worst_case_rate_if_all_exemptions_hid_failures": (
+                    f"{ledger.worst_case_rate:.1f}%"
+                ),
+                "worst_case_note": (
+                    "A conservative bound, NOT the true rate. Do not present it as what "
+                    "the tenant's compliance actually is."
+                ),
                 "policies_suppressed": ledger.suppressed,
                 "suppressed_that_are_mandatory": ledger.suppressed_mandatory,
+                "suppressed_that_were_actually_passing": ledger.suppressed_passing,
                 "expired_but_still_suppressing": [
                     {
                         "policy_id": e.policy_id,
@@ -445,11 +487,20 @@ class ComplianceTools:
                     for e in ledger.expired
                 ],
                 "missing_rationale": [e.policy_id for e in ledger.without_rationale],
+                "named_but_not_assessed": [e.policy_id for e in ledger.stale],
+                "named_but_not_assessed_note": (
+                    "Config entries for policies this run did not assess. They suppress "
+                    "nothing here, but they are un-reviewed statements about a control -- "
+                    "usually left over from an earlier baseline version."
+                ),
+                "recorded_in_oscal": (
+                    "Each exemption is emitted into the POA&M as a risk carrying an OSCAL "
+                    "risk-status: deviation-approved, deviation-requested, or open once it "
+                    "has expired."
+                ),
             },
             indent=2,
         )
-
-    # ---------------------------------------------------------------- virginia
 
     def get_virginia_obligations(
         self,
@@ -471,8 +522,8 @@ class ComplianceTools:
         """
         from ..virginia import map_to_virginia, parse_sec530
 
-        workbook = self.store.directory.parents[1] / "data/virginia/SEC530_Control_Summaries.xlsx"
-        crosswalk = self.store.directory.parents[1] / "data/mappings"
+        workbook = self.store.data_root / "data/virginia/SEC530_Control_Summaries.xlsx"
+        crosswalk = self.store.data_root / "data/mappings"
         if not workbook.exists():
             return json.dumps({"error": "SEC530 control summaries not available."})
 
@@ -507,8 +558,6 @@ class ComplianceTools:
         return json.dumps(
             {"standard": "Virginia ITRM SEC530", "obligations": rows}, indent=2
         )
-
-    # ----------------------------------------------------------------- search
 
     def search_controls(
         self,

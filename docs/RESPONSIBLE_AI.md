@@ -32,6 +32,18 @@ figures *and volunteered* that an aggregate summary cannot support policy-level
 citation, offering to run per-policy queries instead. That is the behaviour the
 design is for.
 
+**And audited on the way out.** Constraining inputs is half the defence; the
+other half runs after the model answers. Every live answer is deterministically
+audited ([`src/scuba_oscal/grounding.py`](../src/scuba_oscal/grounding.py)):
+each SCuBA policy ID, NIST control, MITRE ATT&CK technique and OSCAL UUID it
+asserts is checked against the evidence corpus, and anything unsupported is
+flagged on screen before anyone acts on it. An identifier the user's own
+question introduced is treated as quotation, not fabrication — the agent can
+say "no such policy exists" without being flagged for naming it. The same
+detector produces the numbers in [`evals/comparison.json`](../evals/comparison.json),
+so the published measurement and the runtime guardrail cannot drift apart.
+([`tests/test_grounding.py`](../tests/test_grounding.py))
+
 ## 2. Provenance is never lost
 
 An auditor must be able to tell CISA's judgement from a machine's.
@@ -50,7 +62,9 @@ An auditor must be able to tell CISA's judgement from a machine's.
   future human-in-the-loop workflow, and the code path is exercised only in
   tests. Nothing in `data/oscal_out/` carries it, and the mapping document's own
   metadata records `ai-proposed-mappings = 0`. If that ever changes, the count in
-  the artifact changes with it.
+  the artifact changes with it — and so does `provenance.method`, which reads
+  `automation` precisely because no model contributed. It previously read
+  `hybrid`, which told any OSCAL-aware consumer the opposite of the truth.
 - CI fails the build if any emitted mapping diverges from CISA's CSV, read
   independently of our own parser.
 - The POA&M generator accepts optional AI-authored remediation prose and tags any
@@ -65,6 +79,18 @@ An auditor must be able to tell CISA's judgement from a machine's.
 - Policies ScubaGear cannot automate are recorded with method **`EXAMINE`**, not
   `TEST`. Reporting a human-assessed policy as machine-verified would be a false
   evidentiary claim.
+- The SSP's **FIPS 199 categorisation is required by OSCAL and not determined by
+  ScubaGear**, which grades configuration rather than categorising a system. We
+  cannot omit the field, so we label it: the artifact carries
+  `categorisation-source = default-not-assessed` and says in its own remarks that
+  the value is a placeholder to be replaced before use in an authorisation
+  package, where the categorisation selects the control baseline. An unlabelled
+  default there would be the most consequential invented value in the set.
+- **Exempted policies are scored on their actual result**, not assumed to have
+  failed. Two of the four exemptions in our illustrative config suppress
+  *passing* policies, so the convenient assumption would overstate the reported
+  distortion roughly fourfold. The pessimistic figure is published as a labelled
+  bound alongside, never as the finding.
 - **`N/A` policies produce an observation but no finding** — they are evidence of
   neither compliance nor deficiency.
 - Failures ScubaGear could not actually assess are **excluded from the POA&M**,
@@ -108,9 +134,15 @@ hostile phrasings pass the filter and rely on the architectural control instead.
 
 ## 5. Human oversight
 
-- AI-proposed mappings are **proposals**. They require human approval before
-  entering the authoritative set, and are visually distinguished in the UI —
-  "CISA published this" and "a model suggested this" must not look alike.
+- **There are no AI-proposed mappings today, and no approval workflow exists.**
+  The data model reserves an `ai-proposed` provenance and a numeric confidence
+  score, and the UI has a distinct treatment ready for one — "CISA published
+  this" and "a model suggested this" must never look alike — but nothing in the
+  shipped pipeline produces one, so nothing is currently queued for review. We
+  describe this as designed-for, not as implemented: a human-in-the-loop control
+  that has never had anything to gate is not evidence of oversight. The emitted
+  `provenance.method` is `automation`, and would become `hybrid` the moment that
+  changed.
 - Severity and remediation deadlines are **deterministic**, derived from SCuBA
   criticality and federal POA&M convention (high 30 days / moderate 90 / low 180),
   not assigned by a model.

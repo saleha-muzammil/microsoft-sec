@@ -3,9 +3,35 @@
     "uuid": "97332ff3-e388-5384-98f3-d6912ffeaeaa",
     "metadata": {
       "title": "SCuBA M365 Assessed Control Selection",
-      "last-modified": "2026-09-23T04:05:59.379Z",
+      "last-modified": "2026-05-04T17:15:48.307Z",
       "version": "2.6.10 [updated 6/10/2026]",
-      "oscal-version": "1.2.3"
+      "oscal-version": "1.2.3",
+      "props": [
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-results",
+          "value": "8746a9ea9142d04ed80f957bf6cdc57e950da6fa9def1b1f16b79886311dee64"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scuba-baselines",
+          "value": "25c5c6aa260a1dfa911cf18f91a715241a70fd60721d117129207630cb8349bf"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "nist-crosswalk",
+          "value": "d6a5d4a8880e325ebc34d5f6344e89018ba444336edca76def9622c68fea4ed8"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-config",
+          "value": "14204f106bc730af2b4ceb7a470b0156d7a1572783b73a32a5f58b15caf65022"
+        }
+      ]
     },
     "imports": [
       {

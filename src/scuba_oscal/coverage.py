@@ -51,10 +51,6 @@ class TechniqueCoverage:
         return self.depth == 0
 
     @property
-    def is_degraded(self) -> bool:
-        return self.depth > 0 and bool(self.failing)
-
-    @property
     def status(self) -> str:
         if self.is_uncovered:
             return "uncovered"

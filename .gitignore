@@ -33,3 +33,6 @@ data/scubagear_real/
 
 # Vendored binary toolchain (installed via scripts/install_tools.sh)
 tools/oscal-cli/
+
+# scripts/build_deck.js requires pptxgenjs, installed with npm
+node_modules/

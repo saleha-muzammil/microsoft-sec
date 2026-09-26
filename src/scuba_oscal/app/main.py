@@ -34,10 +34,12 @@ from scuba_oscal.app.theme import (  # noqa: E402
 )
 from scuba_oscal.drift import compare, false_signal_count  # noqa: E402
 from scuba_oscal.exemptions import build_ledger, parse_config  # noqa: E402
+from scuba_oscal.grounding import EvidenceCorpus  # noqa: E402
 from scuba_oscal.impact import (  # noqa: E402
     SOURCES,
     VA_INSTITUTIONS,
     Assumptions,
+    annual_return,
     commonwealth_scale,
     effort_per_assessment,
     measure,
@@ -45,6 +47,10 @@ from scuba_oscal.impact import (  # noqa: E402
 )
 from scuba_oscal.parsers.mappings import MappingIndex  # noqa: E402
 from scuba_oscal.parsers.scubagear import parse_run  # noqa: E402
+from scuba_oscal.transformers.catalog import OSCAL_VERSION  # noqa: E402
+from scuba_oscal.validation import CLI_UNSUPPORTED, validate_directory  # noqa: E402
+from scuba_oscal.validation import cli_available as cli_installed  # noqa: E402
+from scuba_oscal.validation import summarise as validation_summary  # noqa: E402
 
 OSCAL_DIR = ROOT / "data/oscal_out"
 SAMPLES = ROOT / "data/scubagear_samples"
@@ -57,8 +63,6 @@ st.set_page_config(page_title="SCuBA Compliance Copilot", page_icon="🛡️", l
 st.markdown(CSS, unsafe_allow_html=True)
 st.markdown(PIPELINE_CSS, unsafe_allow_html=True)
 
-
-# --------------------------------------------------------------------- loaders
 
 @st.cache_resource
 def _tools_for(directory: str) -> ComplianceTools:
@@ -75,18 +79,44 @@ def get_tools() -> ComplianceTools:
 
 
 @st.cache_resource
+def _corpus_for(directory: str) -> EvidenceCorpus:
+    return EvidenceCorpus(Path(directory))
+
+
+def get_corpus() -> EvidenceCorpus:
+    return _corpus_for(str(active_dir()))
+
+
+@st.cache_resource
 def get_index() -> MappingIndex:
     return MappingIndex(CROSSWALK, MIGRATIONS)
 
 
+# NOTE: the directory argument must NOT be underscore-prefixed. Streamlit
+# deliberately excludes underscore-prefixed arguments from the cache key, so
+# `_key` made these caches keyed on nothing -- switching between the sample and
+# an uploaded scan would have served the previous tenant's numbers. It happened
+# to work only because both switch paths call st.cache_data.clear().
 @st.cache_data
-def posture(_key: str) -> dict:
-    return json.loads(get_tools().get_posture_summary())
+def posture(directory: str) -> dict:
+    return json.loads(_tools_for(directory).get_posture_summary())
 
 
 @st.cache_data
-def failures(_key: str) -> list[dict]:
-    return json.loads(get_tools().list_failures(limit=500))["failures"]
+def failures(directory: str) -> list[dict]:
+    return json.loads(_tools_for(directory).list_failures(limit=500))["failures"]
+
+
+@st.cache_data
+def validate_schema_reports(directory: str):
+    """Live JSON Schema validation of the artifacts on screen. Milliseconds."""
+    return validate_directory(directory, use_cli=False)
+
+
+@st.cache_data
+def validate_full(directory: str):
+    """Authoritative oscal-cli validation. Seconds per document, so on demand."""
+    return validate_directory(directory, use_cli=True)
 
 
 @st.cache_data
@@ -108,7 +138,6 @@ if not (OSCAL_DIR / "scuba-m365-catalog.json").exists():
 
 data = posture(str(active_dir()))
 
-# --------------------------------------------------------------------- sidebar
 
 VIEWS = {
     "start": "🏠  Start here",
@@ -158,7 +187,8 @@ with st.sidebar:
                 st.error(result.message)
 
         if "oscal_dir" in st.session_state and st.button("Back to CISA's sample"):
-            for key in ("oscal_dir", "source_label", "upload_note", "injection_hits"):
+            for key in ("oscal_dir", "source_label", "upload_note", "injection_hits",
+                        "ask_answer", "ask_question"):
                 st.session_state.pop(key, None)
             st.cache_data.clear()
             st.rerun()
@@ -189,7 +219,6 @@ with st.sidebar:
     else:
         audience = "auditor"
 
-# ===================================================================== START
 
 if view == "start":
     st.markdown(
@@ -229,20 +258,13 @@ if view == "start":
     st.markdown("#### How it works")
     st.markdown(pipeline_html(), unsafe_allow_html=True)
     st.markdown(
-        '<div class="pipe-legend">'
-        "<span>🟢 <b>Deterministic</b> — plain Python. Same input, same output, every time.</span>"
-        "<span>🟡 <b>Gate</b> — the build fails if these do not hold.</span>"
-        "<span>🔵 <b>AI</b> — judgement, explanation and prioritisation only.</span>"
-        "</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
         explain(
-            "Why does the order matter?",
-            "Stages 2–4 contain <b>no AI at all</b>. By the time a model sees anything, the "
-            "facts are already fixed in documents that passed a government validator. The AI "
-            "reads those documents through stage 5 and cannot reach around it — which is why "
-            "it can explain a finding, but cannot invent one.",
+            "Why draw it this way?",
+            "Every compliance number on the following pages is settled before any model "
+            "loads. Ask an agent something the tools cannot answer and it has to say so "
+            "rather than guess. That is a property of the wiring rather than a promise about "
+            "the model's behaviour — which is why it is the stages above the boundary, not "
+            "the agents, that carry the test suite.",
         ),
         unsafe_allow_html=True,
     )
@@ -290,7 +312,6 @@ if view == "start":
         unsafe_allow_html=True,
     )
 
-# =================================================================== POSTURE
 
 elif view == "posture":
     st.markdown(
@@ -351,9 +372,11 @@ elif view == "posture":
                           legend=dict(orientation="h", y=-0.22), xaxis_title=None)
         st.plotly_chart(fig, use_container_width=True)
 
-    # --- exemptions: is the headline number even real? ---
+    # Only for CISA's sample: the illustrative config names sample policy IDs,
+    # so rendering it beside an uploaded tenant's figures would describe one
+    # scan with another scan's exemptions.
     config_path = SAMPLES / "scuba_config_example.yaml"
-    if config_path.exists():
+    if config_path.exists() and "oscal_dir" not in st.session_state:
         try:
             run_now = parse_run(SAMPLES / "ScubaResults_fa5589b7-d528-4f80.json")
             ledger = build_ledger(run_now, parse_config(config_path))
@@ -386,6 +409,29 @@ elif view == "posture":
                 ]),
                 unsafe_allow_html=True,
             )
+            st.markdown(
+                explain(
+                    "Why is the gap only a few points?",
+                    f"Because <b>{len(ledger.suppressed_passing)} of the "
+                    f"{len(ledger.suppressed)}</b> suppressed policies were actually "
+                    f"<b>passing</b> ({', '.join(ledger.suppressed_passing) or 'none'}) — "
+                    "omitting those <i>lowers</i> the reported rate rather than raising it. "
+                    "It would be easy to quote a bigger number by assuming every exempted "
+                    "policy failed, and it would be wrong: that is a claim about evidence "
+                    "nobody has. The figure above compares like with like — the same "
+                    f"policies, scored the same way, with the omissions put back. If you "
+                    f"<i>did</i> assume every exemption hid a failure, the rate would be "
+                    f"<b>{ledger.worst_case_rate:.1f}%</b>; we report that as a bound, not "
+                    "as the truth.",
+                ),
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                "**The distortion that matters is not the percentage.** It is that "
+                f"**{len(ledger.suppressed_mandatory)}** suppressed policies are **SHALL** "
+                "requirements — mandatory under BOD 25-01 — and that nothing in ScubaGear "
+                "reviews, approves or expires any of it."
+            )
             if ledger.expired:
                 for e in ledger.expired:
                     st.error(
@@ -401,6 +447,21 @@ elif view == "posture":
                     + ". ScubaGear warns when this happens, but still applies the omission.",
                     icon="📝",
                 )
+            if ledger.stale:
+                st.warning(
+                    "Named in the config but **not assessed in this run**: "
+                    + ", ".join(e.policy_id for e in ledger.stale)
+                    + ". These suppress nothing here — they are most likely left over "
+                    "from an earlier baseline version, and nobody has reviewed them.",
+                    icon="🗑️",
+                )
+            st.success(
+                f"All {len(ledger.exemptions)} of these are written into the POA&M as OSCAL "
+                "risks carrying a `risk-status` — `deviation-approved`, "
+                "`deviation-requested`, or `open` once expired. That is the difference "
+                "between an exclusion living in a YAML file and one an auditor can query.",
+                icon="📄",
+            )
             st.caption(
                 "Config shown is an illustrative example using CISA's documented field "
                 "names — not a real organisation's file."
@@ -415,7 +476,6 @@ elif view == "posture":
         icon="🎯",
     )
 
-# ======================================================================= FIX
 
 elif view == "fix":
     st.markdown(
@@ -645,7 +705,6 @@ elif view == "fix":
                 st.markdown("**Attack techniques this blocks**")
                 st.caption(", ".join(detail["mitre_attack"][:10]))
 
-# ======================================================================= ASK
 
 elif view == "ask":
     st.markdown(
@@ -693,27 +752,125 @@ elif view == "ask":
     question = st.text_area("Or ask your own", value=picked, height=80)
 
     if st.button("Ask  →", type="primary"):
-        from scuba_oscal.agents.orchestrator import ComplianceAssistant, FoundryConfig
+        # Both failure modes are caught and explained. This import used to sit
+        # outside the try, so running the README's own quickstart -- which
+        # installs [app,dev] and not [ai] -- answered the first click with a raw
+        # Python traceback in the middle of the page.
+        try:
+            from scuba_oscal.agents.orchestrator import ComplianceAssistant, FoundryConfig
+        except ImportError as exc:
+            st.error(
+                f"The Microsoft Foundry SDK is not installed ({exc.name}). "
+                'Install the AI extra:\n\n`pip install -e ".[ai]"`',
+                icon="📦",
+            )
+            st.info(
+                "Everything else in this app — the OSCAL documents, posture, drift, "
+                "threat coverage, Virginia obligations and the impact model — is "
+                "deterministic Python and needs no Azure connection at all.",
+                icon="ℹ️",
+            )
+            st.stop()
 
         try:
             config = FoundryConfig.from_env(ROOT / ".env")
         except RuntimeError as exc:
-            st.error(str(exc))
+            st.error(str(exc), icon="🔑")
+            st.info(
+                "No API key is needed. The AI layer authenticates as *you*, through "
+                "`az login` — copy `.env.example` to `.env`, set your Foundry project "
+                "endpoint, and sign in with the Azure CLI.",
+                icon="ℹ️",
+            )
             st.stop()
 
+        # The exemption config belongs to CISA's sample, so it is only handed to
+        # the agent when the sample is what is on screen.
+        sample_config = (
+            SAMPLES / "scuba_config_example.yaml"
+            if "oscal_dir" not in st.session_state
+            else None
+        )
+
         async def run() -> str:
-            async with ComplianceAssistant(active_dir(), config, audience=audience) as bot:
+            async with ComplianceAssistant(
+                active_dir(), config, audience=audience, config_path=sample_config
+            ) as bot:
                 return await bot.ask(question, specialist)
 
         with st.spinner("Thinking — reading the compliance documents…"):
             try:
-                st.markdown("---")
-                st.markdown(asyncio.run(run()))
-                st.caption("✅ Every fact above came from a verified document, not the AI's memory.")
+                answer = asyncio.run(run())
             except Exception as exc:
                 st.error(f"Couldn't reach Microsoft Foundry: {exc}")
+            else:
+                # Stored rather than rendered inline, so the answer — and the
+                # evidence explorer below it — survives the rerun Streamlit
+                # does on every widget interaction.
+                st.session_state["ask_answer"] = answer
+                st.session_state["ask_question"] = question
 
-# ===================================================================== DRIFT
+    if st.session_state.get("ask_answer"):
+        st.markdown("---")
+        st.caption(f"**Q:** {st.session_state.get('ask_question', '')}")
+        answer = st.session_state["ask_answer"]
+        st.markdown(answer)
+
+        # Output audit. Grounding-by-construction constrains what goes *in*
+        # to the model; this deterministically audits what came *out*: every
+        # policy ID, NIST control, ATT&CK technique and OSCAL UUID in the
+        # answer is checked against the evidence corpus. Same detector as the
+        # published eval — one piece of tested code, on screen, on every
+        # answer.
+        try:
+            audit = get_corpus().audit(answer, st.session_state.get("ask_question", ""))
+        except Exception:
+            audit = None
+        if audit is None:
+            st.caption("✅ Every fact above came from a verified document, not the AI's memory.")
+        elif audit.unsupported:
+            st.warning(
+                "**Output audit — unsupported identifiers.** These appear in the answer "
+                "but in none of the evidence this AI can read, so they came from model "
+                "memory. Do not act on them: "
+                + ", ".join(f"`{i}`" for i in audit.unsupported),
+                icon="🚨",
+            )
+        elif audit.verified:
+            note = (
+                f" ({len(audit.echoed)} more came from your question and are quoted, "
+                "not claimed as fact)"
+                if audit.echoed
+                else ""
+            )
+            st.caption(
+                f"✅ **Output audit passed** — {len(audit.verified)} identifier"
+                f"{'s' if len(audit.verified) != 1 else ''} cited, every one verified "
+                "against the validated evidence corpus. This is the same detector the "
+                f"published eval uses, run on this answer just now.{note}"
+            )
+        elif audit.echoed:
+            st.caption(
+                "Output audit: the only identifiers in this answer came from your "
+                "question — the answer quotes them without claiming them as fact."
+            )
+        else:
+            st.caption(
+                "Output audit: this answer cites no checkable identifiers. Facts still "
+                "came from tool calls, but consider asking for policy IDs."
+            )
+
+        if audit is not None and audit.verified:
+            with st.expander("🔎  Show me the evidence — trace a citation to its OSCAL source"):
+                st.caption(
+                    "Pick anything the answer cited. This locates the exact node in the "
+                    "validated OSCAL documents that carries it — the auditor's view."
+                )
+                chosen_id = st.selectbox("Cited identifier", audit.verified)
+                for ev in get_corpus().resolve(chosen_id):
+                    st.markdown(f"**{ev.document}** &nbsp; `{ev.pointer or '/'}`")
+                    st.json(ev.node, expanded=False)
+
 
 elif view == "drift":
     st.markdown(
@@ -778,7 +935,6 @@ elif view == "drift":
         for d in aware.renumbered:
             st.text(d.description)
 
-# ==================================================================== IMPACT
 
 elif view == "impact":
     st.markdown(
@@ -790,9 +946,20 @@ elif view == "impact":
         unsafe_allow_html=True,
     )
 
-    m = measure(active_dir())
+    # Phantom-drift avoidance needs two runs, so it is measured from the drift
+    # comparison rather than defaulted. An uploaded scan has no second run, and
+    # must therefore show 0 here rather than inheriting the sample's figure.
+    drift_result = drift() if "oscal_dir" not in st.session_state else None
+    phantom = drift_result[2]["total_false_events"] if drift_result else 0
+
+    m = measure(active_dir(), phantom_findings=phantom)
     st.markdown("##### Measured — counted from the generated documents")
     st.caption("Facts about what the pipeline produced. No assumptions involved.")
+    if not phantom:
+        st.caption(
+            "⚠️ Phantom drift findings show 0: that figure is measured by comparing "
+            "two runs, and only one scan is loaded. Load the sample to see it."
+        )
     rows = m.as_rows()
     for start in (0, 4):
         for col, (label, value) in zip(st.columns(4), rows[start:start + 4], strict=False):
@@ -820,6 +987,10 @@ elif view == "impact":
             "Assessment cycles per year", 1, 12, 4,
             help="Virginia's SEC530 standard requires quarterly remediation reporting",
         )
+        questions = st.slider(
+            "AI questions asked per month", 0, 2000, 200, step=50,
+            help="Drives the running cost. Assumed, not measured — like the minutes above.",
+        )
 
     a = Assumptions(
         minutes_per_poam_item=poam_min,
@@ -829,7 +1000,7 @@ elif view == "impact":
         hourly_wage=wage,
     )
     band = effort_per_assessment(m, a)
-    costs = run_cost()
+    costs = run_cost(questions_per_month=questions)
 
     st.markdown("---")
     st.markdown("##### Result")
@@ -845,15 +1016,24 @@ elif view == "impact":
         unsafe_allow_html=True,
     )
 
-    ratio = band.mid_cost / max(costs["total_monthly"], 0.01)
+    # Value and cost over the same period. Dividing a per-assessment saving by a
+    # per-month cost compares different periods and overstates the ratio ~3x at
+    # quarterly cadence.
+    ret = annual_return(band, costs["total_monthly"], cycles_per_year=cycles)
     st.success(
         # Streamlit renders $...$ as LaTeX math, so dollar signs in prose are escaped.
-        f"**Roughly {ratio:,.0f}x return.** One assessment cycle replaces about "
-        f"\\${band.mid_cost:,.0f} of analyst time; running the whole system costs "
-        f"\\${costs['total_monthly']:.2f} a month. The deterministic pipeline is local "
-        "computation and Azure AI Search runs on the free tier, so almost all of that "
-        "cost is the AI questions.",
+        f"**Roughly {ret['ratio']:,.0f}x return, annualised.** At {cycles} assessment "
+        f"{'cycle' if cycles == 1 else 'cycles'} a year this replaces about "
+        f"\\${ret['annual_value']:,.0f} of analyst time, against \\${ret['annual_cost']:,.2f} "
+        f"a year to run (\\${costs['total_monthly']:.2f}/month × 12). The deterministic "
+        "pipeline is local computation and Azure AI Search runs on the free tier, so "
+        "almost all of that cost is the AI questions.",
         icon="💡",
+    )
+    st.caption(
+        f"Per cycle: \\${band.mid_cost:,.0f} of analyst time replaced. Both sides of the "
+        "ratio cover the same twelve months — a per-cycle saving over a per-month cost "
+        "would look about three times better and would not mean anything."
     )
 
     with st.expander("Where each hour goes"):
@@ -887,8 +1067,6 @@ elif view == "impact":
         icon="🏛️",
     )
 
-
-# ====================================================================== DOCS
 
 else:
     st.markdown(
@@ -930,7 +1108,122 @@ else:
 
     st.dataframe(pd.DataFrame(rows).drop(columns="_file"),
                  use_container_width=True, hide_index=True)
-    st.success(f"✅ All {len(rows)} documents pass NIST's official OSCAL validator.", icon="🏛️")
+
+    # Validate for real, here, now — rather than asserting it in a string.
+    # JSON Schema runs in milliseconds so it is always live; oscal-cli needs a
+    # JVM and several seconds per document, so it is offered on demand and its
+    # result is reported separately. Conflating the two tiers would overstate
+    # what has actually been checked on this page.
+    schema_reports = validate_schema_reports(str(active_dir()))
+    schema_ok = sum(1 for r in schema_reports if r.schema_valid)
+    cli_na = sum(1 for r in schema_reports if r.model in CLI_UNSUPPORTED)
+
+    if schema_ok == len(schema_reports):
+        st.success(
+            f"✅ Checked just now: all {schema_ok} documents validate against NIST's "
+            f"OSCAL {OSCAL_VERSION} JSON Schema.",
+            icon="🏛️",
+        )
+    else:
+        st.error(
+            f"{len(schema_reports) - schema_ok} of {len(schema_reports)} documents "
+            "failed JSON Schema validation.",
+            icon="🚨",
+        )
+        for report in schema_reports:
+            if not report.schema_valid:
+                st.code(f"{report.path.name}\n" + "\n".join(report.errors[:5]))
+
+    st.caption(
+        f"JSON Schema is the fast tier. The authoritative tier is NIST's `oscal-cli`, which "
+        f"also enforces Metaschema constraints — cardinality, cross-reference resolution and "
+        f"allowed-value sets — that JSON Schema cannot express. CI runs it on every push. "
+        f"{cli_na} of these documents (`mapping-collection`) cannot be checked by it: "
+        f"oscal-cli 3.2.0 has no `mapping` command, because the Control Mapping model is new "
+        f"in OSCAL 1.2."
+    )
+
+    # The hashes live inside the documents' own metadata, not in this app —
+    # so the claim survives the artifact leaving this screen.
+    cat_path = active_dir() / "scuba-m365-catalog.json"
+    prov = []
+    if cat_path.exists():
+        meta = json.loads(cat_path.read_text())["catalog"]["metadata"]
+        prov = [p for p in meta.get("props", []) if p["name"] == "source-sha256"]
+    if prov:
+        st.markdown("##### Where did this evidence come from?")
+        st.markdown(
+            explain(
+                "Provenance you can re-check",
+                "Every document above carries, <b>inside its own metadata</b>, the "
+                "SHA-256 of each input it was generated from. Hash the scan you were "
+                "given and compare: if the digests match, this OSCAL set came from "
+                "exactly that scan — not an edited copy, not a different tenant.",
+            ),
+            unsafe_allow_html=True,
+        )
+        st.dataframe(
+            pd.DataFrame([
+                {"Input": p.get("class", ""), "SHA-256": p["value"]} for p in prov
+            ]),
+            use_container_width=True, hide_index=True,
+        )
+
+    # ScubaGear and the baseline documents version independently; a scan can
+    # assess a policy the baseline set no longer defines. Saying so beats
+    # silently narrowing the catalog join.
+    store = get_tools().store
+    obs_ids = {
+        next((p["value"] for p in o.get("props", []) if p["name"] == "scuba-policy-id"), "")
+        .lower()
+        for o in store.observations
+    }
+    skew = sorted(i for i in obs_ids if i and i not in store.controls)
+    if skew:
+        st.warning(
+            f"**Version skew** — {len(skew)} assessed polic"
+            f"{'ies are' if len(skew) != 1 else 'y is'} absent from the baseline "
+            "catalog (the scanner and baselines are from different releases): "
+            + ", ".join(f"`{i.upper()}`" for i in skew[:10]),
+            icon="⚠️",
+        )
+    else:
+        st.caption(
+            "Version-skew check: every policy the scan assessed exists in the baseline "
+            "catalog — the scanner and the baselines agree on what was tested."
+        )
+
+    if cli_installed():
+        if st.button("🏛️  Run NIST oscal-cli validation now (~10s)"):
+            with st.spinner("Running oscal-cli with full Metaschema constraints…"):
+                full = validate_full(str(active_dir()))
+            counts = validation_summary(full)
+            if counts["failed"]:
+                st.error(f"{counts['failed']} document(s) failed.", icon="🚨")
+            else:
+                st.success(
+                    f"✅ {counts['cli_valid']}/{counts['documents']} passed full oscal-cli "
+                    f"Metaschema validation; {counts['cli_not_applicable']} schema-only "
+                    f"(unsupported model). No failures.",
+                    icon="🏛️",
+                )
+            st.dataframe(
+                pd.DataFrame([
+                    {
+                        "Document": r.path.name,
+                        "OSCAL model": r.model,
+                        "JSON Schema": "pass" if r.schema_valid else "FAIL",
+                        "oscal-cli": {True: "pass", False: "FAIL", None: "n/a"}[r.cli_valid],
+                    }
+                    for r in full
+                ]),
+                use_container_width=True, hide_index=True,
+            )
+    else:
+        st.caption(
+            "`oscal-cli` is not installed locally — run `./scripts/install_tools.sh` to "
+            "re-run the authoritative validation here."
+        )
 
     chosen = st.selectbox("Download or inspect one",
                           [f"{r['Document']} — {r['_file']}" for r in rows])

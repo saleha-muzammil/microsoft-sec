@@ -3,30 +3,54 @@
     "uuid": "cc833f23-833a-5458-a9c0-3ed3a4289d81",
     "metadata": {
       "title": "CISA SCuBA to NIST SP 800-53 Rev 5 Control Mapping",
-      "last-modified": "2026-09-23T04:05:59.382Z",
+      "last-modified": "2026-05-04T17:15:48.307Z",
       "version": "1.0.0",
       "oscal-version": "1.2.3",
       "props": [
         {
           "name": "authoritative-mappings",
-          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
-          "value": "84"
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "value": "89"
         },
         {
           "name": "ai-proposed-mappings",
-          "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
           "value": "0"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-results",
+          "value": "8746a9ea9142d04ed80f957bf6cdc57e950da6fa9def1b1f16b79886311dee64"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scuba-baselines",
+          "value": "25c5c6aa260a1dfa911cf18f91a715241a70fd60721d117129207630cb8349bf"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "nist-crosswalk",
+          "value": "d6a5d4a8880e325ebc34d5f6344e89018ba444336edca76def9622c68fea4ed8"
+        },
+        {
+          "name": "source-sha256",
+          "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+          "class": "scubagear-config",
+          "value": "14204f106bc730af2b4ceb7a470b0156d7a1572783b73a32a5f58b15caf65022"
         }
       ]
     },
     "provenance": {
-      "method": "hybrid",
+      "method": "automation",
       "matching-rationale": "semantic",
       "status": "not-complete",
-      "mapping-description": "Derived from CISA's published SCuBA to NIST SP 800-53 Rev 5 (FedRAMP High) crosswalk, with policy identifiers resolved through CISA's baseline migration table where they changed between baseline versions. Mappings CISA has not published are marked ai-proposed and carry a numeric confidence score; they are never merged into the authoritative set.",
+      "mapping-description": "Derived from CISA's published SCuBA to NIST SP 800-53 Rev 5 (FedRAMP High) crosswalk, with policy identifiers resolved through CISA's baseline migration table where they changed between baseline versions. Every mapping in this document is CISA's own; none is model-generated or inferred. Policies CISA has not mapped are omitted rather than guessed at.",
       "coverage": {
         "generation-method": "ratio of SCuBA policies with a resolved NIST mapping",
-        "target-coverage": 0.913
+        "target-coverage": 0.9674
       }
     },
     "mappings": [
@@ -63,17 +87,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.1.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               }
             ],
@@ -105,22 +129,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(12)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(13)"
               }
             ],
@@ -148,17 +172,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(12)"
               }
             ],
@@ -190,22 +214,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.2.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(12)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(13)"
               }
             ],
@@ -249,37 +273,37 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(1)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(2)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5c"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5g"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(8)"
               }
             ],
@@ -311,22 +335,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.2v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(1)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(2)"
               }
             ],
@@ -374,42 +398,42 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.3v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(1)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(2)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5c"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5g"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(8)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(13)"
               }
             ],
@@ -437,17 +461,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.4v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               }
             ],
@@ -479,22 +503,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.5v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7b"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5c"
               }
             ],
@@ -534,32 +558,32 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.6v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(1)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5c"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5g"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-2(8)"
               }
             ],
@@ -591,22 +615,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.7v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-20b"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-3"
               }
             ],
@@ -638,22 +662,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.8v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-20b"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-3"
               }
             ],
@@ -681,17 +705,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.3.9v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               }
             ],
@@ -719,17 +743,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.4.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AU-4"
               }
             ],
@@ -761,22 +785,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-5"
               }
             ],
@@ -808,22 +832,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-5"
               }
             ],
@@ -851,17 +875,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.5.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-4"
               }
             ],
@@ -889,17 +913,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.6.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-5(1)"
               }
             ],
@@ -927,17 +951,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(5)"
               }
             ],
@@ -965,17 +989,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-5"
               }
             ],
@@ -1003,17 +1027,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(5)"
               }
             ],
@@ -1041,17 +1065,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.4v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2"
               }
             ],
@@ -1079,17 +1103,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.5v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2"
               }
             ],
@@ -1117,17 +1141,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.6v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(1)"
               }
             ],
@@ -1155,17 +1179,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.7v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2(1)"
               }
             ],
@@ -1193,17 +1217,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.8v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(9)"
               }
             ],
@@ -1231,17 +1255,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.7.9v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(9)"
               }
             ],
@@ -1269,17 +1293,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6"
               }
             ],
@@ -1307,17 +1331,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               }
             ],
@@ -1345,21 +1369,261 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.AAD.8.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               }
             ],
             "remarks": "Direct entry in CISA's published SCuBA to NIST SP 800-53 Rev 5 crosswalk."
+          },
+          {
+            "uuid": "050b9337-c5ca-5b0f-a5ce-8c56ff5d3fc0",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.1.1v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.DEFENDER.1.1v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.1.1v1 was superseded by the range MS.SECURITYSUITE.1.1v1-MS.SECURITYSUITE.1.4v1; every policy in that range carries the same CISA crosswalk entry, so it applies unambiguously."
+          },
+          {
+            "uuid": "691b6efe-63e3-54f9-b690-07cd5d1eefa2",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.1.2v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.DEFENDER.1.2v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.1.2v1 was superseded by the range MS.SECURITYSUITE.1.1v1-MS.SECURITYSUITE.1.4v1; every policy in that range carries the same CISA crosswalk entry, so it applies unambiguously."
+          },
+          {
+            "uuid": "f442ffa7-1815-57b2-ba9d-398c6838990f",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.1.3v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.DEFENDER.1.3v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.1.3v1 was superseded by the range MS.SECURITYSUITE.1.1v1-MS.SECURITYSUITE.1.4v1; every policy in that range carries the same CISA crosswalk entry, so it applies unambiguously."
+          },
+          {
+            "uuid": "f5610fb6-eabe-5c5a-98b6-0461d027a9b6",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.1.4v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.DEFENDER.1.4v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.1.4v1 was superseded by the range MS.SECURITYSUITE.1.1v1-MS.SECURITYSUITE.1.4v1; every policy in that range carries the same CISA crosswalk entry, so it applies unambiguously."
+          },
+          {
+            "uuid": "ef3a1a81-c8f6-5c27-945a-2a0a5da5c5fb",
+            "relationship": "subset-of",
+            "matching-rationale": "semantic",
+            "confidence-score": {
+              "category": "authoritative"
+            },
+            "sources": [
+              {
+                "type": "control",
+                "id-ref": "ms.defender.1.5v1"
+              }
+            ],
+            "targets": [
+              {
+                "type": "control",
+                "id-ref": "si-3"
+              }
+            ],
+            "props": [
+              {
+                "name": "provenance",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "cisa-authoritative-migrated"
+              },
+              {
+                "name": "scuba-policy-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.DEFENDER.1.5v1"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3"
+              },
+              {
+                "name": "source-control-id",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "SI-3a"
+              },
+              {
+                "name": "migrated-to",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
+                "value": "MS.SECURITYSUITE.1.1v1"
+              }
+            ],
+            "remarks": "MS.DEFENDER.1.5v1 was superseded by the range MS.SECURITYSUITE.1.1v1-MS.SECURITYSUITE.1.4v1; every policy in that range carries the same CISA crosswalk entry, so it applies unambiguously."
           },
           {
             "uuid": "29f2afb1-fd42-5fce-92ae-e154822b5016",
@@ -1383,22 +1647,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.2.1v1"
               }
             ],
@@ -1426,22 +1690,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.2.2v1"
               }
             ],
@@ -1469,22 +1733,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.2.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.2.3v1"
               }
             ],
@@ -1512,22 +1776,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.3.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-3a"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.1.4v1"
               }
             ],
@@ -1555,22 +1819,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.1v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.3.1v1"
               }
             ],
@@ -1598,22 +1862,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.3.2v1"
               }
             ],
@@ -1641,22 +1905,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.3.3v1"
               }
             ],
@@ -1684,22 +1948,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.4v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AT-2b"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.3.4v1"
               }
             ],
@@ -1727,22 +1991,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.4.6v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-19a"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.3.5v1"
               }
             ],
@@ -1770,22 +2034,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.5.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-4(5)"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.4.1v1"
               }
             ],
@@ -1813,22 +2077,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.5.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-4(5)"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.4.2v1"
               }
             ],
@@ -1856,22 +2120,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.6.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AU-12"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.5.1v1"
               }
             ],
@@ -1899,22 +2163,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative-migrated"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.DEFENDER.6.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AU-11"
               },
               {
                 "name": "migrated-to",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SECURITYSUITE.5.2v1"
               }
             ],
@@ -1942,17 +2206,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.1.1v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-4"
               }
             ],
@@ -1980,17 +2244,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.2.2v3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2d"
               }
             ],
@@ -2018,17 +2282,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.3.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-8"
               }
             ],
@@ -2056,17 +2320,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               }
             ],
@@ -2094,17 +2358,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               }
             ],
@@ -2132,17 +2396,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-4(5)"
               }
             ],
@@ -2170,17 +2434,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.4.4v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-4(5)"
               }
             ],
@@ -2208,17 +2472,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.5.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               }
             ],
@@ -2250,22 +2514,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)(a)"
               }
             ],
@@ -2297,22 +2561,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.6.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)(a)"
               }
             ],
@@ -2340,17 +2604,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.7.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               }
             ],
@@ -2378,17 +2642,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.EXO.13.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AU-12c"
               }
             ],
@@ -2416,17 +2680,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               }
             ],
@@ -2454,17 +2718,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.1.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               }
             ],
@@ -2492,17 +2756,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)"
               }
             ],
@@ -2530,17 +2794,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.2.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)"
               }
             ],
@@ -2572,22 +2836,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.3.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(5)"
               }
             ],
@@ -2619,22 +2883,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.3.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(5)"
               }
             ],
@@ -2662,17 +2926,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.4.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-10"
               }
             ],
@@ -2700,17 +2964,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.POWERPLATFORM.5.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               }
             ],
@@ -2746,27 +3010,27 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-8"
               }
             ],
@@ -2802,27 +3066,27 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "IA-8"
               }
             ],
@@ -2854,22 +3118,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.1.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6(10)"
               }
             ],
@@ -2897,17 +3161,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6"
               }
             ],
@@ -2935,17 +3199,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.2.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6"
               }
             ],
@@ -2977,22 +3241,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-21b"
               }
             ],
@@ -3020,17 +3284,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.SHAREPOINT.3.2v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-6"
               }
             ],
@@ -3058,17 +3322,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-17a"
               }
             ],
@@ -3096,17 +3360,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.2v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-15a"
               }
             ],
@@ -3134,17 +3398,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.3v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-15a"
               }
             ],
@@ -3172,17 +3436,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.4v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               }
             ],
@@ -3210,17 +3474,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.5v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-15a"
               }
             ],
@@ -3248,17 +3512,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.6v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               }
             ],
@@ -3286,17 +3550,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.1.7v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-21a"
               }
             ],
@@ -3324,17 +3588,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.1v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-3"
               }
             ],
@@ -3366,22 +3630,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.2v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               }
             ],
@@ -3413,22 +3677,22 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.2.3v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-7"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)(a)"
               }
             ],
@@ -3464,27 +3728,27 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.4.1v1"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SI-8"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "SC-7(10)(a)"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "AC-4"
               }
             ],
@@ -3512,17 +3776,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.1v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-11"
               }
             ],
@@ -3550,17 +3814,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.2v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-11"
               }
             ],
@@ -3588,17 +3852,17 @@
             "props": [
               {
                 "name": "provenance",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "cisa-authoritative"
               },
               {
                 "name": "scuba-policy-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "MS.TEAMS.5.3v2"
               },
               {
                 "name": "source-control-id",
-                "ns": "https://github.com/cisagov/ScubaGear/ns/oscal",
+                "ns": "https://scuba-oscal.cci-va.dev/ns/oscal",
                 "value": "CM-11"
               }
             ],

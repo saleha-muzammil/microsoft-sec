@@ -66,10 +66,26 @@ class Exemption:
 class ExemptionLedger:
     exemptions: list[Exemption] = field(default_factory=list)
     assessed_total: int = 0
+    assessed_pass: int = 0
     reported_total: int = 0
     reported_pass: int = 0
     suppressed: list[str] = field(default_factory=list)
     suppressed_mandatory: list[str] = field(default_factory=list)
+    suppressed_passing: list[str] = field(default_factory=list)
+    #: Every policy the run actually assessed. Kept so a config entry naming a
+    #: policy that was never assessed can be reported as exactly that, rather
+    #: than as an exclusion it did not cause.
+    assessed_ids: frozenset[str] = frozenset()
+
+    @property
+    def stale(self) -> list[Exemption]:
+        """Config entries for policies this run never assessed.
+
+        Neither harmless nor an exclusion: the policy is not in the report, so
+        the entry suppresses nothing, but it is still an un-reviewed statement
+        about a control -- usually a leftover from an older baseline version.
+        """
+        return [e for e in self.exemptions if e.policy_id not in self.assessed_ids]
 
     @property
     def expired(self) -> list[Exemption]:
@@ -86,12 +102,36 @@ class ExemptionLedger:
 
     @property
     def true_rate(self) -> float:
-        """Rate over every assessed policy, counting exempted ones as unmet."""
+        """Rate over every assessed policy, using each policy's actual result.
+
+        This is the number the exemptions are hiding, and it is the only one
+        directly comparable to ``reported_rate``: same population, same
+        scoring, the omissions simply put back. A policy ScubaGear genuinely
+        did not evaluate carries no ``Pass``, so it lands in the denominator
+        without helping the numerator -- which is the correct treatment and
+        needs no special case.
+        """
+        return 100 * self.assessed_pass / self.assessed_total if self.assessed_total else 0.0
+
+    @property
+    def worst_case_rate(self) -> float:
+        """Rate if every exempted policy were assumed non-compliant.
+
+        A deliberately conservative bound, reported *separately* rather than
+        as "the true rate". Asserting that an exempted policy fails is a claim
+        about evidence we do not have, and on this data it would be wrong: see
+        :attr:`suppressed_passing`.
+        """
         return 100 * self.reported_pass / self.assessed_total if self.assessed_total else 0.0
 
     @property
     def inflation(self) -> float:
-        """Percentage points the exemptions add to the headline number."""
+        """Percentage points the exemptions add to the headline number.
+
+        Measured against :attr:`true_rate`, so it isolates the effect of the
+        *mechanism* -- shrinking the denominator -- from the unrelated question
+        of how the omitted policies would have scored.
+        """
         return self.reported_rate - self.true_rate
 
 
@@ -158,10 +198,20 @@ def build_ledger(
     return ExemptionLedger(
         exemptions=exemptions,
         assessed_total=len(assessed),
+        assessed_pass=sum(1 for p in assessed if p.result is Result.PASS),
         reported_total=len(reported),
         reported_pass=sum(1 for p in reported if p.result is Result.PASS),
         suppressed=suppressed,
         suppressed_mandatory=sorted(p for p in suppressed if p in mandatory),
+        # Omitting a *passing* policy lowers the reported rate rather than
+        # raising it, so these are worth naming: they are the reason a blanket
+        # "exempted means failing" assumption overstates the distortion.
+        suppressed_passing=sorted(
+            p.policy_id
+            for p in assessed
+            if p.policy_id in omitted and p.result is Result.PASS
+        ),
+        assessed_ids=frozenset(p.policy_id for p in assessed),
     )
 
 
@@ -179,6 +229,7 @@ def to_oscal_risks(ledger: ExemptionLedger, run_id: str, today: date | None = No
     risks = []
     for exemption in ledger.exemptions:
         expired = exemption.is_expired(today)
+        assessed = exemption.policy_id in ledger.assessed_ids
         props = [
             {"name": "scuba-policy-id", "ns": SCUBA_NS, "value": exemption.policy_id},
             {"name": "exemption-kind", "ns": SCUBA_NS, "value": exemption.kind},
@@ -186,6 +237,12 @@ def to_oscal_risks(ledger: ExemptionLedger, run_id: str, today: date | None = No
                 "name": "suppresses-mandatory",
                 "ns": SCUBA_NS,
                 "value": "true" if exemption.policy_id in ledger.suppressed_mandatory else "false",
+            },
+            # Whether this entry actually did anything to this run's figures.
+            {
+                "name": "policy-assessed",
+                "ns": SCUBA_NS,
+                "value": "true" if assessed else "false",
             },
         ]
         if exemption.expiration:
@@ -203,15 +260,37 @@ def to_oscal_risks(ledger: ExemptionLedger, run_id: str, today: date | None = No
             )
         elif not exemption.has_rationale:
             statement += " ScubaGear warns when a rationale is omitted."
+        if not assessed:
+            statement += (
+                " This run did not assess the policy, so the entry changed nothing here; "
+                "it is most likely left over from an earlier baseline version."
+            )
+
+        # The description must say what this entry actually does. An annotation
+        # attaches a comment; only an omission removes the policy from the
+        # reported figure, and neither does anything if the policy was never
+        # assessed. Describing all three as an exclusion would misreport two.
+        if not assessed:
+            description = (
+                f"{exemption.policy_id} is named by the ScubaGear configuration but was "
+                f"not assessed in this run."
+            )
+        elif exemption.kind == "omission":
+            description = (
+                f"{exemption.policy_id} is excluded from the reported compliance "
+                f"figure by the ScubaGear configuration."
+            )
+        else:
+            description = (
+                f"{exemption.policy_id} carries an annotation in the ScubaGear "
+                f"configuration. It remains in the reported compliance figure."
+            )
 
         risks.append(
             {
                 "uuid": det_uuid("exemption", run_id, exemption.policy_id),
                 "title": _line(f"Exemption for {exemption.policy_id}"),
-                "description": _line(
-                    f"{exemption.policy_id} is excluded from the reported compliance "
-                    f"figure by the ScubaGear configuration."
-                ),
+                "description": _line(description),
                 "statement": _line(statement),
                 "props": props,
                 "status": exemption.status(today),

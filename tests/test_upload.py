@@ -30,8 +30,6 @@ def run_upload(raw: bytes):
     return process_upload(raw, BASELINES, MAPPINGS)
 
 
-# ------------------------------------------------------------------ happy path
-
 def test_uploading_the_sample_produces_valid_oscal():
     result = run_upload(SAMPLE.read_bytes())
     assert result.ok, result.message
@@ -60,8 +58,6 @@ def test_a_different_scan_produces_different_results():
     assert result.failures > baseline.failures, "flipping passes to fails must add failures"
 
 
-# -------------------------------------------------------------------- rejection
-
 @pytest.mark.parametrize(
     "payload,fragment",
     [
@@ -88,8 +84,6 @@ def test_utf8_bom_is_accepted():
     assert SAMPLE.read_bytes()[:3] == b"\xef\xbb\xbf"
     assert run_upload(SAMPLE.read_bytes()).ok
 
-
-# ------------------------------------------------------------------- injection
 
 @pytest.mark.parametrize(
     "hostile",

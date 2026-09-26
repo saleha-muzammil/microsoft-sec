@@ -97,9 +97,14 @@ def validate_schema(doc: dict, model: str | None = None) -> list[str]:
     ]
 
 
+def cli_available() -> bool:
+    """Whether the NIST-compatible validator is installed locally."""
+    return OSCAL_CLI.exists()
+
+
 def validate_cli(path: Path) -> tuple[bool, list[str]]:
     """Validate with oscal-cli. Returns (ok, error lines)."""
-    if not OSCAL_CLI.exists():
+    if not cli_available():
         raise FileNotFoundError(
             f"oscal-cli not installed at {OSCAL_CLI}. Run scripts/install_tools.sh"
         )
@@ -109,9 +114,14 @@ def validate_cli(path: Path) -> tuple[bool, list[str]]:
         text=True,
     )
     combined = proc.stdout + proc.stderr
-    if "is valid" in combined:
+    # Both conditions, deliberately. A zero exit code alone would treat a
+    # usage error as success, and the "is valid" banner alone would treat a
+    # crash that happened to echo the phrase as success.
+    if proc.returncode == 0 and "is valid" in combined:
         return True, []
     errors = [ln.strip() for ln in combined.splitlines() if "ERROR" in ln or "FATAL" in ln]
+    if not errors:
+        errors = [f"oscal-cli exited {proc.returncode} without reporting the document valid"]
     return False, errors[:10]
 
 
@@ -133,3 +143,29 @@ def validate_file(path: str | Path, use_cli: bool = True) -> ValidationReport:
         cli_valid=cli_valid,
         errors=schema_errors[:10] + cli_errors,
     )
+
+
+def validate_directory(directory: str | Path, use_cli: bool = True) -> list[ValidationReport]:
+    """Validate every OSCAL document in ``directory``, sorted by filename.
+
+    ``use_cli`` silently degrades to schema-only when oscal-cli is not
+    installed, so a caller that merely wants a status display does not have to
+    care; the per-document report still records ``cli_valid is None``, which is
+    rendered as ``cli:n/a`` rather than as a pass.
+    """
+    with_cli = use_cli and cli_available()
+    return [
+        validate_file(path, use_cli=with_cli)
+        for path in sorted(Path(directory).glob("*.json"))
+    ]
+
+
+def summarise(reports: list[ValidationReport]) -> dict[str, int]:
+    """Counts a UI can state without overstating: schema vs full Metaschema."""
+    return {
+        "documents": len(reports),
+        "schema_valid": sum(1 for r in reports if r.schema_valid),
+        "cli_valid": sum(1 for r in reports if r.cli_valid is True),
+        "cli_not_applicable": sum(1 for r in reports if r.cli_valid is None),
+        "failed": sum(1 for r in reports if not r.ok),
+    }

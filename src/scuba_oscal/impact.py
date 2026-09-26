@@ -25,8 +25,6 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# ---------------------------------------------------------------- public data
-
 #: Virginia mean hourly wage, Information Security Analysts (SOC 15-1212),
 #: BLS Occupational Employment and Wage Statistics via O*NET, 2025.
 VA_ANALYST_HOURLY_WAGE = 62.11
@@ -36,11 +34,18 @@ VA_ANALYST_HOURLY_WAGE = 62.11
 LOADED_RATE_MULTIPLIER = 1.3
 
 #: Virginia public institutions running Microsoft 365, from primary sources.
+#:
+#: SCHEV counts *39 public institutions* in total: 15 four-year, 23 community
+#: colleges, and Richard Bland College. An earlier version of this table
+#: labelled that 39 as "public four-year institutions" and then added the 23
+#: community colleges alongside it, double-counting them and inflating the
+#: Commonwealth total from 303 to 326.
 VA_INSTITUTIONS = {
     "K-12 school divisions": 131,
     "Counties and independent cities": 133,
-    "Public four-year institutions": 39,
+    "Public four-year institutions": 15,
     "Community colleges": 23,
+    "Richard Bland College": 1,
 }
 
 SOURCES = {
@@ -50,12 +55,11 @@ SOURCES = {
                   "https://www.doe.virginia.gov/about-vdoe/virginia-school-directories"),
     "localities": ("95 counties + 38 independent cities",
                    "https://en.wikipedia.org/wiki/List_of_cities_and_counties_in_Virginia"),
-    "highered": ("Virginia State Council of Higher Education",
+    "highered": ("Virginia State Council of Higher Education — 39 public institutions: "
+                 "15 four-year, 23 community colleges, Richard Bland College",
                  "https://www.schev.edu/students/applying-for-college/colleges-universities"),
 }
 
-
-# --------------------------------------------------------------- measurements
 
 @dataclass(frozen=True)
 class Measured:
@@ -83,8 +87,20 @@ class Measured:
         ]
 
 
-def measure(oscal_dir: str | Path, phantom_findings: int = 26) -> Measured:
-    """Count artifact volume from a generated OSCAL document set."""
+def measure(oscal_dir: str | Path, phantom_findings: int = 0) -> Measured:
+    """Count artifact volume from a generated OSCAL document set.
+
+    :param phantom_findings: false drift events avoided, which requires *two*
+        runs to compute and therefore cannot be read out of one document set.
+        The caller passes the figure it actually measured.
+
+        This defaults to 0 rather than to the sample's 26 on purpose. A default
+        of 26 meant the "Measured" table -- explicitly captioned "no
+        assumptions involved" -- reported a literal, and reported it even for
+        an uploaded tenant with no second run to compare against. A number you
+        cannot derive from the inputs in front of you does not belong in that
+        table unless someone hands it to you.
+    """
     directory = Path(oscal_dir)
 
     def load(name: str) -> dict:
@@ -116,8 +132,6 @@ def measure(oscal_dir: str | Path, phantom_findings: int = 26) -> Measured:
         phantom_findings_avoided=phantom_findings,
     )
 
-
-# ---------------------------------------------------------------- assumptions
 
 @dataclass
 class Assumptions:
@@ -152,8 +166,6 @@ class Assumptions:
             ("Loaded-cost multiplier", f"{self.loaded_multiplier:.2f}x"),
         ]
 
-
-# ------------------------------------------------------------------- the model
 
 @dataclass(frozen=True)
 class EffortBand:
@@ -200,21 +212,31 @@ def effort_per_assessment(measured: Measured, assumptions: Assumptions | None = 
     )
 
 
-# --------------------------------------------------------------- running costs
-
-#: Azure list prices, USD per 1M tokens, gpt-5-mini (GlobalStandard).
+#: Azure list prices, USD per 1M tokens, gpt-5-mini (GlobalStandard). These are
+#: published figures, not estimates.
 GPT5_MINI_INPUT_PER_1M = 0.25
 GPT5_MINI_OUTPUT_PER_1M = 2.00
 
-#: Measured from our own evaluation run: 15 grounded questions with tool calls.
-TYPICAL_INPUT_TOKENS_PER_QUESTION = 6_000
-TYPICAL_OUTPUT_TOKENS_PER_QUESTION = 800
+#: **Assumed**, not measured. A grounded answer is one question plus a few tool
+#: round-trips carrying JSON from the artifacts, which puts it in this range --
+#: but the eval harness does not record token usage, so we do not have a
+#: measurement and will not label one. Adjustable, like every other assumption
+#: in this module.
+ASSUMED_INPUT_TOKENS_PER_QUESTION = 6_000
+ASSUMED_OUTPUT_TOKENS_PER_QUESTION = 800
+
+#: Also assumed: how heavily a team queries the assistant.
+ASSUMED_QUESTIONS_PER_MONTH = 200
 
 
-def run_cost(questions_per_month: int = 200) -> dict[str, float]:
+def run_cost(
+    questions_per_month: int = ASSUMED_QUESTIONS_PER_MONTH,
+    input_tokens: int = ASSUMED_INPUT_TOKENS_PER_QUESTION,
+    output_tokens: int = ASSUMED_OUTPUT_TOKENS_PER_QUESTION,
+) -> dict[str, float]:
     """What it costs to operate, so the saving can be stated as a net."""
-    input_cost = questions_per_month * TYPICAL_INPUT_TOKENS_PER_QUESTION / 1e6 * GPT5_MINI_INPUT_PER_1M
-    output_cost = questions_per_month * TYPICAL_OUTPUT_TOKENS_PER_QUESTION / 1e6 * GPT5_MINI_OUTPUT_PER_1M
+    input_cost = questions_per_month * input_tokens / 1e6 * GPT5_MINI_INPUT_PER_1M
+    output_cost = questions_per_month * output_tokens / 1e6 * GPT5_MINI_OUTPUT_PER_1M
     return {
         "ai_questions": round(input_cost + output_cost, 2),
         # The deterministic pipeline is pure local computation.
@@ -222,6 +244,26 @@ def run_cost(questions_per_month: int = 200) -> dict[str, float]:
         # Azure AI Search Free tier is sufficient for 127 baseline policies.
         "search": 0.0,
         "total_monthly": round(input_cost + output_cost, 2),
+    }
+
+
+def annual_return(
+    band: EffortBand, monthly_cost: float, cycles_per_year: int = 4
+) -> dict[str, float]:
+    """Value and cost over the same period, so the ratio means something.
+
+    Dividing a per-*assessment* saving by a per-*month* cost compares two
+    different periods and overstates the ratio by roughly 3x at quarterly
+    cadence. Both sides are annualised here: assessments happen
+    ``cycles_per_year`` times, the platform is paid for all twelve months.
+    """
+    value = band.mid_cost * cycles_per_year
+    cost = monthly_cost * 12
+    return {
+        "cycles_per_year": cycles_per_year,
+        "annual_value": value,
+        "annual_cost": cost,
+        "ratio": value / cost if cost else float("inf"),
     }
 
 

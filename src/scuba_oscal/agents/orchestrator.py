@@ -127,8 +127,14 @@ class FoundryConfig:
 class ComplianceAssistant:
     """Builds and runs the Foundry agents against a generated OSCAL set."""
 
-    def __init__(self, oscal_dir: str | Path, config: FoundryConfig, audience: str = "auditor"):
-        self.tools = ComplianceTools(oscal_dir)
+    def __init__(
+        self,
+        oscal_dir: str | Path,
+        config: FoundryConfig,
+        audience: str = "auditor",
+        config_path: str | Path | None = None,
+    ):
+        self.tools = ComplianceTools(oscal_dir, config_path=config_path)
         self.config = config
         self.audience = audience if audience in AUDIENCE_STYLES else "auditor"
         self._credential = None
@@ -181,19 +187,21 @@ class ComplianceAssistant:
             tools=tools,
         )
 
-    # ------------------------------------------------------------ specialists
-
     def posture_agent(self) -> Agent:
         return self._agent(
             "PostureAnalyst",
             "You answer questions about the tenant's current SCuBA compliance posture "
-            "and explain what individual SCuBA policies require.",
+            "and explain what individual SCuBA policies require. If asked whether the "
+            "compliance figure is trustworthy, call get_exemptions: policies omitted by "
+            "configuration leave the denominator, so the headline rate can be moved "
+            "without fixing anything.",
             [
                 self.tools.get_posture_summary,
                 self.tools.get_control_details,
                 self.tools.search_controls,
                 self.tools.get_nist_mapping,
                 self.tools.get_threat_coverage,
+                self.tools.get_exemptions,
             ],
         )
 
@@ -205,13 +213,17 @@ class ComplianceAssistant:
             "blast radius. Always call get_threat_coverage and rank_fixes_by_threat "
             "before answering: compliance severity and threat coverage give different "
             "orderings, and the difference is usually the most useful thing you can "
-            "tell someone. Explain your ranking; never simply restate severity.",
+            "tell someone. Explain your ranking; never simply restate severity. For a "
+            "Virginia public body, call get_virginia_obligations: a failure that is also "
+            "a SEC530 obligation carries a Commonwealth duty that a federal-only one "
+            "does not, and that changes the ordering.",
             [
                 self.tools.list_failures,
                 self.tools.get_control_details,
                 self.tools.get_posture_summary,
                 self.tools.get_threat_coverage,
                 self.tools.rank_fixes_by_threat,
+                self.tools.get_virginia_obligations,
             ],
         )
 
@@ -232,12 +244,17 @@ class ComplianceAssistant:
             "call get_posture_summary before writing, and always include the "
             "concrete figures it returns - total policies assessed, the pass/fail/"
             "warning counts, the compliance rate, and the number of open "
-            "high-severity items. A report without numbers is not a report.",
+            "high-severity items. A report without numbers is not a report. Also call "
+            "get_exemptions: if policies were omitted by configuration, a report quoting "
+            "the headline rate without saying so is misleading, and an auditor will "
+            "treat that as a finding against the report rather than the tenant.",
             [
                 self.tools.get_posture_summary,
                 self.tools.list_failures,
                 self.tools.get_control_details,
                 self.tools.get_nist_mapping,
+                self.tools.get_exemptions,
+                self.tools.get_virginia_obligations,
             ],
         )
 
@@ -248,8 +265,6 @@ class ComplianceAssistant:
             "remediation": self.remediation_agent(),
             "report": self.report_agent(),
         }
-
-    # ------------------------------------------------------------- entrypoint
 
     async def ask(self, question: str, specialist: str = "posture") -> str:
         """Route a question to one specialist and return its grounded answer."""

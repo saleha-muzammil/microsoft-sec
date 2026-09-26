@@ -39,8 +39,6 @@ def index():
     )
 
 
-# ------------------------------------------------------------------ parsing
-
 def test_workbook_parses_all_control_families(sec530):
     assert len(sec530) > 1000
     families = {cid.split("-")[0] for cid in sec530}
@@ -75,8 +73,6 @@ def test_withdrawal_reason_is_captured():
 def test_normalisation_matches_the_crosswalk_convention(raw, expected):
     assert _normalise(raw) == expected
 
-
-# --------------------------------------------------------------------- join
 
 def test_every_crosswalk_control_exists_in_sec530(sec530, index, run):
     """The join must be exact. A miss would mean silent under-reporting."""

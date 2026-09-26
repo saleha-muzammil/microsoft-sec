@@ -84,9 +84,12 @@ def main() -> int:
                     stats["renamed"] += 1
 
     meta = doc["MetaData"]
+    # Capture the source UUID BEFORE overwriting it. Reading it afterwards made
+    # DerivedFrom point at the new run's own identifier -- a self-referential
+    # provenance record, which is worse than none at all.
+    meta["DerivedFrom"] = meta.get("ReportUUID", "")
     meta["TimestampZulu"] = "2026-06-03T09:00:00.000Z"      # ~30 days later
     meta["ReportUUID"] = "b7e41f28-9c3d-4a15-8f62-1d4e7a0b5c93"
-    meta["DerivedFrom"] = meta.get("ReportUUID", "")
     meta["DataClassification"] = (
         "DERIVED FIXTURE - not a real second assessment. Generated from CISA's "
         "published sample report by scripts/make_followup_run.py to demonstrate "

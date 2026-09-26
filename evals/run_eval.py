@@ -23,7 +23,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from scuba_oscal.agents.orchestrator import ComplianceAssistant, FoundryConfig  # noqa: E402
+# The Foundry SDK is imported inside main(), not here: compare.py imports
+# score() and GOLDEN from this module to re-grade recorded answers offline, and
+# that path must not require Azure to be installed.
 
 POLICY_ID = re.compile(r"MS\.[A-Z0-9]+\.\d+\.\d+v\d+")
 GOLDEN = ROOT / "evals/golden_set.json"
@@ -56,6 +58,8 @@ def score(case: dict, answer: str) -> dict:
 
 
 async def main() -> int:
+    from scuba_oscal.agents.orchestrator import ComplianceAssistant, FoundryConfig
+
     cases = json.loads(GOLDEN.read_text())["cases"]
     config = FoundryConfig.from_env(ROOT / ".env")
 

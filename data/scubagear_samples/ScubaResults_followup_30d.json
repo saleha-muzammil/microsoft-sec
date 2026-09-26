@@ -24,7 +24,7 @@
     "ToolVersion": "1.8.0",
     "TimestampZulu": "2026-06-03T09:00:00.000Z",
     "ReportUUID": "b7e41f28-9c3d-4a15-8f62-1d4e7a0b5c93",
-    "DerivedFrom": "b7e41f28-9c3d-4a15-8f62-1d4e7a0b5c93",
+    "DerivedFrom": "fa5589b7-d528-4f80-8e7d-5c20eda7b6d8",
     "DataClassification": "DERIVED FIXTURE - not a real second assessment. Generated from CISA's published sample report by scripts/make_followup_run.py to demonstrate posture drift across a baseline version change."
   },
   "Summary": {
