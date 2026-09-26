@@ -82,7 +82,11 @@ class FoundryConfig:
     model: str
     api_key: str | None = None
     azure_openai_endpoint: str | None = None
-    api_version: str = "2024-10-21"
+    # Azure OpenAI's v1 surface. Established by probing: every dated version
+    # we tried (2024-08 through 2025-04 preview) returned
+    # "API version not supported" against this resource. Override with
+    # FOUNDRY_API_VERSION if a future resource needs a dated one.
+    api_version: str = "preview"
 
     @property
     def uses_key_auth(self) -> bool:
@@ -110,6 +114,7 @@ class FoundryConfig:
             model=model,
             api_key=os.environ.get("FOUNDRY_API_KEY") or None,
             azure_openai_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT") or None,
+            api_version=os.environ.get("FOUNDRY_API_VERSION") or "preview",
         )
 
 
