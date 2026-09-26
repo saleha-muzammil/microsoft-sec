@@ -381,7 +381,7 @@ class ComplianceTools:
         """Show which MITRE ATT&CK techniques still have a working mitigation.
 
         A technique is 'uncovered' when every SCuBA policy CISA maps to it is
-        currently failing — nothing in the assessed baseline is stopping it.
+        currently failing, nothing in the assessed baseline is stopping it.
         Use this to answer "what can still happen to us", which is different
         from "what is non-compliant". Note this is coverage arithmetic over
         CISA's published mappings, not a claim about real-world exploitability.
@@ -422,7 +422,7 @@ class ComplianceTools:
         This ordering is NOT the same as compliance severity, and the difference
         matters: a failing SHOULD can be the only remaining mitigation for a
         technique, while a failing SHALL may have other controls still covering
-        it. Use this alongside severity, not instead of it — SHALL policies are
+        it. Use this alongside severity, not instead of it, SHALL policies are
         mandatory under CISA BOD 25-01 regardless of coverage.
         """
         report = self._coverage()
@@ -448,7 +448,7 @@ class ComplianceTools:
         """Report policies excluded from the compliance figure by configuration.
 
         ScubaGear lets an organisation omit policies via its config file, which
-        removes them from the denominator — so the reported compliance rate can
+        removes them from the denominator, so the reported compliance rate can
         be raised by editing YAML. Use this to answer "is this number real?" and
         to surface exemptions that have expired but are still suppressing their
         policy. Returns nothing if no configuration was supplied.
@@ -518,7 +518,7 @@ class ComplianceTools:
 
         Some controls are WITHDRAWN in Virginia ("not applicable to COV"). A
         finding mapping only to withdrawn controls is a federal obligation with
-        no Virginia equivalent — say so rather than implying a state duty.
+        no Virginia equivalent, say so rather than implying a state duty.
         """
         from ..virginia import map_to_virginia, parse_sec530
 

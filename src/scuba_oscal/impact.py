@@ -55,7 +55,7 @@ SOURCES = {
                   "https://www.doe.virginia.gov/about-vdoe/virginia-school-directories"),
     "localities": ("95 counties + 38 independent cities",
                    "https://en.wikipedia.org/wiki/List_of_cities_and_counties_in_Virginia"),
-    "highered": ("Virginia State Council of Higher Education — 39 public institutions: "
+    "highered": ("Virginia State Council of Higher Education, 39 public institutions: "
                  "15 four-year, 23 community colleges, Richard Bland College",
                  "https://www.schev.edu/students/applying-for-college/colleges-universities"),
 }

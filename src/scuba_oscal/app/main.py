@@ -1,4 +1,4 @@
-"""SCuBA Compliance Copilot — demo application.
+"""SCuBA Compliance Copilot, demo application.
 
 Organised as a narrative rather than a feature list, because the audience is a
 security team or an auditor, not a developer: start here → how are we doing →
@@ -158,7 +158,7 @@ with st.sidebar:
     with st.expander("📤  Use your own scan"):
         st.caption(
             "Drop in a ScubaGear `ScubaResults*.json` from your own tenant. It runs "
-            "through the same parser, transformers and validator as the sample — "
+            "through the same parser, transformers and validator as the sample, "
             "there is no separate code path."
         )
         uploaded = st.file_uploader("ScubaGear results", type=["json"],
@@ -206,7 +206,7 @@ with st.sidebar:
             )
     else:
         st.caption(
-            "A sample Microsoft 365 tenant published by CISA — real assessment data, "
+            "A sample Microsoft 365 tenant published by CISA, real assessment data, "
             "no private information."
         )
     st.metric("Security rules checked", data["total_policies_assessed"])
@@ -227,7 +227,7 @@ if view == "start":
             "Microsoft 365 has hundreds of security settings. The US government publishes "
             "rules for how they should be configured, and a free scanner that checks them. "
             "This tool takes that scanner's output and turns it into the compliance "
-            "paperwork organisations are actually required to produce — then lets you ask "
+            "paperwork organisations are actually required to produce, then lets you ask "
             "questions about it in plain English.",
         ),
         unsafe_allow_html=True,
@@ -236,11 +236,11 @@ if view == "start":
     st.markdown("#### The problem, in one paragraph")
     st.markdown(
         "A university or city government runs Microsoft 365 just like a federal agency does. "
-        "**CISA** — the US Cybersecurity and Infrastructure Security Agency — publishes security "
+        "**CISA**, the US Cybersecurity and Infrastructure Security Agency, publishes security "
         "baselines called **SCuBA** saying how it should be locked down, plus a free scanner "
         "(**ScubaGear**) that grades your setup. The scanner works well. But it produces a *report "
-        "for a human to read*. Everything after that — the security plan, the remediation tracker, "
-        "the auditor's evidence pack — is still assembled by hand, over weeks, by people most of "
+        "for a human to read*. Everything after that, the security plan, the remediation tracker, "
+        "the auditor's evidence pack, is still assembled by hand, over weeks, by people most of "
         "these institutions don't employ."
     )
 
@@ -248,7 +248,7 @@ if view == "start":
         explain(
             "So what does this tool actually do?",
             "It reads the scanner's output and automatically produces the formal compliance "
-            "documents in <b>OSCAL</b> — the machine-readable standard that US government "
+            "documents in <b>OSCAL</b>, the machine-readable standard that US government "
             "auditors already use. Then it puts an AI assistant on top so you can ask "
             "“what are our biggest risks?” instead of reading 92 rows of JSON.",
         ),
@@ -263,7 +263,7 @@ if view == "start":
             "Every compliance number on the following pages is settled before any model "
             "loads. Ask an agent something the tools cannot answer and it has to say so "
             "rather than guess. That is a property of the wiring rather than a promise about "
-            "the model's behaviour — which is why it is the stages above the boundary, not "
+            "the model's behaviour, which is why it is the stages above the boundary, not "
             "the agents, that carry the test suite.",
         ),
         unsafe_allow_html=True,
@@ -281,7 +281,7 @@ if view == "start":
         "compliance information so computers can read it. Auditors and FedRAMP already consume it. "
         "This is what we generate."
         "<br><br>"
-        '<span class="jargon">POA&M</span> “Plan of Action and Milestones” — the formal document '
+        '<span class="jargon">POA&M</span> “Plan of Action and Milestones”, the formal document '
         "listing what\'s broken, how serious it is, and when it will be fixed."
         "<br><br>"
         '<span class="jargon">SHALL vs SHOULD</span> SHALL is mandatory (legally required for '
@@ -293,9 +293,9 @@ if view == "start":
     st.markdown("#### What you'll find in each section")
     for n, (key, text) in enumerate(
         [
-            ("1 · How are we doing?", "The scoreboard. How many security rules pass, fail, or need attention — overall and per Microsoft product."),
+            ("1 · How are we doing?", "The scoreboard. How many security rules pass, fail, or need attention, overall and per Microsoft product."),
             ("2 · What needs fixing?", "The work queue. Every failure ranked by severity, with a deadline, CISA's own fix instructions, and which government control it maps to."),
-            ("3 · Ask the AI", "Ask questions in plain English. The AI can only answer using the verified documents — it is structurally unable to make a number up."),
+            ("3 · Ask the AI", "Ask questions in plain English. The AI can only answer using the verified documents, it is structurally unable to make a number up."),
             ("4 · What changed?", "Compare two scans over time. This is where we do something other tools get wrong, and we show you the difference."),
             ("5 · The evidence", "The actual compliance documents, downloadable. All eight pass the US government's official validator."),
         ],
@@ -307,7 +307,7 @@ if view == "start":
     st.markdown("---")
     st.markdown(
         '<p class="footnote">Built on <b>Microsoft Foundry</b>. Input is CISA\'s own published '
-        "sample assessment (public domain) — no private organisation's data is used anywhere. "
+        "sample assessment (public domain), no private organisation's data is used anywhere. "
         "Open source under Apache-2.0.</p>",
         unsafe_allow_html=True,
     )
@@ -342,7 +342,7 @@ elif view == "posture":
             "How do I read this?",
             f"Of <b>{total}</b> security rules checked, <b>{r.get('Pass',0)}</b> pass. "
             f"<b>{r.get('Fail',0)}</b> fail outright and <b>{r.get('Warning',0)}</b> are only "
-            "partly configured — both need attention. The <b>Not applicable</b> ones don't apply "
+            "partly configured, both need attention. The <b>Not applicable</b> ones don't apply "
             "to this organisation's licences, so they're excluded from the score. "
             "Every number here is read directly from the verified compliance documents, "
             "not calculated in this page.",
@@ -390,7 +390,7 @@ elif view == "posture":
                     "What is an exemption?",
                     "ScubaGear lets an organisation <b>omit</b> policies from its report "
                     "through a config file. Omitted policies turn grey and drop out of the "
-                    "denominator — so the compliance rate can be raised by editing YAML. "
+                    "denominator, so the compliance rate can be raised by editing YAML. "
                     "CISA warns this \u201ccan inadvertently introduce blind spots\u201d. "
                     "Nothing audits it, and nothing enforces the optional expiry date.",
                 ),
@@ -414,11 +414,11 @@ elif view == "posture":
                     "Why is the gap only a few points?",
                     f"Because <b>{len(ledger.suppressed_passing)} of the "
                     f"{len(ledger.suppressed)}</b> suppressed policies were actually "
-                    f"<b>passing</b> ({', '.join(ledger.suppressed_passing) or 'none'}) — "
+                    f"<b>passing</b> ({', '.join(ledger.suppressed_passing) or 'none'}), "
                     "omitting those <i>lowers</i> the reported rate rather than raising it. "
                     "It would be easy to quote a bigger number by assuming every exempted "
                     "policy failed, and it would be wrong: that is a claim about evidence "
-                    "nobody has. The figure above compares like with like — the same "
+                    "nobody has. The figure above compares like with like, the same "
                     f"policies, scored the same way, with the omissions put back. If you "
                     f"<i>did</i> assume every exemption hid a failure, the rate would be "
                     f"<b>{ledger.worst_case_rate:.1f}%</b>; we report that as a bound, not "
@@ -429,13 +429,13 @@ elif view == "posture":
             st.markdown(
                 "**The distortion that matters is not the percentage.** It is that "
                 f"**{len(ledger.suppressed_mandatory)}** suppressed policies are **SHALL** "
-                "requirements — mandatory under BOD 25-01 — and that nothing in ScubaGear "
+                "requirements, mandatory under BOD 25-01, and that nothing in ScubaGear "
                 "reviews, approves or expires any of it."
             )
             if ledger.expired:
                 for e in ledger.expired:
                     st.error(
-                        f"**{e.policy_id}** — exemption expired "
+                        f"**{e.policy_id}**, exemption expired "
                         f"**{e.expiration.isoformat()}** and is still suppressing the policy. "
                         f"Recorded reason: *{e.rationale or 'none given'}*",
                         icon="⏰",
@@ -451,26 +451,26 @@ elif view == "posture":
                 st.warning(
                     "Named in the config but **not assessed in this run**: "
                     + ", ".join(e.policy_id for e in ledger.stale)
-                    + ". These suppress nothing here — they are most likely left over "
+                    + ". These suppress nothing here, they are most likely left over "
                     "from an earlier baseline version, and nobody has reviewed them.",
                     icon="🗑️",
                 )
             st.success(
                 f"All {len(ledger.exemptions)} of these are written into the POA&M as OSCAL "
-                "risks carrying a `risk-status` — `deviation-approved`, "
+                "risks carrying a `risk-status`, `deviation-approved`, "
                 "`deviation-requested`, or `open` once expired. That is the difference "
                 "between an exclusion living in a YAML file and one an auditor can query.",
                 icon="📄",
             )
             st.caption(
                 "Config shown is an illustrative example using CISA's documented field "
-                "names — not a real organisation's file."
+                "names, not a real organisation's file."
             )
 
     st.markdown("---")
     worst = max(data["by_product"].items(), key=lambda kv: kv[1].get("Fail", 0))
     st.info(
-        f"**Biggest weak spot: {worst[0]}** — {worst[1].get('Fail', 0)} failing rules. "
+        f"**Biggest weak spot: {worst[0]}**, {worst[1].get('Fail', 0)} failing rules. "
         "In Microsoft 365, AAD (now called Entra ID) controls who can sign in and what they can "
         "do, so failures there tend to matter most.",
         icon="🎯",
@@ -508,7 +508,7 @@ elif view == "fix":
             "Where do the severities and deadlines come from?",
             "Not from an AI. A failing <b>SHALL</b> (mandatory) rule is High; a failing "
             "<b>SHOULD</b> (recommended) rule is Moderate; a partially-configured SHOULD is Low. "
-            "Deadlines follow the timelines US federal agencies already use — 30, 90 and 180 days. "
+            "Deadlines follow the timelines US federal agencies already use, 30, 90 and 180 days. "
             "Both are computed in code, so they're the same every time.",
         ),
         unsafe_allow_html=True,
@@ -548,12 +548,12 @@ elif view == "fix":
         st.markdown(
             explain(
                 "Why does Virginia have its own answer?",
-                "SCuBA is federal guidance. Virginia public bodies — every public college, "
-                "university and school division — are governed by <b>SEC530</b>, VITA's "
+                "SCuBA is federal guidance. Virginia public bodies, every public college, "
+                "university and school division, are governed by <b>SEC530</b>, VITA's "
                 "Information Security Standard, which adopts NIST 800-53 and uses its control "
                 "IDs. So a ScubaGear failure can be composed through CISA's crosswalk into a "
                 "Commonwealth obligation, <b>including who Virginia says owns it</b>. "
-                "No model is involved — it is an exact join on published control identifiers.",
+                "No model is involved, it is an exact join on published control identifiers.",
             ),
             unsafe_allow_html=True,
         )
@@ -569,8 +569,8 @@ elif view == "fix":
         va_rows = [
             {
                 "Rule": o.policy_id,
-                "SEC530 control": ", ".join(c.published_id for c in o.in_scope) or "—",
-                "Virginia says it is owned by": ", ".join(o.owners) or "—",
+                "SEC530 control": ", ".join(c.published_id for c in o.in_scope) or ", ",
+                "Virginia says it is owned by": ", ".join(o.owners) or ", ",
             }
             for o in state
         ]
@@ -583,13 +583,13 @@ elif view == "fix":
                 "**Where the two governments differ.** "
                 + ", ".join(o.policy_id for o in federal_only)
                 + " map only to controls the Commonwealth has **withdrawn** "
-                f"({federal_only[0].withdrawn[0].published_id} — "
+                f"({federal_only[0].withdrawn[0].published_id}, "
                 f"\u201c{federal_only[0].withdrawn[0].withdrawal_note}\u201d). "
-                "These remain federal obligations, but carry no SEC530 duty — a distinction "
+                "These remain federal obligations, but carry no SEC530 duty, a distinction "
                 "a Virginia institution would otherwise have to work out by hand.",
                 icon="⚖️",
             )
-        st.caption(f"Source: {STANDARD} — VITA control summaries, joined on NIST 800-53 IDs.")
+        st.caption(f"Source: {STANDARD}, VITA control summaries, joined on NIST 800-53 IDs.")
 
     st.markdown("---")
     st.markdown("##### Two ways to decide what to fix first")
@@ -601,7 +601,7 @@ elif view == "fix":
     tab_sev, tab_threat = st.tabs(["🔴  By compliance severity", "🎯  By threat coverage"])
 
     with tab_sev:
-        st.caption("Failed SHALL first — what an auditor checks. Mandatory under CISA BOD 25-01.")
+        st.caption("Failed SHALL first, what an auditor checks. Mandatory under CISA BOD 25-01.")
         st.dataframe(display, use_container_width=True, hide_index=True, height=260)
 
     with tab_threat:
@@ -623,7 +623,7 @@ elif view == "fix":
                     "What does “uncovered” mean?",
                     "CISA maps each SCuBA policy to the MITRE ATT&CK techniques it helps stop. "
                     "A technique is <b>uncovered</b> when <i>every</i> policy mapped to it is "
-                    "currently failing — so nothing in the assessed baseline is mitigating it. "
+                    "currently failing, so nothing in the assessed baseline is mitigating it. "
                     "This is coverage arithmetic over CISA's published mappings, not a claim "
                     "that you are exploitable.",
                 ),
@@ -634,7 +634,7 @@ elif view == "fix":
             for t in cov["techniques"]:
                 st.markdown(
                     f'<div class="finding down"><span class="pid">{t["technique"]}</span> '
-                    f'&nbsp;<b>{t["name"]}</b> — all {len(t["failing_policies"])} mapped '
+                    f'&nbsp;<b>{t["name"]}</b>, all {len(t["failing_policies"])} mapped '
                     f'{"policy is" if len(t["failing_policies"]) == 1 else "policies are"} failing '
                     f'({", ".join(t["failing_policies"])})</div>',
                     unsafe_allow_html=True,
@@ -660,7 +660,7 @@ elif view == "fix":
                 if disagree:
                     names = ", ".join(r["policy_id"] for r in disagree)
                     st.warning(
-                        f"**The two rankings disagree — and that is the point.** {names} "
+                        f"**The two rankings disagree, and that is the point.** {names} "
                         f"{'is' if len(disagree) == 1 else 'are'} ranked **low** by compliance "
                         "severity, because they are SHOULD rather than SHALL. But each is "
                         "currently the *only* remaining mitigation for two attack techniques. "
@@ -677,15 +677,15 @@ elif view == "fix":
         mapping = json.loads(get_tools().get_nist_mapping(selected))
 
         st.markdown(f"### {detail['title']}")
-        tag = "Mandatory — legally required for federal agencies" if detail["mandatory"] else "Recommended"
+        tag = "Mandatory, legally required for federal agencies" if detail["mandatory"] else "Recommended"
         st.caption(f"`{detail['policy_id']}` · {tag} · currently **{detail['assessed_result']}**")
 
         left, right = st.columns([2, 1])
         with left:
             st.markdown("**Why this matters** *(CISA's own words)*")
-            st.write(detail["rationale"] or "—")
-            with st.expander("📋  How to fix it — CISA's step-by-step instructions"):
-                st.markdown(detail["implementation_guidance"] or "—")
+            st.write(detail["rationale"] or ", ")
+            with st.expander("📋  How to fix it, CISA's step-by-step instructions"):
+                st.markdown(detail["implementation_guidance"] or ", ")
             if detail.get("evidence"):
                 with st.expander("🔍  What the scanner actually found"):
                     st.code(detail["evidence"][:1500], language=None)
@@ -695,7 +695,7 @@ elif view == "fix":
                 st.code("\n".join(mapping["cisa_published_ids"] or mapping["nist_controls"]))
                 if mapping["provenance"].startswith("cisa"):
                     st.success("✓ Published by CISA", icon="✅")
-                    st.caption("This mapping is CISA's official answer — not something our AI guessed.")
+                    st.caption("This mapping is CISA's official answer, not something our AI guessed.")
                 else:
                     st.warning(f"AI-proposed ({mapping['provenance']})", icon="⚠️")
                     st.caption("CISA hasn't published a mapping for this rule. Needs human review.")
@@ -718,7 +718,7 @@ elif view == "ask":
     st.markdown(
         explain(
             "Can the AI make things up?",
-            "No — and that's the core design decision. The AI has no access to the data. It can "
+            "No, and that's the core design decision. The AI has no access to the data. It can "
             "only call a set of functions that read the verified documents, so every number it "
             "gives you traces back to a file that passed the US government's validator. "
             "Ask it about a rule that doesn't exist and it will tell you so rather than invent one.",
@@ -727,10 +727,10 @@ elif view == "ask":
     )
 
     specialists = {
-        "posture": "📊  Overall status — how are we doing?",
-        "risk": "🎯  Risk expert — what should we fix first?",
-        "remediation": "🔧  Engineer — how do I fix this?",
-        "report": "📝  Report writer — summarise it for me",
+        "posture": "📊  Overall status, how are we doing?",
+        "risk": "🎯  Risk expert, what should we fix first?",
+        "remediation": "🔧  Engineer, how do I fix this?",
+        "report": "📝  Report writer, summarise it for me",
     }
     specialist = st.selectbox("Who do you want to ask?", list(specialists),
                               format_func=lambda k: specialists[k])
@@ -743,7 +743,7 @@ elif view == "ask":
                  "If we could only fix one thing this week, what should it be?",
                  "Which failures let an attacker take over an account?"],
         "remediation": ["How do we turn on phishing-resistant MFA?",
-                        "Someone could trick a user into approving a malicious app — what do we do?",
+                        "Someone could trick a user into approving a malicious app, what do we do?",
                         "How do we stop attackers guessing passwords?"],
         "report": ["Write a short summary for our university's leadership.",
                    "Summarise our compliance state for an auditor."],
@@ -765,8 +765,8 @@ elif view == "ask":
                 icon="📦",
             )
             st.info(
-                "Everything else in this app — the OSCAL documents, posture, drift, "
-                "threat coverage, Virginia obligations and the impact model — is "
+                "Everything else in this app, the OSCAL documents, posture, drift, "
+                "threat coverage, Virginia obligations and the impact model, is "
                 "deterministic Python and needs no Azure connection at all.",
                 icon="ℹ️",
             )
@@ -778,7 +778,7 @@ elif view == "ask":
             st.error(str(exc), icon="🔑")
             st.info(
                 "No API key is needed. The AI layer authenticates as *you*, through "
-                "`az login` — copy `.env.example` to `.env`, set your Foundry project "
+                "`az login`, copy `.env.example` to `.env`, set your Foundry project "
                 "endpoint, and sign in with the Azure CLI.",
                 icon="ℹ️",
             )
@@ -798,14 +798,14 @@ elif view == "ask":
             ) as bot:
                 return await bot.ask(question, specialist)
 
-        with st.spinner("Thinking — reading the compliance documents…"):
+        with st.spinner("Thinking, reading the compliance documents…"):
             try:
                 answer = asyncio.run(run())
             except Exception as exc:
                 st.error(f"Couldn't reach Microsoft Foundry: {exc}")
             else:
-                # Stored rather than rendered inline, so the answer — and the
-                # evidence explorer below it — survives the rerun Streamlit
+                # Stored rather than rendered inline, so the answer, and the
+                # evidence explorer below it, survives the rerun Streamlit
                 # does on every widget interaction.
                 st.session_state["ask_answer"] = answer
                 st.session_state["ask_question"] = question
@@ -820,7 +820,7 @@ elif view == "ask":
         # to the model; this deterministically audits what came *out*: every
         # policy ID, NIST control, ATT&CK technique and OSCAL UUID in the
         # answer is checked against the evidence corpus. Same detector as the
-        # published eval — one piece of tested code, on screen, on every
+        # published eval, one piece of tested code, on screen, on every
         # answer.
         try:
             audit = get_corpus().audit(answer, st.session_state.get("ask_question", ""))
@@ -830,7 +830,7 @@ elif view == "ask":
             st.caption("✅ Every fact above came from a verified document, not the AI's memory.")
         elif audit.unsupported:
             st.warning(
-                "**Output audit — unsupported identifiers.** These appear in the answer "
+                "**Output audit, unsupported identifiers.** These appear in the answer "
                 "but in none of the evidence this AI can read, so they came from model "
                 "memory. Do not act on them: "
                 + ", ".join(f"`{i}`" for i in audit.unsupported),
@@ -844,7 +844,7 @@ elif view == "ask":
                 else ""
             )
             st.caption(
-                f"✅ **Output audit passed** — {len(audit.verified)} identifier"
+                f"✅ **Output audit passed**, {len(audit.verified)} identifier"
                 f"{'s' if len(audit.verified) != 1 else ''} cited, every one verified "
                 "against the validated evidence corpus. This is the same detector the "
                 f"published eval uses, run on this answer just now.{note}"
@@ -852,7 +852,7 @@ elif view == "ask":
         elif audit.echoed:
             st.caption(
                 "Output audit: the only identifiers in this answer came from your "
-                "question — the answer quotes them without claiming them as fact."
+                "question, the answer quotes them without claiming them as fact."
             )
         else:
             st.caption(
@@ -861,10 +861,10 @@ elif view == "ask":
             )
 
         if audit is not None and audit.verified:
-            with st.expander("🔎  Show me the evidence — trace a citation to its OSCAL source"):
+            with st.expander("🔎  Show me the evidence, trace a citation to its OSCAL source"):
                 st.caption(
                     "Pick anything the answer cited. This locates the exact node in the "
-                    "validated OSCAL documents that carries it — the auditor's view."
+                    "validated OSCAL documents that carries it, the auditor's view."
                 )
                 chosen_id = st.selectbox("Cited identifier", audit.verified)
                 for ev in get_corpus().resolve(chosen_id):
@@ -890,7 +890,7 @@ elif view == "drift":
         explain(
             "Why is comparing two scans hard?",
             "Because CISA renames its rules. A rule called <code>MS.DEFENDER.2.1v1</code> became "
-            "<code>MS.SECURITYSUITE.2.1v1</code> — same requirement, new name. A tool that matches "
+            "<code>MS.SECURITYSUITE.2.1v1</code>, same requirement, new name. A tool that matches "
             "rules by name sees the old one <i>disappear</i> and a new one <i>appear</i>, and "
             "reports both as changes. Nothing actually happened.",
         ),
@@ -912,9 +912,9 @@ elif view == "drift":
                     unsafe_allow_html=True)
 
     st.error(
-        f"**Matching by name invents {phantom['total_false_events']} changes that never happened** — "
+        f"**Matching by name invents {phantom['total_false_events']} changes that never happened**, "
         f"{phantom.get('added', 0)} made-up new problems and {phantom.get('removed', 0)} made-up "
-        f"fixes — because CISA renamed {len(aware.renumbered)} rules between the two scans. "
+        f"fixes, because CISA renamed {len(aware.renumbered)} rules between the two scans. "
         "We use CISA's own rename table, so we don't.",
         icon="🚨",
     )
@@ -925,13 +925,13 @@ elif view == "drift":
             good = d.kind.value == "improvement"
             st.markdown(
                 f'<div class="finding {"up" if good else "down"}">'
-                f'{"✅ <b>Fixed</b>" if good else "🔴 <b>Broke</b>"} — '
+                f'{"✅ <b>Fixed</b>" if good else "🔴 <b>Broke</b>"}, '
                 f'<span class="pid">{d.policy_id}</span> &nbsp; {d.before.value} → {d.after.value}'
                 "</div>",
                 unsafe_allow_html=True,
             )
     with st.expander(f"Renames we correctly ignored ({len(aware.renumbered)})"):
-        st.caption("These look like changes to a naive tool. They aren't — only the name moved.")
+        st.caption("These look like changes to a naive tool. They aren't, only the name moved.")
         for d in aware.renumbered:
             st.text(d.description)
 
@@ -940,7 +940,7 @@ elif view == "impact":
     st.markdown(
         page_head(
             "What is it worth?",
-            "Every figure separates what we measured from what we assumed — and "
+            "Every figure separates what we measured from what we assumed, and "
             "every assumption is yours to change.",
         ),
         unsafe_allow_html=True,
@@ -953,7 +953,7 @@ elif view == "impact":
     phantom = drift_result[2]["total_false_events"] if drift_result else 0
 
     m = measure(active_dir(), phantom_findings=phantom)
-    st.markdown("##### Measured — counted from the generated documents")
+    st.markdown("##### Measured, counted from the generated documents")
     st.caption("Facts about what the pipeline produced. No assumptions involved.")
     if not phantom:
         st.caption(
@@ -966,7 +966,7 @@ elif view == "impact":
             col.metric(label, value)
 
     st.markdown("---")
-    st.markdown("##### Assumed — change these and watch the answer move")
+    st.markdown("##### Assumed, change these and watch the answer move")
     st.caption(
         "We publish a range, not a headline number. A point estimate would imply "
         "precision we do not have."
@@ -989,7 +989,7 @@ elif view == "impact":
         )
         questions = st.slider(
             "AI questions asked per month", 0, 2000, 200, step=50,
-            help="Drives the running cost. Assumed, not measured — like the minutes above.",
+            help="Drives the running cost. Assumed, not measured, like the minutes above.",
         )
 
     a = Assumptions(
@@ -1006,9 +1006,9 @@ elif view == "impact":
     st.markdown("##### Result")
     st.markdown(
         cards([
-            (f"{band.low_hours:.0f}–{band.high_hours:.0f} h", "Manual effort replaced",
+            (f"{band.low_hours:.0f}, {band.high_hours:.0f} h", "Manual effort replaced",
              "per assessment cycle", "good"),
-            (f"${band.low_cost:,.0f}–${band.high_cost:,.0f}", "Analyst time value",
+            (f"${band.low_cost:,.0f}, ${band.high_cost:,.0f}", "Analyst time value",
              f"at ${band.loaded_hourly:.0f}/h loaded", "good"),
             (f"${costs['total_monthly']:.2f}", "Cost to run",
              "per month, all Azure services", "dark"),
@@ -1032,7 +1032,7 @@ elif view == "impact":
     )
     st.caption(
         f"Per cycle: \\${band.mid_cost:,.0f} of analyst time replaced. Both sides of the "
-        "ratio cover the same twelve months — a per-cycle saving over a per-month cost "
+        "ratio cover the same twelve months, a per-cycle saving over a per-month cost "
         "would look about three times better and would not mean anything."
     )
 
@@ -1048,10 +1048,10 @@ elif view == "impact":
     st.markdown(
         cards([
             (f"{scale['institutions']}", "Public institutions", "running Microsoft 365", ""),
-            (f"{scale['low_hours']:,.0f}–{scale['high_hours']:,.0f}", "Analyst hours / year",
+            (f"{scale['low_hours']:,.0f}, {scale['high_hours']:,.0f}", "Analyst hours / year",
              "returned to security work", "good"),
             (f"${scale['mid_cost'] / 1e6:,.1f}M", "Mid-range value / year",
-             f"band ${scale['low_cost'] / 1e6:,.1f}M–${scale['high_cost'] / 1e6:,.1f}M", "dark"),
+             f"band ${scale['low_cost'] / 1e6:,.1f}M, ${scale['high_cost'] / 1e6:,.1f}M", "dark"),
         ]),
         unsafe_allow_html=True,
     )
@@ -1062,7 +1062,7 @@ elif view == "impact":
     st.caption("Sources: " + " · ".join(f"[{n}]({u})" for n, u in SOURCES.values()))
     st.info(
         "These institutions run the same Microsoft 365 estate as a federal agency and face "
-        "the same expectations — with a fraction of the compliance staff. The point is not "
+        "the same expectations, with a fraction of the compliance staff. The point is not "
         "the exact figure; it is that the work is large, repetitive, and currently manual.",
         icon="🏛️",
     )
@@ -1072,7 +1072,7 @@ else:
     st.markdown(
         page_head(
             "The evidence",
-            "The formal compliance documents this tool generates — the actual deliverable.",
+            "The formal compliance documents this tool generates, the actual deliverable.",
         ),
         unsafe_allow_html=True,
     )
@@ -1081,7 +1081,7 @@ else:
             "Why does this matter?",
             "These are written in <b>OSCAL</b>, the machine-readable compliance format NIST "
             "created and US government auditors already accept. Producing them by hand takes "
-            "weeks. All eight below pass NIST's own official validator — not just a format "
+            "weeks. All eight below pass NIST's own official validator, not just a format "
             "check, but the full rulebook.",
         ),
         unsafe_allow_html=True,
@@ -1109,7 +1109,7 @@ else:
     st.dataframe(pd.DataFrame(rows).drop(columns="_file"),
                  use_container_width=True, hide_index=True)
 
-    # Validate for real, here, now — rather than asserting it in a string.
+    # Validate for real, here, now, rather than asserting it in a string.
     # JSON Schema runs in milliseconds so it is always live; oscal-cli needs a
     # JVM and several seconds per document, so it is offered on demand and its
     # result is reported separately. Conflating the two tiers would overstate
@@ -1136,15 +1136,14 @@ else:
 
     st.caption(
         f"JSON Schema is the fast tier. The authoritative tier is NIST's `oscal-cli`, which "
-        f"also enforces Metaschema constraints — cardinality, cross-reference resolution and "
-        f"allowed-value sets — that JSON Schema cannot express. CI runs it on every push. "
+        f"also enforces Metaschema constraints, cardinality, cross-reference resolution and "
+        f"allowed-value sets, that JSON Schema cannot express. CI runs it on every push. "
         f"{cli_na} of these documents (`mapping-collection`) cannot be checked by it: "
         f"oscal-cli 3.2.0 has no `mapping` command, because the Control Mapping model is new "
         f"in OSCAL 1.2."
     )
 
-    # The hashes live inside the documents' own metadata, not in this app —
-    # so the claim survives the artifact leaving this screen.
+    # The hashes live inside the documents' own metadata, not in this app, # so the claim survives the artifact leaving this screen.
     cat_path = active_dir() / "scuba-m365-catalog.json"
     prov = []
     if cat_path.exists():
@@ -1158,7 +1157,7 @@ else:
                 "Every document above carries, <b>inside its own metadata</b>, the "
                 "SHA-256 of each input it was generated from. Hash the scan you were "
                 "given and compare: if the digests match, this OSCAL set came from "
-                "exactly that scan — not an edited copy, not a different tenant.",
+                "exactly that scan, not an edited copy, not a different tenant.",
             ),
             unsafe_allow_html=True,
         )
@@ -1181,7 +1180,7 @@ else:
     skew = sorted(i for i in obs_ids if i and i not in store.controls)
     if skew:
         st.warning(
-            f"**Version skew** — {len(skew)} assessed polic"
+            f"**Version skew**, {len(skew)} assessed polic"
             f"{'ies are' if len(skew) != 1 else 'y is'} absent from the baseline "
             "catalog (the scanner and baselines are from different releases): "
             + ", ".join(f"`{i.upper()}`" for i in skew[:10]),
@@ -1190,7 +1189,7 @@ else:
     else:
         st.caption(
             "Version-skew check: every policy the scan assessed exists in the baseline "
-            "catalog — the scanner and the baselines agree on what was tested."
+            "catalog, the scanner and the baselines agree on what was tested."
         )
 
     if cli_installed():
@@ -1221,14 +1220,17 @@ else:
             )
     else:
         st.caption(
-            "`oscal-cli` is not installed locally — run `./scripts/install_tools.sh` to "
+            "`oscal-cli` is not installed locally, run `./scripts/install_tools.sh` to "
             "re-run the authoritative validation here."
         )
 
-    chosen = st.selectbox("Download or inspect one",
-                          [f"{r['Document']} — {r['_file']}" for r in rows])
+    # Map label to filename rather than splitting the label back apart: the
+    # separator and the split string are easy to drift out of sync, and when
+    # they do the page raises FileNotFoundError instead of downloading.
+    labels = {f"{r['Document']} ({r['_file']})": r["_file"] for r in rows}
+    chosen = st.selectbox("Download or inspect one", list(labels))
     if chosen:
-        filename = chosen.split("— ")[-1]
+        filename = labels[chosen]
         path = active_dir() / filename
         st.download_button("⬇  Download", path.read_bytes(), file_name=filename,
                            mime="application/json")

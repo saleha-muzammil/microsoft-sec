@@ -144,7 +144,7 @@ PIPELINE_CSS = """
   .pipe .row { display:grid; align-items:stretch; grid-template-columns:1fr 92px 1fr 92px 1fr; }
   .pipe .row.two { grid-template-columns:1fr 104px 1fr; }
   @media (max-width: 900px) {
-    .pipe .row, .pipe .row.two { grid-template-columns:1fr; }
+    .pipe .row.pipe .row.two { grid-template-columns:1fr; }
     .pipe .arrow { padding:.3rem 0; }
     .pipe .arrow .g { transform:rotate(90deg); }
   }
@@ -241,7 +241,7 @@ def pipeline_html() -> str:
         + _node(
             "validate", "NIST validator",
             "Nothing reaches disk unless it validates.",
-            "oscal-cli Metaschema in CI — 7 of 8 models",
+            "oscal-cli Metaschema in CI, 7 of 8 models",
             "node-gate",
         )
         + _arrow("validated OSCAL")

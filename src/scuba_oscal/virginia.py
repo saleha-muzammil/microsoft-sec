@@ -42,7 +42,7 @@ SOURCE_URL = (
     "https://www.vita.virginia.gov/media/vitavirginiagov/it-governance/psgs/"
     "docs/SEC530_Control_Summaries.xlsx"
 )
-STANDARD = "Virginia ITRM Standard SEC530 — Information Security Standard"
+STANDARD = "Virginia ITRM Standard SEC530, Information Security Standard"
 
 
 class Ownership(str, Enum):
