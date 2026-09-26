@@ -18,12 +18,18 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from pathlib import Path
-
-from agent_framework import Agent
-from agent_framework.foundry import FoundryChatClient
-from azure.identity.aio import AzureCliCredential
+from typing import TYPE_CHECKING
 
 from .tools import ComplianceTools
+
+if TYPE_CHECKING:  # pragma: no cover
+    from agent_framework import Agent
+
+# NOTE: agent_framework and azure.identity are imported lazily inside the
+# methods that need them, NOT at module scope. They live in the optional "ai"
+# extra, so a top-level import makes this module unimportable for anyone who
+# installed only the core package -- including CI, which installs just [dev].
+# FoundryConfig in particular must stay importable without them.
 
 GROUNDING_RULE = """
 NON-NEGOTIABLE GROUNDING RULES:
@@ -125,10 +131,12 @@ class ComplianceAssistant:
         self.tools = ComplianceTools(oscal_dir)
         self.config = config
         self.audience = audience if audience in AUDIENCE_STYLES else "auditor"
-        self._credential: AzureCliCredential | None = None
-        self._client: FoundryChatClient | None = None
+        self._credential = None
+        self._client = None
 
     async def __aenter__(self) -> ComplianceAssistant:
+        from azure.identity.aio import AzureCliCredential
+
         if self.config.uses_key_auth:
             # Key auth path. Lets a collaborator outside the resource owner's
             # Azure directory run the agents without a guest invitation and
@@ -149,6 +157,8 @@ class ComplianceAssistant:
         # DefaultAzureCredential because on macOS the default chain probes
         # Keychain and managed identity first, adding latency and sometimes
         # hanging. We know we are developer-authenticated.
+        from agent_framework.foundry import FoundryChatClient
+
         self._credential = AzureCliCredential()
         self._client = FoundryChatClient(
             project_endpoint=self.config.endpoint,
@@ -162,6 +172,8 @@ class ComplianceAssistant:
             await self._credential.close()
 
     def _agent(self, name: str, role: str, tools: list) -> Agent:
+        from agent_framework import Agent
+
         return Agent(
             client=self._client,
             name=name,
