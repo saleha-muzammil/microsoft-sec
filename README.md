@@ -287,6 +287,13 @@ cp .env.example .env    # fill in your Foundry endpoint, then `az login`
 streamlit run src/scuba_oscal/app/main.py
 ```
 
+**Authentication.** By default the agents use **Azure AD** via `az login`, so
+**no secret is stored anywhere** — there are no API keys in this repository.
+If you need to run the agents from an account that is not in the Foundry
+resource's Azure directory, set `FOUNDRY_API_KEY` in your local `.env` and the
+Azure OpenAI endpoint is used with key auth instead. `.env` is gitignored and
+`.env.example` ships only a blank placeholder, enforced by a test.
+
 Optional — semantic retrieval over baseline guidance:
 
 ```bash

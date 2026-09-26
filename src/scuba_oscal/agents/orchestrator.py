@@ -62,8 +62,35 @@ AUDIENCE_STYLES = {
 
 @dataclass
 class FoundryConfig:
+    """How to reach Microsoft Foundry, and how to authenticate to it.
+
+    Two auth modes, in priority order:
+
+    * **Azure AD (default, preferred).** ``AzureCliCredential`` uses whoever ran
+      ``az login``. Nothing secret is stored anywhere, which is why this repo
+      contains no keys.
+    * **API key (opt-in).** Set ``FOUNDRY_API_KEY`` and the Azure OpenAI
+      endpoint is used with key auth instead. This exists so a collaborator who
+      is not in the resource owner's Azure directory can still run the agents
+      without being invited as a guest and granted RBAC.
+
+    The key is read from the environment and never committed: ``.env`` is
+    gitignored and ``.env.example`` ships only placeholders.
+    """
+
     endpoint: str
     model: str
+    api_key: str | None = None
+    azure_openai_endpoint: str | None = None
+    api_version: str = "2024-10-21"
+
+    @property
+    def uses_key_auth(self) -> bool:
+        return bool(self.api_key and self.azure_openai_endpoint)
+
+    @property
+    def auth_mode(self) -> str:
+        return "api-key" if self.uses_key_auth else "azure-ad (keyless)"
 
     @classmethod
     def from_env(cls, env_path: str | Path | None = None) -> FoundryConfig:
@@ -78,7 +105,12 @@ class FoundryConfig:
                 "FOUNDRY_PROJECT_ENDPOINT is not set. Copy .env.example to .env "
                 "and fill it in (see README)."
             )
-        return cls(endpoint=endpoint, model=model)
+        return cls(
+            endpoint=endpoint,
+            model=model,
+            api_key=os.environ.get("FOUNDRY_API_KEY") or None,
+            azure_openai_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT") or None,
+        )
 
 
 class ComplianceAssistant:
@@ -92,9 +124,26 @@ class ComplianceAssistant:
         self._client: FoundryChatClient | None = None
 
     async def __aenter__(self) -> ComplianceAssistant:
-        # AzureCliCredential rather than DefaultAzureCredential: on macOS the
-        # default chain probes Keychain and managed identity first, which adds
-        # seconds of latency and can hang. We know we are developer-authenticated.
+        if self.config.uses_key_auth:
+            # Key auth path. Lets a collaborator outside the resource owner's
+            # Azure directory run the agents without a guest invitation and
+            # RBAC propagation. Uses the Azure OpenAI endpoint, which is the
+            # surface that accepts an api-key header.
+            from agent_framework.openai import OpenAIChatClient
+
+            self._credential = None
+            self._client = OpenAIChatClient(
+                model=self.config.model,
+                api_key=self.config.api_key,
+                azure_endpoint=self.config.azure_openai_endpoint,
+                api_version=self.config.api_version,
+            )
+            return self
+
+        # Default: no secret anywhere. AzureCliCredential rather than
+        # DefaultAzureCredential because on macOS the default chain probes
+        # Keychain and managed identity first, adding latency and sometimes
+        # hanging. We know we are developer-authenticated.
         self._credential = AzureCliCredential()
         self._client = FoundryChatClient(
             project_endpoint=self.config.endpoint,
