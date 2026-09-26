@@ -88,7 +88,7 @@ def test_posture_and_exemption_rates_are_consistent():
     assert "bound" in bound
 
 
-def test_ask_view_degrades_gracefully_without_foundry():
+def test_ask_view_degrades_gracefully_without_foundry(monkeypatch):
     """Missing Foundry setup must explain itself, not traceback.
 
     The import of the Foundry SDK used to sit outside the try block, so
@@ -101,6 +101,16 @@ def test_ask_view_degrades_gracefully_without_foundry():
     install; with the SDK present but unconfigured it must name the missing
     setting. Never an unhandled exception.
     """
+    # Force the unconfigured state rather than depending on whether the machine
+    # running the tests happens to have Foundry set up. Without this the test
+    # passes on a contributor's laptop and fails on a configured one (or the
+    # reverse), which is worse than no test at all.
+    #
+    # An empty value rather than delenv: the app calls load_dotenv on the repo's
+    # .env, and python-dotenv does not override variables already set, so an
+    # empty string survives the load and reaches the falsy check in from_env.
+    monkeypatch.setenv("FOUNDRY_PROJECT_ENDPOINT", "")
+
     at = _run("ask")
     button = next(b for b in at.button if "Ask" in b.label)
     button.click().run()
